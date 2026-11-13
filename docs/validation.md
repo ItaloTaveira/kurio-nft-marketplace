@@ -29,9 +29,13 @@ As referências são da implementação em Chromium/macOS. Elas detectam regress
 
 ## Pendências de entrega
 
-- Repositório remoto: `https://github.com/ItaloTaveira/kurio-nft-marketplace`, privado. A URL pública da aplicação permanece pendente; configurações Vercel/Netlify estão preparadas, sem deploy.
+- Repositório remoto: `https://github.com/ItaloTaveira/kurio-nft-marketplace`, privado. Demonstração pública: https://nft-marketplaceme.netlify.app.
 - Revisão integral dos frames de carteiras, checkout e recibo: pendente por limite da cota Starter do MCP Figma.
 - Performance mobile: abaixo da meta, conforme números acima.
 - A toolchain conserva 15 alertas de dependências de desenvolvimento registrados no README; não foi aplicada atualização forçada.
 
 Atividade, ofertas, suporte, downloads e conteúdo editorial estão fora do escopo do enunciado. OAuth e recuperação de senha permanecem desativados. O backend simulado é apropriado à demonstração e não fornece segurança de servidor ou integração blockchain de produção.
+
+## Verificação do deploy Netlify
+
+Em 13/11/2026, início, detalhe e pagamento responderam HTTP 200 sem bloqueio de acesso da hospedagem. No Chromium, o catálogo apresentou nove cards, o Socket.IO conectou, o detalhe abriu por URL direta e a adição ao carrinho persistiu após refresh. O pagamento sem sessão redirecionou para `/entrar?returnTo=%2Fpagamento`. Esta verificação resumida do deploy não substitui a suíte local nem representa uma nova auditoria Lighthouse em produção.
