@@ -10,7 +10,6 @@
 .hero-explore:hover { background: transparent; text-decoration: underline; }
 .hero-artwork-mobile { position: relative; flex: 0 0 138px; height: 138px; }
 .hero-mobile-main { width: 138px; height: 138px; border-radius: 16px; object-fit: cover; }
-.hero-mobile-secondary { position: absolute; left: 14px; top: 88px; width: 58px; height: 58px; border-radius: 16px; object-fit: cover; }
 .hero-dots-mobile { position: absolute; bottom: 6px; left: calc(50% - 16.5px); }
 @media (min-width: 640px) and (max-width: 1023px) {
   .home-hero { height: 260px; padding: 24px 32px; }
@@ -20,7 +19,6 @@
   .hero-explore { margin-top: 12px; }
   .hero-artwork-mobile { flex-basis: 200px; height: 200px; }
   .hero-mobile-main { width: 200px; height: 200px; }
-  .hero-mobile-secondary { top: 128px; width: 84px; height: 84px; }
   .hero-dots-mobile { bottom: 12px; }
 }
 @media (min-width: 1024px) {
