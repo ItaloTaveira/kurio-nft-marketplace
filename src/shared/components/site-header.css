@@ -1,0 +1,14 @@
+@media (max-width: 1023px) {
+  .mobile-header-row { display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 48px; }
+  .mobile-header-row > :first-child { min-width: 0; }
+  .mobile-header-actions { display: flex; align-items: center; justify-content: flex-end; gap: 12px; flex-shrink: 0; margin-left: auto; }
+  .mobile-header-actions > a, .mobile-header-actions > button { min-width: 44px; min-height: 44px; }
+  .mobile-header-actions .account-control { width: 44px; height: 44px; }
+  .mobile-header-actions .account-menu summary { display: flex; align-items: center; min-height: 44px; min-width: 44px; padding-inline: 10px; }
+  .mobile-header-actions .account-menu-panel { top: calc(100% + 8px); max-width: calc(100vw - 48px); }
+  .mobile-header-actions > a > span[aria-hidden] { right: -2px; }
+}
+@media (max-width: 374px) {
+  .mobile-header-row { gap: 10px; }
+  .mobile-header-actions { gap: 8px; }
+}

@@ -1,3 +1,4 @@
+import './site-header.css'
 import { Link } from '@tanstack/react-router'
 import type { ReactNode } from 'react'
 import { defaultCatalogSearch, type CatalogSearch } from '@/shared/contracts/catalog'
@@ -34,11 +35,13 @@ export function SiteHeader({ compactMobile = false, marketOnPage = true, account
           {accountControl ?? <Button className="h-[35px] w-[100px] px-2 text-base" title={comingSoon} disabled><img src={loginIcon} alt="" />Entrar</Button>}
         </div>
       </div>
-      <div className="flex items-center gap-2 lg:hidden">
+      <div className="mobile-header-row lg:hidden">
         {searchControl ?? <button type="button" disabled title={comingSoon} aria-label="Buscar coleções — em breve" className="flex h-[45px] min-w-0 flex-1 cursor-not-allowed items-center gap-2 rounded-[10px] bg-card px-3 text-left text-sm font-bold text-secondary"><img src={mobileSearch} alt="" /><span className="truncate">Explorar coleções</span></button>}
+        <div className="mobile-header-actions">
         {!compactMobile && cartControl}
         {!compactMobile && accountControl}
         {filterControl ?? <Button size="icon" disabled aria-label="Filtrar NFTs — em breve" title={comingSoon} className="size-[45px] rounded-[14px] bg-[linear-gradient(137deg,rgba(210,138,76,0.45)_25%,#d28a4c_100%)]"><img src={filterIcon} alt="" /></Button>}
+        </div>
       </div>
     </header>
   )
