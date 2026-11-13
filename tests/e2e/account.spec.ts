@@ -14,9 +14,11 @@ async function createAccount(page: Page, email = 'nova@example.com', name = 'Nov
   await expect(page.getByRole('heading', { level: 1 })).toBeVisible()
 }
 async function signOut(page: Page, name = 'Nova') {
+  const destination = new URL(page.url()).pathname
   await page.getByLabel(`Conta de ${name}`, { exact: true }).filter({ visible: true }).click()
   await page.locator('.account-menu-panel:visible').getByRole('button', { name: 'Sair', exact: true }).click()
-  await expect(page).toHaveURL(/\/entrar/)
+  await expect(page).toHaveURL('/')
+  await page.goto(`/entrar?returnTo=${encodeURIComponent(destination)}`)
 }
 async function signIn(page: Page, secret = password, email = 'nova@example.com') {
   await page.getByRole('textbox', { name: 'E-mail', exact: true }).fill(email)
@@ -167,4 +169,23 @@ test('conflito entre abas preserva rascunho e nova senha revoga outra sessão', 
   await expect(other).toHaveURL(/\/entrar\?returnTo=%2Fperfil/)
   await expect(other.getByLabel('Nome de exibição', { exact: false })).toHaveCount(0)
   await other.close()
+})
+
+
+test('sair pelo perfil retorna ao início e encerra a sessão', async ({ page }) => {
+  await page.goto('/entrar?returnTo=%2Fperfil')
+  await page.getByLabel('E-mail', { exact: true }).fill('nova@kurio.test')
+  await page.getByLabel('Senha', { exact: true }).fill('Kurio123!')
+  await page.getByRole('button', { name: 'Entrar', exact: true }).click()
+  await expect(page).toHaveURL('/perfil')
+  const sidebarLogout = page.locator('.account-sidebar').getByRole('button', { name: 'Sair', exact: true })
+  if (await sidebarLogout.isVisible()) await sidebarLogout.click()
+  else {
+    await page.getByLabel('Conta de Nova', { exact: true }).filter({ visible: true }).click()
+    await page.locator('.account-menu-panel:visible').getByRole('button', { name: 'Sair', exact: true }).click()
+  }
+  await expect(page).toHaveURL('/')
+  await expect.poll(() => page.evaluate(() => sessionStorage.getItem('kurio:session-token'))).toBeFalsy()
+  await page.reload()
+  await expect(page).toHaveURL('/')
 })

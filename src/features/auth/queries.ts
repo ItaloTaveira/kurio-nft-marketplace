@@ -1,3 +1,6 @@
+import { useLocation, useNavigate } from '@tanstack/react-router'
+import { defaultCatalogSearch } from '@/shared/contracts/catalog'
+import { isPrivatePath } from '@/shared/contracts/auth'
 import { useEffect, useRef } from 'react'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { isAxiosError } from 'axios'
@@ -55,7 +58,11 @@ export function useAuthenticate() {
 }
 export function useLogout() {
   const client = useQueryClient()
+  const navigate = useNavigate()
+  const location = useLocation()
   return useMutation({ retry: false, mutationFn: async () => { await http.post('/auth/logout') }, onSuccess: async () => {
+    // Sai da rota privada antes de limpar a sessão para evitar o redirecionamento do guard.
+    if (isPrivatePath(location.pathname)) await navigate({ to: '/', search: defaultCatalogSearch, replace: true })
     await client.cancelQueries({ queryKey: ['cart'] })
     client.removeQueries({ queryKey: ['cart'] })
     await client.cancelQueries({ queryKey: ['account'] })

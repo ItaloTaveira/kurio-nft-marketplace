@@ -39,7 +39,7 @@ test('favoritos persistem, fazem rollback e são isolados por usuário', async (
   await page.goto('/favoritos')
   await page.getByLabel('Conta de Nova', { exact: true }).filter({ visible: true }).click()
   await page.locator('.account-menu-panel:visible').getByRole('button', { name: 'Sair', exact: true }).click()
-  await expect(page).toHaveURL(/\/entrar/)
+  await expect(page).toHaveURL('/')
   await login(page, 'leo@kurio.test')
   await page.goto('/favoritos')
   await expect(page.getByTestId('nft-card')).toHaveCount(0)
