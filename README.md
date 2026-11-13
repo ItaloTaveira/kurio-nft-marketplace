@@ -1,6 +1,6 @@
 # Kurio — NFT Marketplace
 
-**Demonstração pública:** https://nft-marketplaceme.netlify.app
+**Demonstração pública:** https://kurio-nft-marketplace-gold.vercel.app
 
 Frontend do desafio Jungle Gaming, com catálogo, detalhe, favoritos, carrinho, conta, carteiras e compra simulada. React/TypeScript, Vite, Tailwind/shadcn, TanStack Router/Query, Axios, MSW e Socket.IO.
 
@@ -94,7 +94,7 @@ Consulte [ARCHITECTURE.md](ARCHITECTURE.md) e [docs/api-contracts.md](docs/api-c
 
 ## Publicação e estado da entrega
 
-`vercel.json` e `public/_redirects` preparam Vercel/Netlify com fallback SPA para acesso direto/refresh. Build: `npm run build`; pasta: `dist`; Node 22. Os mocks devem permanecer ativos na demonstração. Repositório: [ItaloTaveira/kurio-nft-marketplace](https://github.com/ItaloTaveira/kurio-nft-marketplace), criado como privado. Aplicação publicada na Netlify: [nft-marketplaceme.netlify.app](https://nft-marketplaceme.netlify.app).
+`vercel.json` e `public/_redirects` preparam Vercel/Netlify com fallback SPA para acesso direto/refresh. Build: `npm run build`; pasta: `dist`; Node 22. Os mocks devem permanecer ativos na demonstração. Repositório: [ItaloTaveira/kurio-nft-marketplace](https://github.com/ItaloTaveira/kurio-nft-marketplace), criado como privado. Aplicação publicada na Vercel: [kurio-nft-marketplace-gold.vercel.app](https://kurio-nft-marketplace-gold.vercel.app).
 
 A CI em `.github/workflows/checks.yml` prepara Chromium e roda lint/testes funcionais após o projeto ser enviado a um repositório. Relatórios HTML/JSON Lighthouse e resumo ficam em `lighthouse/reports`; o relatório Playwright fica em `playwright-report` após execução. Resultados e limitações são registrados em [docs/validation.md](docs/validation.md).
 

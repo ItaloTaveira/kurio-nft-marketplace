@@ -29,7 +29,7 @@ As referências são da implementação em Chromium/macOS. Elas detectam regress
 
 ## Pendências de entrega
 
-- Repositório remoto: `https://github.com/ItaloTaveira/kurio-nft-marketplace`, privado. Demonstração pública: https://nft-marketplaceme.netlify.app.
+- Repositório remoto: `https://github.com/ItaloTaveira/kurio-nft-marketplace`, privado. Demonstração pública atual: https://kurio-nft-marketplace-gold.vercel.app.
 - Revisão integral dos frames de carteiras, checkout e recibo: pendente por limite da cota Starter do MCP Figma.
 - Performance mobile: abaixo da meta, conforme números acima.
 - A toolchain conserva 15 alertas de dependências de desenvolvimento registrados no README; não foi aplicada atualização forçada.
@@ -57,3 +57,10 @@ Após o deploy automático do commit `898d4ce`, a suíte das correções foi exe
 A referência e os limites da comparação estão em `docs/design-review.md`. Pagamento, recibo, rodapé e navegação mobile foram revisados; 15 capturas foram geradas e inspecionadas em desktop/mobile. Nome de usuário/metadados de carteira são somente leitura; a observação é validada e preservada no snapshot. Os fluxos de compra, troca de preço, sessão e isolamento de conta foram reexecutados.
 
 A rodada completa local teve 201 casos: 178 passaram de primeira, 13 passaram na repetição, sete falharam e três foram ignorados por não se aplicarem ao viewport. As falhas incluíram expectativas da navegação anterior e um aviso que interceptava o botão de voltar ao carrinho no tablet. Os testes foram adaptados aos controles reais da nova navegação, e o aviso foi corrigido. Também foi ajustada a incorporação da resposta da conexão ao cache para evitar estado visual antigo. As repetições focadas e seus resultados finais ficam nos logs `docs/test-runs/layout-*`; não se apresenta essa primeira rodada como uma suíte integralmente aprovada. Não foi refeita a auditoria Lighthouse.
+
+
+## Migração de hospedagem
+
+O usuário migrou a demonstração para https://kurio-nft-marketplace-gold.vercel.app. Os registros anteriores da Netlify são históricos. O HTML da Vercel foi conferido e referencia o mesmo bundle do build local dos ajustes visuais. A primeira CI desses ajustes aprovou 180 casos funcionais e falhou em três execuções do teste de favoritos por uma alteração incorreta no próprio teste (referência ao recibo fora do seu cenário); o teste foi corrigido, preservando a verificação de isolamento entre usuários.
+
+A correção do teste de favoritos passou nos três perfis Chromium (3/3). No endereço da Vercel foram verificados catálogo com nove cards, rodapé desktop, acesso direto ao detalhe, proteção e cancelamento do pagamento, cinco links na navegação mobile e apenas uma imagem no banner mobile. Não foram capturados erros JavaScript nessa verificação resumida.
