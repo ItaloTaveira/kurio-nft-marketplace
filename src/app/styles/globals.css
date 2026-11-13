@@ -61,7 +61,6 @@
 
 .card-favorite { position: absolute; top: 10px; right: 8px; display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 50%; background: var(--card); border: 1px solid var(--border); }
 [aria-pressed=true].card-favorite, [aria-pressed=true].detail-favorite { border-color: var(--accent); }
-.favorite-saved { font-size: 12px; color: var(--accent); }
 .favorite-error { display: block; font-size: 12px; line-height: 20px; color: #f0805f; }
 .nft-card-artwork .favorite-error { position: absolute; bottom: 0; padding: 8px; background: var(--card); }
 .detail-favorite, .detail-round-action { align-items: center; justify-content: center; }

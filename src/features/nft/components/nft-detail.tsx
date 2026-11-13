@@ -1,3 +1,5 @@
+import mobileHeartFilled from '@/shared/assets/figma/detail-mobile-heart-filled.svg'
+import heartFilled from '@/shared/assets/figma/detail-heart-filled.svg'
 import { FavoriteButton } from '@/features/favorites/favorite-button'
 import { getSessionToken } from '@/shared/api/session-token'
 import { useEffect, useRef, useState } from 'react'
@@ -76,7 +78,7 @@ export function NftDetail({ nft, search, catalogSearch, onSelectionChange }: Nft
     <>
       <div className="detail-mobile-navigation">
         <Link to="/" search={catalogSearch} hash="mercado" aria-label="Voltar ao catálogo" className="detail-round-action"><img src={backIcon} alt="" className="rotate-90" /></Link>
-        <FavoriteButton id={nft.id} name={nft.name} icon={mobileHeart} className="detail-round-action" />
+        <FavoriteButton id={nft.id} name={nft.name} icon={mobileHeart} filledIcon={mobileHeartFilled} className="detail-round-action" />
       </div>
       <div className="detail-product">
         <NftGallery nft={nft} />
@@ -107,7 +109,7 @@ export function NftDetail({ nft, search, catalogSearch, onSelectionChange }: Nft
             </div>
             <div className="detail-purchase-actions">
               <Button disabled={limit === 0 || cartCommands.isPending} onClick={() => void addToCart()} aria-describedby="detail-purchase-note" className="detail-buy">{cartCommands.isPending ? 'Adicionando…' : <><span className="lg:hidden">Comprar NFT</span><span className="hidden lg:inline">COMPRAR</span></>}</Button>
-              <FavoriteButton id={nft.id} name={nft.name} icon={heartIcon} className="detail-favorite" text />
+              <FavoriteButton id={nft.id} name={nft.name} icon={heartIcon} filledIcon={heartFilled} className="detail-favorite" text />
               <Button asChild variant="ghost" className="detail-cart"><Link to="/carrinho" search={{ returnTo: search.returnTo ?? '/#mercado' }} aria-label="Ver carrinho"><img src={shopIcon} alt="" /></Link></Button>
             </div>
             {cartError && <p role="alert" className="text-xs leading-5 text-accent lg:col-span-2">{cartError}</p>}
