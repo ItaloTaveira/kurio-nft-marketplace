@@ -160,3 +160,7 @@
  .checkout-grid .checkout-section-title { margin-top: 0; text-align: left; }
  .checkout-collector-panel[open] { margin-bottom: 24px; }
 }
+
+.checkout-review-action { margin-top: 24px; }
+.checkout-review-action .checkout-review { width: 100%; min-height: 48px; margin-top: 0; font-size: 16px; font-weight: 700; }
+@media(max-width:1023px) { .checkout-grid > aside > .checkout-review-action { order: 3; } .checkout-grid > aside > .checkout-confirm { order: 4; } .checkout-grid > aside > .checkout-back { order: 5; } .checkout-review-action .checkout-review { border-radius: 32px; } }
