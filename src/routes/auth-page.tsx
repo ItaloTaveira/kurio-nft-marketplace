@@ -32,7 +32,8 @@ export function AuthPage({ mode }: { mode: 'login' | 'register' }) {
   const session = useSession()
   const token = useSessionToken()
   const leave = () => {
-    const destination = isPrivatePath(new URL(returnTo, location.origin).pathname) ? '/carrinho' : returnTo
+    const pathname = new URL(returnTo, location.origin).pathname
+    const destination = pathname === '/pagamento' || pathname.startsWith('/pedidos/') ? '/carrinho' : isPrivatePath(pathname) ? '/' : returnTo
     void navigate({ href: destination, replace: true })
   }
   // O formulário não é mostrado novamente para uma sessão válida.

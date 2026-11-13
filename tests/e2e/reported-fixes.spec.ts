@@ -20,11 +20,11 @@ test('cancelar login de pagamento libera o carrinho sem reabrir o modal', async 
   await page.goto('/entrar?returnTo=%2Fperfil')
   await page.getByLabel('E-mail', { exact: true }).focus()
   await page.keyboard.press('Escape')
-  await expect(page).toHaveURL('/carrinho')
+  await expect(page).toHaveURL('/')
   await page.goto('/entrar?returnTo=%2Fcarteiras')
   await expect(page.getByRole('dialog')).toBeVisible()
   await page.mouse.click(8, 8)
-  await expect(page).toHaveURL('/carrinho')
+  await expect(page).toHaveURL('/')
 })
 
 test('menu da conta sobrepõe o perfil sem aumentar o cabeçalho após acesso direto', async ({ page }) => {

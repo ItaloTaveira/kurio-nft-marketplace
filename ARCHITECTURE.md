@@ -144,7 +144,7 @@ Dois usuários fictícios são criados de forma repetível sem apagar contas exi
 
 ## Correções após teste de uso
 
-- Cancelar autenticação com retorno privado leva ao carrinho público, evitando o ciclo de reabrir o login. X, Escape e clique externo usam o mesmo caminho.
+- Cancelar autenticação de perfil, carteiras ou favoritos leva ao início; quando iniciada pelo pagamento/pedido, leva ao carrinho público, evitando reabrir o login. X, Escape e clique externo usam o mesmo caminho.
 - O CSS do menu da conta é importado pelo próprio componente, inclusive em acesso direto/refresh de perfil. O painel é absoluto e não aumenta o cabeçalho.
 - O sufixo ENS `.eth` é texto fixo, sem seta que sugira um seletor inexistente. A busca mobile usa o placeholder curto “Buscar NFTs”.
 - Salvar perfil/carteiras invalida o contexto do checkout. Mudanças nas carteiras reconciliam rede/provedor no formulário e no rascunho, preservando itens do carrinho. Incompatibilidades reais entre rede da carteira e NFTs permanecem bloqueadas com explicação; não há bridge fictício.
