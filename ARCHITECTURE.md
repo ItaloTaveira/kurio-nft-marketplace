@@ -175,3 +175,8 @@ No desktop, início e autenticação compartilham a mesma instância da página 
 ### Credenciais escolhidas pelo visitante na simulação social
 
 A seleção Google/Facebook passou a abrir o formulário com instrução explícita de usar apenas dados fictícios da Kurio. Não há mais criação automática de contas por provedor: a pessoa informa e-mail e senha. A API simulada cria a conta no primeiro acesso ou valida a senha existente, reutilizando o login/cadastro e a mesclagem de carrinho. O parâmetro `social` da URL identifica a opção visual; não é autenticação OAuth ou prova de identidade Google/Facebook. Usuários antigos continuam acessíveis por suas credenciais e dados locais, sem migração destrutiva.
+
+
+## Endereços fictícios sem carteira externa
+
+O cadastro de carteira oferece geração de endereço fictício pela API simulada. A geração usa a rede selecionada e preenche somente o rascunho, sem sobrescrever outros campos nem salvar automaticamente. A resposta é descartada se a sessão ou a rede tiverem mudado. A confirmação mantém validações, conflitos de versão e invalidação do checkout. Não há conexão com extensões, geração de chave privada ou movimentação real. A lógica de geração fica na camada MSW; componentes recebem a resposta por Axios/TanStack Query.

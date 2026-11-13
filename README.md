@@ -37,7 +37,7 @@ As contas são inicializadas sem sobrescrever usuários existentes. Também é p
 - `/pagamento`: conexão simulada, revisão explícita e pedido idempotente.
 - `/pedidos/:id`: processamento, confirmação ou recusa; recibo conserva o snapshot confirmado.
 
-Para comprar, cadastre uma carteira Ethereum fictícia como `0xaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa`, adicione Emerald Ape #042 e use **Conectar e finalizar**. Duas unidades a 1.19 ETH somam **2.396 ETH**, incluindo taxa simulada. Cada pedido exige uma única rede compatível com a carteira; não há bridge automático.
+Para comprar, abra **Carteiras**, selecione Ethereum, clique em **Gerar endereço fictício** e depois **Salvar carteira**, adicione Emerald Ape #042 e use **Conectar e finalizar**. Duas unidades a 1.19 ETH somam **2.396 ETH**, incluindo taxa simulada. Cada pedido exige uma única rede compatível com a carteira; não há bridge automático.
 
 Atividade, ofertas, downloads, suporte e páginas editoriais estão fora do escopo do enunciado e permanecem sem confirmação funcional. Google/Facebook oferecem entrada demonstrativa com contas fictícias; não há OAuth nem acesso a contas reais. Recuperação de senha permanece fora do escopo. A navegação inferior mobile está implementada.
 

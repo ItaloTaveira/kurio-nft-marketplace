@@ -2,7 +2,7 @@ import { useIsMutating, useMutation, useQuery, useQueryClient } from '@tanstack/
 import { getSessionToken, useSessionToken } from '@/shared/api/session-token'
 import { sessionKey } from '@/features/auth/queries'
 import type { Session } from '@/shared/contracts/auth'
-import { changeAccount, getProfile, getWallets, type AccountAction } from './api'
+import { generateDemoWalletAddress, changeAccount, getProfile, getWallets, type AccountAction } from './api'
 
 export function useAccountResource(resource: 'profile' | 'wallets') {
   const token = useSessionToken()
@@ -27,4 +27,9 @@ export function useAccountCommands() {
     },
   })
   return { ...mutation, mutateAsync: (action: AccountAction) => mutation.mutateAsync({ token, action }) }
+}
+
+export function useDemoWalletAddress() {
+  const token = useSessionToken()
+  return useMutation({ retry: false, mutationFn: (network: Parameters<typeof generateDemoWalletAddress>[1]) => generateDemoWalletAddress(token, network) })
 }

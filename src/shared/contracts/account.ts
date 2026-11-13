@@ -42,3 +42,6 @@ export const walletsSchema = z.object({ version: z.number().int().nonnegative(),
 export type Wallets = z.infer<typeof walletsSchema>
 export type WalletSlot = 'primary' | 'secondary'
 export const walletPreferencesSchema = z.object({ secondarySameAsPrimary: z.boolean() })
+
+export const demoWalletInputSchema = z.object({ network: z.enum(['ethereum', 'polygon', 'solana']) })
+export const demoWalletAddressSchema = demoWalletInputSchema.extend({ address: z.string().min(1).max(128) })

@@ -251,3 +251,8 @@ A seleção de checkout aceita `notes` opcional, com até 1000 caracteres. A cot
 `POST /api/auth/social` aceita `{ provider: "google" | "facebook", email, password }` e retorna o contrato normal de autenticação (`token`, `user`, `expiresAt`). E-mail deve ser válido e senha ter de 8 a 128 caracteres. Provedor ou campos inválidos retornam 422. A API cria uma conta fictícia local no primeiro acesso, usando o prefixo do e-mail como nome inicial. Se o e-mail existir, valida a senha e responde 422 para credenciais incorretas. Não há vinculação de identidade de provedores reais: Google/Facebook são opções ilustrativas da demonstração, e a identidade efetiva é a conta Kurio autenticada por suas credenciais.
 
 Selecionar um botão não envia autenticação, não cria usuário nem emite sessão; apenas abre o formulário identificado. Somente o envio válido faz a chamada REST. A sessão, mesclagem do carrinho e isolamento de dados reutilizam os contratos comuns. Senhas são guardadas somente como hash PBKDF2. Os cenários de falha da autenticação também se aplicam aqui. Com mocks desativados, os botões não são exibidos.
+
+
+### Geração de endereço fictício
+
+`POST /api/wallets/demo-address` exige sessão e aceita `{ network: "ethereum" | "polygon" | "solana" }`, retornando `{ network, address }`. A camada MSW gera um identificador aleatório no formato hexadecimal de 20 bytes para Ethereum/Polygon ou Base58 de 32 bytes para Solana. Não cria carteira real, chave privada, assinatura ou transação blockchain. O endpoint não salva alterações; o formulário recebe o endereço e a pessoa confirma em **Salvar carteira**, com o versionamento existente. Cenários de erro da conta também cobrem a geração. Com mocks desativados, o botão não é apresentado.

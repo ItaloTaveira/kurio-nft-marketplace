@@ -79,3 +79,8 @@ Foram aprovados 49 testes de início, autenticação, simulação social e regre
 ## Simulação social com dados informados pelo visitante
 
 A entrada automática por Google/Facebook foi substituída pela escolha da opção e preenchimento de e-mail/senha fictícios. Seis testes passaram nos três viewports, sem retries: seleção sem sessão automática, criação de conta inicial, sessão após refresh, retorno à mesma conta por outra opção, senha incorreta, preservação do carrinho, armazenamento sem senha em claro e recuperação de falha da API. Build, TypeScript e lint passaram. Log: `docs/test-runs/social-credentials-final.txt`.
+
+
+## Geração de carteira fictícia
+
+Adicionado o botão de geração de endereço fictício na carteira principal e secundária. Seis testes passaram sem retries nos três viewports, verificando formatos Ethereum/Polygon/Solana, salvamento e refresh, recuperação de falha e compra confirmada com endereço gerado. Build, TypeScript e lint passaram. Evidência em `docs/test-runs/demo-wallet-final.txt`. A geração não cria chave privada nem carteira em blockchain.

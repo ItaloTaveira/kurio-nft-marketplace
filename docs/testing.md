@@ -225,3 +225,8 @@ Lighthouse usa build de produção, mocks/Socket.IO ativos, Chromium do Playwrig
 Em login ou cadastro, selecione Google ou Facebook sem preencher senha. O aviso informa que a conta é fictícia. Informe e-mail e senha fictícios: o primeiro acesso cria a conta, e os seguintes validam a senha da mesma conta, independentemente do botão escolhido. A suíte social verifica sessão após refresh, transferência do carrinho visitante, isolamento e retomada do carrinho ao voltar ao provedor anterior, além de falha HTTP e nova tentativa sem duplicar contas. Os cenários `kurio:auth-scenario` também se aplicam a esses botões. Não há conexão com sites ou contas reais dos provedores.
 
 A suíte social atual também verifica que selecionar Google/Facebook não autentica automaticamente, que uma senha incorreta não entra em uma conta existente e que o cadastro inicial não duplica usuários.
+
+
+### Carteira fictícia gerada
+
+Em **Carteiras**, selecione a rede, use **Gerar endereço fictício** e **Salvar carteira**. Não é necessário copiar um endereço de carteira real. `tests/e2e/demo-wallet.spec.ts` verifica os formatos das três redes, persistência após refresh, falha de geração com recuperação e compra completa com endereço gerado, em desktop/tablet/mobile.
