@@ -20,13 +20,13 @@ export function safeAuthReturn(value: unknown): string {
     return /^(\/|\/carrinho|\/perfil|\/carteiras|\/favoritos|\/pagamento|\/pedidos\/[a-zA-Z0-9-]{1,80}|\/nfts\/[a-z0-9-]+)$/.test(url.pathname) ? `${url.pathname}${url.search}${url.hash}` : '/'
   } catch { return '/' }
 }
-export const authSearchSchema = z.object({ returnTo: z.unknown().transform(safeAuthReturn).default('/'), expired: z.coerce.boolean().optional().catch(undefined) })
+export const authSearchSchema = z.object({ returnTo: z.unknown().transform(safeAuthReturn).default('/'), expired: z.coerce.boolean().optional().catch(undefined), social: z.enum(['google', 'facebook']).optional().catch(undefined) })
 
-export function authFormSchema(register: boolean) {
-  return z.object({ name: register ? registerSchema.shape.name : z.string(), email, password: register ? password : loginSchema.shape.password, confirmPassword: z.string() }).refine(value => !register || value.password === value.confirmPassword, { path: ['confirmPassword'], message: 'As senhas precisam ser iguais.' })
+export function authFormSchema(register: boolean, social = false) {
+  return z.object({ name: register ? registerSchema.shape.name : z.string(), email, password: register || social ? password : loginSchema.shape.password, confirmPassword: z.string() }).refine(value => !register || value.password === value.confirmPassword, { path: ['confirmPassword'], message: 'As senhas precisam ser iguais.' })
 }
 
 export const isPrivatePath = (pathname: string) => ['/perfil', '/carteiras', '/favoritos', '/pagamento'].includes(pathname) || /^\/pedidos\/[a-zA-Z0-9-]{1,80}$/.test(pathname)
 
-export const socialLoginSchema = z.object({ provider: z.enum(['google', 'facebook']) })
+export const socialLoginSchema = loginSchema.extend({ password: registerSchema.shape.password, provider: z.enum(['google', 'facebook']) })
 export type SocialProvider = z.infer<typeof socialLoginSchema>['provider']

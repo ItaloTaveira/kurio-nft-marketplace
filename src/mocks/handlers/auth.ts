@@ -16,8 +16,8 @@ async function respond(work: () => unknown | Promise<unknown>) {
 export const authHandlers = [
   http.post('*/api/auth/social', async ({ request }) => {
     const parsed = socialLoginSchema.safeParse(await request.json().catch(() => null))
-    if (!parsed.success) return HttpResponse.json({ code: 'VALIDATION_ERROR', message: 'Escolha Google ou Facebook para a demonstração.' }, { status: 422 })
-    return respond(() => authenticateSocial(parsed.data.provider))
+    if (!parsed.success) return HttpResponse.json({ code: 'VALIDATION_ERROR', message: 'Informe um e-mail fictício válido e uma senha com pelo menos 8 caracteres.' }, { status: 422 })
+    return respond(() => authenticateSocial(parsed.data))
   }),
   http.get('*/api/auth/session', ({ request }) => respond(() => resolveSession(request))),
   ...(['login', 'register'] as const).map(operation => http.post(`*/api/auth/${operation}`, async ({ request }) => {

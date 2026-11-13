@@ -1,6 +1,6 @@
 import { avatarSchema, ensSchema } from '@/shared/contracts/account'
 import { z } from 'zod'
-import { userSchema, type LoginInput, type RegisterInput, type SocialProvider } from '@/shared/contracts/auth'
+import { userSchema, type LoginInput, type RegisterInput } from '@/shared/contracts/auth'
 import { mergeGuestCart } from './cart'
 
 export const authStorageKey = 'kurio:auth:v1'
@@ -73,15 +73,9 @@ export function requireSession(request: Request) {
 }
 
 
-export async function authenticateSocial(provider: SocialProvider) {
-  const database = readAuthDatabase()
-  let user = database.users.find(user => user.socialProvider === provider)
-  if (!user) {
-    const email = `${provider}.demo@kurio.test`
-    if (database.users.some(user => user.email === email)) throw new AuthError(409, 'EMAIL_CONFLICT', 'O e-mail da conta demonstrativa já está em uso. Restaure os dados da demonstração para continuar.')
-    const salt = crypto.randomUUID()
-    user = { id: crypto.randomUUID(), name: provider === 'google' ? 'Demo Google' : 'Demo Facebook', email, socialProvider: provider, salt, digest: await passwordDigest('Kurio123!', salt), ens: '', walletAlias: '', avatar: null, version: 0 }
-    database.users.push(user)
-  }
-  return issueSession(database, user)
+export async function authenticateSocial(input: LoginInput) {
+  const existing = readAuthDatabase().users.some(user => user.email === input.email)
+  if (existing) return authenticate(input, false)
+  const prefix = input.email.split('@')[0].slice(0, 40)
+  return authenticate({ ...input, name: prefix.length >= 2 ? prefix : 'Colecionador', confirmPassword: input.password }, true)
 }

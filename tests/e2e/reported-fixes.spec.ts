@@ -74,7 +74,7 @@ test('busca mobile usa texto curto e autenticação identifica contas sociais si
   await expect(page.getByLabel('E-mail', { exact: true })).toBeVisible()
   await expect(page.getByRole('button', { name: 'Continuar com Google', exact: true })).toBeVisible()
   await expect(page.getByRole('button', { name: 'Continuar com Facebook', exact: true })).toBeVisible()
-  await expect(page.getByText('Demonstração: entra com uma conta fictícia, sem acessar seu Google ou Facebook.', { exact: true })).toBeVisible()
+  await expect(page.getByText('Simulação: você informa dados fictícios. Não conectamos sua conta real do Google ou Facebook.', { exact: true })).toBeVisible()
   await expect(page.getByRole('button', { name: /Esqueceu a senha/ })).toHaveCount(0)
 })
 

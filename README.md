@@ -23,7 +23,7 @@ Mocks ficam ativos por padrão, inclusive no build de demonstração. Não há p
 | `nova@kurio.test` | `Kurio123!` |
 | `leo@kurio.test` | `Kurio123!` |
 
-Os botões sociais usam `google.demo@kurio.test` e `facebook.demo@kurio.test`, criados no primeiro acesso, com a mesma senha fictícia `Kurio123!` para explorar o perfil. Cada provedor tem uma conta e carrinho próprios.
+Os botões Google/Facebook selecionam uma simulação e pedem e-mail e senha fictícios informados pelo visitante. No primeiro acesso, esses dados criam a conta local; se o e-mail já existir, a senha cadastrada é validada. Não há entrada automática em contas demo. A mesma conta Kurio conserva seus dados independentemente do botão escolhido. Nunca use credenciais reais de terceiros.
 
 As contas são inicializadas sem sobrescrever usuários existentes. Também é possível cadastrar contas fictícias. Senhas persistem como hash PBKDF2 com salt, nunca em claro. Dados são locais ao navegador; sessão pertence à aba e sobrevive a refresh.
 

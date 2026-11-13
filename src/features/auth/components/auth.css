@@ -57,3 +57,6 @@
 .auth-mobile .auth-social { margin-top: 32px; }
 .auth-mobile .auth-social-buttons { margin: 12px 0 0; gap: 16px; }
 .auth-mobile .auth-social-note { margin-inline: 0; }
+
+.auth-social-entry { margin: 20px 48px 0; color: var(--muted-foreground); font-size: 12px; line-height: 19px; text-align: center; }
+.auth-mobile .auth-social-entry { margin-inline: 0; }

@@ -1,41 +1,49 @@
-import { test, expect } from '@playwright/test'
-
-test('Google simulado preserva carrinho e sessão; Facebook possui outra conta', async ({ page }) => {
+import { test, expect, type Page } from '@playwright/test'
+const email = 'visitante@example.test'
+const password = 'Ficticia123!'
+async function credentials(page: Page, value = password) {
+  await page.getByLabel('E-mail', { exact: true }).fill(email)
+  await page.getByLabel('Senha', { exact: true }).fill(value)
+  await page.getByRole('button', { name: 'Entrar', exact: true }).click()
+}
+test('simulação pede dados fictícios, mantém carrinho e valida senha ao retornar', async ({ page }) => {
   await page.goto('/nfts/emerald-ape-042')
   await page.getByRole('button', { name: /^(COMPRAR|Comprar NFT)$/ }).click()
   await expect(page).toHaveURL(/\/carrinho/)
   await page.goto('/entrar?returnTo=%2Fcarrinho')
   await page.getByRole('button', { name: 'Continuar com Google', exact: true }).click()
+  await expect(page.getByRole('status')).toContainText('Simulação Google')
+  expect(await page.evaluate(() => sessionStorage.getItem('kurio:session-token'))).toBeNull()
+  await credentials(page)
   await expect(page).toHaveURL('/carrinho')
   await expect(page.getByTestId('cart-item')).toHaveCount(1)
   await page.reload()
-  await page.getByLabel('Conta de Demo Google', { exact: true }).filter({ visible: true }).click()
+  await page.getByLabel('Conta de visitante', { exact: true }).filter({ visible: true }).click()
   await page.locator('.account-menu-panel:visible').getByRole('button', { name: 'Sair', exact: true }).click()
   await expect(page.getByRole('link', { name: 'Entrar', exact: true })).toBeVisible()
   await page.goto('/cadastro?returnTo=%2Fcarrinho')
   await page.getByRole('button', { name: 'Continuar com Facebook', exact: true }).click()
-  await expect(page).toHaveURL('/carrinho')
-  await expect(page.getByRole('heading', { name: 'Seu carrinho está vazio', exact: true })).toBeVisible()
-  await page.getByLabel('Conta de Demo Facebook', { exact: true }).filter({ visible: true }).click()
-  await page.locator('.account-menu-panel:visible').getByRole('button', { name: 'Sair', exact: true }).click()
-  await expect(page.getByRole('link', { name: 'Entrar', exact: true })).toBeVisible()
-  await page.goto('/entrar?returnTo=%2Fcarrinho')
-  await page.getByRole('button', { name: 'Continuar com Google', exact: true }).click()
+  await expect(page.getByRole('status')).toContainText('Simulação Facebook')
+  await credentials(page, 'Incorreta123!')
+  await expect(page.getByRole('alert')).toHaveText('E-mail ou senha incorretos.')
+  await credentials(page)
   await expect(page).toHaveURL('/carrinho')
   await expect(page.getByTestId('cart-item')).toHaveCount(1)
+  const stored = await page.evaluate(() => localStorage.getItem('kurio:auth:v1')!)
+  expect(stored).not.toContain(password)
+  expect(JSON.parse(stored).users.filter((user: { email: string }) => user.email === email)).toHaveLength(1)
 })
-
-test('falha social permite repetir sem validar formulário de senha ou criar contas duplicadas', async ({ page }) => {
+test('simulação valida formulário e permite repetir após falha da API', async ({ page }) => {
   await page.goto('/entrar?returnTo=%2Fperfil')
-  await expect(page.getByText('Demonstração: entra com uma conta fictícia, sem acessar seu Google ou Facebook.', { exact: true })).toBeVisible()
+  await page.getByRole('button', { name: 'Continuar com Facebook', exact: true }).click()
+  await page.getByRole('button', { name: 'Entrar', exact: true }).click()
+  await expect(page.getByText('Informe um e-mail válido.', { exact: true })).toBeVisible()
   await page.evaluate(() => localStorage.setItem('kurio:auth-scenario', 'error'))
-  await page.getByRole('button', { name: 'Continuar com Google', exact: true }).click()
+  await credentials(page)
   await expect(page.getByRole('alert')).toContainText('O serviço de conta está indisponível')
   expect(await page.evaluate(() => !!sessionStorage.getItem('kurio:session-token'))).toBe(false)
   await page.evaluate(() => localStorage.removeItem('kurio:auth-scenario'))
-  await page.getByRole('button', { name: 'Continuar com Google', exact: true }).click()
+  await credentials(page)
   await expect(page).toHaveURL('/perfil')
-  await expect(page.getByLabel('E-mail', { exact: false }).first()).toHaveValue('google.demo@kurio.test')
-  const users = await page.evaluate(() => JSON.parse(localStorage.getItem('kurio:auth:v1')!).users.filter((user: { socialProvider?: string }) => user.socialProvider === 'google').length)
-  expect(users).toBe(1)
+  await expect(page.getByLabel('E-mail', { exact: false }).first()).toHaveValue(email)
 })

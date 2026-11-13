@@ -170,3 +170,8 @@ A pedido do usuário, Google e Facebook voltaram à interface como simulação e
 ## Transição para o login
 
 No desktop, início e autenticação compartilham a mesma instância da página inicial no layout raiz. Abrir o login adiciona somente o diálogo, tornando o fundo inerte sem desmontar catálogo, imagens ou rodapé. O catálogo de fundo usa os parâmetros do destino de retorno, preservando filtros e dados em cache. A entrada de autenticação é carregada no bundle inicial para evitar carregamento tardio do formulário e de seus estilos; as demais telas permanecem sob demanda. Links de entrada e fechamento preservam a rolagem no desktop, e a restauração de foco usa `preventScroll`. Mobile mantém sua tela de acesso própria e abre no topo.
+
+
+### Credenciais escolhidas pelo visitante na simulação social
+
+A seleção Google/Facebook passou a abrir o formulário com instrução explícita de usar apenas dados fictícios da Kurio. Não há mais criação automática de contas por provedor: a pessoa informa e-mail e senha. A API simulada cria a conta no primeiro acesso ou valida a senha existente, reutilizando o login/cadastro e a mesclagem de carrinho. O parâmetro `social` da URL identifica a opção visual; não é autenticação OAuth ou prova de identidade Google/Facebook. Usuários antigos continuam acessíveis por suas credenciais e dados locais, sem migração destrutiva.

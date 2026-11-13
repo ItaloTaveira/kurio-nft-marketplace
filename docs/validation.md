@@ -74,3 +74,8 @@ Google e Facebook foram reintroduzidos com aviso explícito de demonstração, s
 ## Abertura do login sem reconstruir o fundo
 
 Foram aprovados 49 testes de início, autenticação, simulação social e regressões em desktop/tablet/mobile (dois casos exclusivos do desktop ignorados nos demais perfis). O novo teste da transição verifica que o elemento original da página permanece conectado ao DOM ao abrir e fechar o modal, os filtros são mantidos e há apenas uma requisição de documento. Ele se aplica ao desktop; mobile utiliza uma tela própria. Build e lint passaram. As auditorias Lighthouse não foram refeitas nesta alteração.
+
+
+## Simulação social com dados informados pelo visitante
+
+A entrada automática por Google/Facebook foi substituída pela escolha da opção e preenchimento de e-mail/senha fictícios. Seis testes passaram nos três viewports, sem retries: seleção sem sessão automática, criação de conta inicial, sessão após refresh, retorno à mesma conta por outra opção, senha incorreta, preservação do carrinho, armazenamento sem senha em claro e recuperação de falha da API. Build, TypeScript e lint passaram. Log: `docs/test-runs/social-credentials-final.txt`.
