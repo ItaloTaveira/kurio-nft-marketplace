@@ -120,6 +120,8 @@ test('falha transitória permite repetir e redirecionamento externo é rejeitado
   await page.evaluate(() => localStorage.removeItem('kurio:auth-scenario'))
   await page.getByRole('button', { name: /^(Criar conta|Criar perfil)$/ }).click()
   await expect(page).toHaveURL('/')
+  // No mobile o acesso à conta fica na navegação inferior, como no frame.
+  await page.goto('/perfil')
   await expect(page.getByLabel('Conta de Nova', { exact: true }).filter({ visible: true })).toBeVisible()
 })
 

@@ -1,0 +1,24 @@
+.site-footer { display: none; }
+@media(min-width:1024px) {
+ .site-footer { display: block; margin-top: 100px; font-size: 13px; line-height: 21px; }
+ .footer-benefits { display: grid; grid-template-columns: 1fr 1fr 1fr 1.4fr; padding: 32px; background: var(--card); }
+ .footer-benefits > section { padding-inline: 16px; border-right: 1px solid var(--primary); }
+ .footer-benefits > section:first-child { padding-left: 16px; }
+ .footer-benefits > section:last-child { border: 0; }
+ .footer-benefit-mark { display: flex; align-items: center; justify-content: center; width: 74px; height: 74px; margin-bottom: 16px; border-radius: 50%; background: var(--primary); color: var(--background); font-size: 22px; font-weight: 700; }
+ .site-footer h2 { font-size: 16px; font-weight: 700; line-height: 20px; margin-bottom: 12px; }
+ .footer-benefits p { color: var(--muted-foreground); }
+ .footer-newsletter > div { display: flex; height: 40px; margin-block: 12px; border: 1px solid var(--border); border-radius: 4px; overflow: hidden; }
+ .footer-newsletter input { width: 0; min-width: 0; flex: 1; padding: 8px 10px; font-size: 12px; }
+ .footer-newsletter button { background: var(--primary); color: var(--background); padding: 0 16px; font-size: 16px; font-weight: 700; }
+ .footer-brand { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 24px; align-items: center; padding: 24px 32px; background: #3b2511; }
+ .footer-brand strong { letter-spacing: 2px; }
+ .footer-links { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 24px; padding: 32px; background: var(--card); }
+ .footer-links section > a, .footer-links section > span { display: block; margin-block: 8px; }
+ .footer-links a:hover { color: var(--accent); text-decoration: underline; }
+ .footer-socials { display: flex; gap: 8px; color: var(--accent); }
+ .footer-socials span { display: flex; align-items: center; justify-content: center; width: 28px; height: 28px; border: 1px solid var(--primary); border-radius: 3px; font-weight: 700; }
+ .footer-wallet-title { margin-top: 28px; }
+ .footer-wallets { display: inline-block; border: 1px solid var(--border); background: #3b2511; padding: 2px 6px; font-size: 10px; color: var(--accent); }
+ .footer-copyright { padding: 16px 0; text-align: center; font-size: 11px; }
+}

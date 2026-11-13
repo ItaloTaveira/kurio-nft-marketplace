@@ -96,3 +96,7 @@
   html:has(.detail-page) { scroll-padding-bottom: 220px; }
   .detail-page :is(a, button, input, [role=tab]) { scroll-margin-bottom: 220px; }
 }
+@media(max-width:1023px) {
+ .detail-stage-hint { position: absolute; width: 1px; height: 1px; padding: 0; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; }
+ .detail-page { padding-bottom: 160px; }
+}

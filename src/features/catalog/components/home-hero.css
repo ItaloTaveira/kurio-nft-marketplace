@@ -1,7 +1,7 @@
-.home-hero { position: relative; isolation: isolate; height: 190px; overflow: hidden; border-radius: 12px; padding: 10px 16px 30px; }
+.home-hero { position: relative; isolation: isolate; height: auto; min-height: 190px; overflow: hidden; border-radius: 12px; padding: 10px 16px 30px; }
 .hero-background { position: absolute; inset: 0; z-index: -1; background-size: 100% 100%; }
 .hero-background-desktop, .hero-artwork-desktop, .hero-dots-desktop { display: none; }
-.hero-content { display: flex; height: 100%; align-items: center; gap: 8px; }
+.hero-content { min-height: 150px; display: flex; height: 100%; align-items: center; gap: 8px; }
 .hero-copy { flex: 1; min-width: 0; }
 .hero-eyebrow { font-size: 12px; font-weight: 500; line-height: 16px; }
 .hero-title { margin-top: 6px; font-size: 18px; font-weight: 700; line-height: 29px; }

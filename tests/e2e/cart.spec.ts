@@ -33,7 +33,7 @@ test('vazio, adição, contador e refresh preservam a seleção e os valores', a
   await page.reload()
   await expect(firstRow(page).getByRole('spinbutton', { name: 'Quantidade', exact: true })).toHaveValue('2')
   await page.goto('/')
-  await page.getByRole('link', { name: 'Carrinho de NFTs, 2 itens', exact: true }).click()
+  await page.getByRole('link', { name: /^(Carrinho de NFTs, 2 itens|Carrinho)$/ }).click()
   await expect(page.getByLabel('Total do carrinho', { exact: true })).toHaveText('2.396 ETH')
 })
 

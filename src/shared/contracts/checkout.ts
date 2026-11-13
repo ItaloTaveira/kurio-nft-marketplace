@@ -5,12 +5,12 @@ import { providers, walletsSchema } from './account'
 import { cartItemSchema, cartResponseSchema } from './cart'
 
 export const connectionInputSchema = z.object({ walletSlot: z.enum(['primary', 'secondary']), network: z.enum(networkIds), provider: z.enum(providers) })
-export const checkoutSelectionSchema = connectionInputSchema.extend({ name: registerSchema.shape.name, email: registerSchema.shape.email })
+export const checkoutSelectionSchema = connectionInputSchema.extend({ name: registerSchema.shape.name, email: registerSchema.shape.email, notes: z.string().max(1000).optional() })
 export type CheckoutSelection = z.infer<typeof checkoutSelectionSchema>
 export type ConnectionInput = z.infer<typeof connectionInputSchema>
 export const connectionSchema = connectionInputSchema.extend({ id: z.string().uuid(), address: z.string(), alias: z.string(), expiresAt: z.string().datetime() })
 export const orderSnapshotSchema = z.object({
-  collector: z.object({ name: z.string(), email: z.string().email() }),
+  collector: z.object({ name: z.string(), email: z.string().email(), notes: z.string().max(1000).optional() }),
   wallet: connectionInputSchema.extend({ address: z.string(), alias: z.string() }),
   items: z.array(cartItemSchema).min(1),
   subtotalEth: ethSchema, discountEth: ethSchema, networkFeeEth: ethSchema, totalEth: ethSchema,
@@ -26,5 +26,5 @@ export const orderSchema = z.object({
   reason: z.string().nullable(), transactionReference: z.string().nullable(), snapshot: orderSnapshotSchema,
 })
 export type Order = z.infer<typeof orderSchema>
-export const checkoutContextSchema = z.object({ collector: z.object({ name: z.string(), email: z.string().email() }), wallets: walletsSchema, connection: connectionSchema.nullable(), cart: cartResponseSchema, pendingOrderId: z.string().uuid().nullable() })
+export const checkoutContextSchema = z.object({ collector: z.object({ name: z.string(), email: z.string().email(), notes: z.string().max(1000).optional() }), wallets: walletsSchema, connection: connectionSchema.nullable(), cart: cartResponseSchema, pendingOrderId: z.string().uuid().nullable() })
 export type CheckoutContext = z.infer<typeof checkoutContextSchema>

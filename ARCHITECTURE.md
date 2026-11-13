@@ -151,3 +151,12 @@ Dois usuários fictícios são criados de forma repetível sem apagar contas exi
 - Carrinho e checkout compartilham as taxas simuladas por rede. ETH é a moeda de cotação, inclusive para valores equivalentes das outras redes, explicitados na estimativa.
 - Recibo confirmado tem composição mais compacta, fechamento para o carrinho e borda inferior na cor principal. Preserva dados reais do snapshot e a indicação de transação simulada. A ilustração original “Thank you” não está disponível entre os assets locais; mantém-se o indicador de confirmação existente, sem afirmar fidelidade integral ao frame.
 - Google/Facebook e recuperação de senha foram removidos a pedido do usuário; não foram substituídos por autenticação social fictícia.
+
+
+## Revisão visual com exportação local do Figma
+
+A exportação recebida pelo usuário permite comparar os frames sem a integração MCP. Referência, escopo, diferenças intencionais e assets ausentes estão documentados em `docs/design-review.md`. O rodapé é compartilhado apenas nas rotas que o desenham, com links funcionais de perfil/favoritos/coleções. Recursos editoriais e newsletter não simulam sucesso. A navegação mobile mantém nomes acessíveis e oculta legendas visuais, usando os SVGs de carrinho e usuário da exportação. Sua ação central leva ao mercado; não é uma leitura de carteira ou scanner real.
+
+No pagamento, dados de perfil e carteira são consultados em suas APIs e exibidos como somente leitura; há links para as telas de edição. Dados do colecionador e rede/provedor permanecem validados. Em mobile, os campos ficam em uma seção expansível, aberta automaticamente quando a validação falha; desktop mantém o formulário aberto. A observação opcional de até 1000 caracteres participa da revisão e é copiada ao snapshot da compra. O recibo conserva os valores e a observação após refresh. Não houve integração real com blockchain, newsletter ou autenticação social.
+
+Ao conectar ou desconectar, o checkout incorpora a resposta confirmada da API ao contexto do Query e depois revalida por REST. Essa atualização é posterior à confirmação da API, não uma conexão otimista. Avisos Socket.IO não interceptam cliques nos controles; nas telas de pedido aparecem no topo.

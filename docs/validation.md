@@ -50,3 +50,10 @@ Validação focada: 72 casos de conta/autenticação/checkout, 42 de carrinho/te
 As 15 referências visuais (agora incluindo recibo) passaram na comparação. IDs aleatórios são mascarados nas imagens do recibo e o aviso transitório de atualização é ocultado apenas na captura, por CSS de teste; a operação dos eventos continua coberta nos testes funcionais. As capturas foram revisadas em desktop e mobile. O build, a verificação de tipos e o lint passaram. Não foi refeita a auditoria Lighthouse nesta alteração; as notas anteriores são históricas.
 
 Após o deploy automático do commit `898d4ce`, a suíte das correções foi executada também em https://nft-marketplaceme.netlify.app: 13 casos aprovados e dois ignorados por serem exclusivos do desktop. Foram confirmados no site público o fechamento do login, o menu sobreposto, a remoção das ações indisponíveis, a reconciliação da carteira e as taxas por rede. Evidência em `docs/test-runs/fixes-production.txt`.
+
+
+## Ajustes visuais pela exportação local — 13/11/2026
+
+A referência e os limites da comparação estão em `docs/design-review.md`. Pagamento, recibo, rodapé e navegação mobile foram revisados; 15 capturas foram geradas e inspecionadas em desktop/mobile. Nome de usuário/metadados de carteira são somente leitura; a observação é validada e preservada no snapshot. Os fluxos de compra, troca de preço, sessão e isolamento de conta foram reexecutados.
+
+A rodada completa local teve 201 casos: 178 passaram de primeira, 13 passaram na repetição, sete falharam e três foram ignorados por não se aplicarem ao viewport. As falhas incluíram expectativas da navegação anterior e um aviso que interceptava o botão de voltar ao carrinho no tablet. Os testes foram adaptados aos controles reais da nova navegação, e o aviso foi corrigido. Também foi ajustada a incorporação da resposta da conexão ao cache para evitar estado visual antigo. As repetições focadas e seus resultados finais ficam nos logs `docs/test-runs/layout-*`; não se apresenta essa primeira rodada como uma suíte integralmente aprovada. Não foi refeita a auditoria Lighthouse.

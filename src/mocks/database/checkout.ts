@@ -53,13 +53,13 @@ function currentSnapshot(request: Request, selection: CheckoutSelection, connect
   if (cart.quote.requiresReview) return fail('CART_REVIEW_REQUIRED', 'O carrinho mudou. Revise preços, estoque ou cupom no carrinho antes de continuar.')
   if (cart.items.some(item => item.network !== selection.network)) return fail('NETWORK_MISMATCH', 'Os NFTs do pedido devem estar na mesma rede da carteira. Separe os itens por rede no carrinho.')
   const fee = networkFee(selection.network)
-  return { collector: { name: selection.name, email: selection.email }, wallet: { walletSlot: selection.walletSlot, network: selection.network, provider: selection.provider, address: wallet.address, alias: wallet.alias }, items: cart.items, subtotalEth: cart.quote.subtotalEth, discountEth: cart.quote.discountEth, networkFeeEth: fee, totalEth: new Decimal(cart.quote.subtotalEth).minus(cart.quote.discountEth).add(fee).toFixed(), coupon: cart.quote.coupon?.code ?? null, currency: 'ETH' as const, cartVersion: cart.version }
+  return { collector: { name: selection.name, email: selection.email, notes: selection.notes ?? '' }, wallet: { walletSlot: selection.walletSlot, network: selection.network, provider: selection.provider, address: wallet.address, alias: wallet.alias }, items: cart.items, subtotalEth: cart.quote.subtotalEth, discountEth: cart.quote.discountEth, networkFeeEth: fee, totalEth: new Decimal(cart.quote.subtotalEth).minus(cart.quote.discountEth).add(fee).toFixed(), coupon: cart.quote.coupon?.code ?? null, currency: 'ETH' as const, cartVersion: cart.version }
 }
 export function createQuote(request: Request, input: CheckoutSelection & { connectionId: string }) {
   const owner = requireSession(request).user.id
   const database = readCommerce()
   const { connection } = connectionFor(database, request, input, input.connectionId)
-  const quote = { id: crypto.randomUUID(), owner, connectionId: input.connectionId, selection: { name: input.name, email: input.email, walletSlot: input.walletSlot, network: input.network, provider: input.provider }, snapshot: currentSnapshot(request, input, input.connectionId, database), createdAt: new Date().toISOString(), expiresAt: new Date(Date.now() + 5 * 60_000).toISOString(), walletFingerprint: connection.walletFingerprint }
+  const quote = { id: crypto.randomUUID(), owner, connectionId: input.connectionId, selection: { name: input.name, email: input.email, notes: input.notes ?? '', walletSlot: input.walletSlot, network: input.network, provider: input.provider }, snapshot: currentSnapshot(request, input, input.connectionId, database), createdAt: new Date().toISOString(), expiresAt: new Date(Date.now() + 5 * 60_000).toISOString(), walletFingerprint: connection.walletFingerprint }
   database.quotes = [...database.quotes.slice(-199), quote]
   saveCommerce(database)
   return checkoutQuoteSchema.parse(quote)

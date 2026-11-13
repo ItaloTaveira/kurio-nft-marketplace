@@ -46,6 +46,8 @@ test('cadastrar carteira depois do carrinho reconcilia rascunho e estima taxa po
   await page.getByRole('button', { name: /^(COMPRAR|Comprar NFT)$/ }).click()
   await expect(page).toHaveURL(/\/carrinho/)
   await page.getByRole('link', { name: 'Conectar e finalizar', exact: true }).click()
+  await expect(page.locator('.checkout-collector-panel')).toBeVisible()
+  if (!await page.getByLabel('Rede', { exact: true }).isVisible()) await page.getByText('Dados do colecionador', { exact: true }).click()
   await page.getByLabel('Rede', { exact: true }).selectOption('solana')
   await expect(page.getByLabel('Taxa estimada da rede', { exact: true })).toHaveText('0.001 ETH')
   await page.getByRole('link', { name: 'Cadastrar ou editar carteiras', exact: true }).click()

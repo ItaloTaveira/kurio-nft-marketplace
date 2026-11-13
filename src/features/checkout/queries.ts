@@ -1,3 +1,4 @@
+import type { CheckoutContext } from '@/shared/contracts/checkout'
 import { http } from '@/shared/api/http'
 import { z } from 'zod'
 import { ethSchema, networkIds } from '@/shared/contracts/catalog'
@@ -22,6 +23,7 @@ export function useCheckoutCommands() {
     onMutate: ({ token }) => client.cancelQueries({ queryKey: ['account', token, 'checkout'] }),
     onSuccess: (response, { token }) => {
       if (getSessionToken() !== token) return
+      if (response.type === 'connection' || response.type === 'disconnected') client.setQueryData<CheckoutContext>(['account', token, 'checkout'], current => current ? { ...current, connection: response.type === 'connection' ? response.data : null } : current)
       if (response.type === 'order') client.setQueryData(['account', token, 'order', response.data.id], response.data)
       if (response.type !== 'quote') void client.invalidateQueries({ queryKey: ['account', token, 'checkout'] })
       if (response.type === 'order') { void client.invalidateQueries({ queryKey: ['cart', token] }); void client.invalidateQueries({ queryKey: ['nft'] }); void client.invalidateQueries({ queryKey: ['catalog'] }) }

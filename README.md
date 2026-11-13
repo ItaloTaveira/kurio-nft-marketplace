@@ -53,7 +53,7 @@ Atividade, ofertas, downloads, suporte e páginas editoriais estão fora do esco
 | `npm run audit:mobile` / `npm run audit:desktop` | Três medições de início e detalhe por perfil |
 | `node scripts/audit-summary.mjs` | Medianas e métricas dos relatórios Lighthouse |
 
-As referências visuais são produzidas em Chromium/macOS com fonte local; não são prova de equivalência ao Figma. A revisão integral de carteiras/checkout/recibo contra os frames completos permanece pendente pela cota Starter do MCP.
+As referências visuais são produzidas em Chromium/macOS com fonte local; não são prova de equivalência ao Figma. A revisão de pagamento, recibo, rodapé e navegação mobile usa a exportação local do Figma. Escopo, diferenças intencionais e assets ausentes estão em [docs/design-review.md](docs/design-review.md); não se declara equivalência integral ao desenho.
 
 ## Tempo real e cenários
 

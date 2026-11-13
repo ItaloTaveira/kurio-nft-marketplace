@@ -1,3 +1,4 @@
+import { SiteFooter } from '@/shared/components/site-footer'
 import { RealtimeBridge, FavoritesPage, CheckoutPage, OrderPage, ProfilePage, WalletsPage, AuthPage, NftPage, CartPage } from './lazy-pages'
 import { Suspense } from 'react'
 import { MobileNavigation } from '@/shared/components/mobile-navigation'
@@ -14,7 +15,7 @@ import { catalogSearchSchema, defaultCatalogSearch, type CatalogSearch } from '@
 import { parseSearch, stringifySearch } from './search-params'
 
 const rootRoute = createRootRoute({
-  component: () => <><SessionNotice /><Suspense fallback={<main className="page-container py-12" role="status" aria-label="Carregando página"><div className="h-96 rounded-xl bg-card skeleton-shimmer" /></main>}><Outlet /></Suspense><MobileNavigation /><Suspense fallback={null}><RealtimeBridge /></Suspense></>,
+  component: () => <><SessionNotice /><Suspense fallback={<main className="page-container py-12" role="status" aria-label="Carregando página"><div className="h-96 rounded-xl bg-card skeleton-shimmer" /></main>}><Outlet /></Suspense><SiteFooter /><MobileNavigation /><Suspense fallback={null}><RealtimeBridge /></Suspense></>,
   notFoundComponent: () => (
     <main className="page-container flex min-h-dvh flex-col items-start justify-center gap-6">
       <p className="text-sm text-accent">404</p>

@@ -14,9 +14,9 @@ import filterIcon from '@/shared/assets/figma/filter.svg'
 
 const comingSoon = 'Disponível em uma próxima etapa'
 
-interface SiteHeaderProps { marketOnPage?: boolean; accountControl?: ReactNode; cartControl?: ReactNode; searchControl?: ReactNode; filterControl?: ReactNode; onSearch?: () => void; active?: 'home' | 'market'; marketSearch?: CatalogSearch }
+interface SiteHeaderProps { compactMobile?: boolean; marketOnPage?: boolean; accountControl?: ReactNode; cartControl?: ReactNode; searchControl?: ReactNode; filterControl?: ReactNode; onSearch?: () => void; active?: 'home' | 'market'; marketSearch?: CatalogSearch }
 
-export function SiteHeader({ marketOnPage = true, accountControl, cartControl, searchControl, filterControl, onSearch, active = 'home', marketSearch = defaultCatalogSearch }: SiteHeaderProps) {
+export function SiteHeader({ compactMobile = false, marketOnPage = true, accountControl, cartControl, searchControl, filterControl, onSearch, active = 'home', marketSearch = defaultCatalogSearch }: SiteHeaderProps) {
   return (
     <header className="page-container pt-10 lg:pt-6">
       <a href="#conteudo" className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-50 focus:rounded-lg focus:bg-primary focus:p-3 focus:text-primary-foreground">Pular para o conteúdo</a>
@@ -36,8 +36,8 @@ export function SiteHeader({ marketOnPage = true, accountControl, cartControl, s
       </div>
       <div className="flex items-center gap-2 lg:hidden">
         {searchControl ?? <button type="button" disabled title={comingSoon} aria-label="Buscar coleções — em breve" className="flex h-[45px] min-w-0 flex-1 cursor-not-allowed items-center gap-2 rounded-[10px] bg-card px-3 text-left text-sm font-bold text-secondary"><img src={mobileSearch} alt="" /><span className="truncate">Explorar coleções</span></button>}
-        {cartControl}
-        {accountControl}
+        {!compactMobile && cartControl}
+        {!compactMobile && accountControl}
         {filterControl ?? <Button size="icon" disabled aria-label="Filtrar NFTs — em breve" title={comingSoon} className="size-[45px] rounded-[14px] bg-[linear-gradient(137deg,rgba(210,138,76,0.45)_25%,#d28a4c_100%)]"><img src={filterIcon} alt="" /></Button>}
       </div>
     </header>

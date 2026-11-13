@@ -38,10 +38,14 @@ const total = (page: Page) => page.getByLabel('Total do pedido', { exact: true }
 
 test('checkout confirma por API, conserva recibo e não remove itens adicionados depois', async ({ page }) => {
   await setup(page, 2)
+  if (!await page.getByLabel('Observação do colecionador', { exact: false }).isVisible()) await page.getByText('Dados do colecionador', { exact: true }).click()
+  await page.getByLabel('Observação do colecionador', { exact: false }).fill('Guardar na coleção de arte digital.')
   await review(page)
   await expect(total(page)).toHaveText('2.396 ETH')
   await confirm(page)
   await expect(page.getByRole('heading', { name: 'Compra confirmada', exact: true })).toBeVisible()
+  await page.getByText('Dados do pedido e da carteira', { exact: true }).click()
+  await expect(page.getByText('Observação: Guardar na coleção de arte digital.', { exact: true })).toBeVisible()
   const receipt = page.url()
   await expect(total(page)).toHaveText('2.396 ETH')
   await page.reload()
@@ -123,6 +127,7 @@ test('recusa de conexão, desconexão e rede incompatível impedem confirmação
   await page.getByRole('button', { name: 'Conectar carteira', exact: true }).click()
   await expect(page.getByRole('alert')).toContainText('A conexão foi recusada')
   await page.evaluate(() => localStorage.removeItem('kurio:checkout-scenario'))
+  if (!await page.getByRole('combobox', { name: 'Rede', exact: true }).isVisible()) await page.getByText('Dados do colecionador', { exact: true }).click()
   await page.getByRole('combobox', { name: 'Rede', exact: true }).selectOption('polygon')
   await page.getByRole('button', { name: 'Conectar carteira', exact: true }).click()
   await expect(page.getByRole('alert')).toContainText('A rede escolhida precisa corresponder')
@@ -135,6 +140,7 @@ test('recusa de conexão, desconexão e rede incompatível impedem confirmação
 
 test('expiração no checkout preserva preenchimento e retoma pagamento após login', async ({ page }) => {
   await setup(page)
+  if (!await page.getByLabel('Nome de exibição', { exact: true }).isVisible()) await page.getByText('Dados do colecionador', { exact: true }).click()
   await page.getByLabel('Nome de exibição', { exact: true }).fill('Coleção da Nova')
   await review(page)
   // Expira e envia no mesmo evento para não disputar com a revalidação de foco.

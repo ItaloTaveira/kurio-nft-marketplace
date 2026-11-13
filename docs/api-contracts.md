@@ -240,3 +240,7 @@ Somente nos mocks, `POST /api/mock/events` aceita atualização `{ type: 'nft', 
 ### Estimativa de taxa por rede
 
 `GET /api/checkout/fee?network=ethereum|polygon|solana` exige sessão e retorna `{ network, networkFeeEth }`. Rede inválida retorna 422. O cenário `fee-changed` multiplica a taxa por 1.5. O cache inclui sessão e rede; requisições obsoletas são canceladas. A estimativa não autoriza pagamento: revisão e envio continuam revalidando rede dos NFTs, carteira e valores na API.
+
+### Observação do colecionador
+
+A seleção de checkout aceita `notes` opcional, com até 1000 caracteres. A cotação copia esse valor para `snapshot.collector.notes`, e o pedido mantém a observação no recibo. Alterá-la após a revisão invalida a revisão da seleção. Nenhuma atualização de perfil ou carteira é feita implicitamente pelo checkout.

@@ -80,5 +80,20 @@
  .mobile-navigation img { max-width: 24px; max-height: 24px; object-fit: contain; }
  .mobile-navigation [aria-current] { color: var(--accent); text-decoration: underline; text-underline-offset: 4px; }
  .mobile-home-mark { display: block; height: 24px; font-size: 20px; font-weight: 700; }
- body .detail-purchase { bottom: calc(66px + env(safe-area-inset-bottom)); }
+ body:has(.mobile-navigation) .detail-purchase { bottom: calc(66px + env(safe-area-inset-bottom)); }
 }
+
+@media(max-width:1023px) {
+ .mobile-navigation { height: calc(88px + env(safe-area-inset-bottom)); border-top: 0; border-radius: 38px 38px 0 0; background: var(--card); }
+ .mobile-navigation a { color: var(--muted-foreground); min-width: 48px; }
+ .mobile-navigation a[aria-current] { color: var(--primary); text-decoration: none; }
+ .mobile-navigation svg { width: 21px; height: 21px; stroke-width: 1.5; }
+ .mobile-navigation .mobile-market-action { position: relative; transform: translateY(-30px); width: 64px; height: 64px; min-height: 64px; border-radius: 50%; color: var(--foreground); background: linear-gradient(135deg,#d28a4caa,#d28a4c); box-shadow: 0 8px 0 8px var(--background); }
+ .mobile-navigation .mobile-market-action svg { width: 30px; height: 30px; }
+ body:has(.mobile-navigation) { padding-bottom: calc(100px + env(safe-area-inset-bottom)); }
+}
+@media(max-width:1023px) { .mobile-navigation a.mobile-market-action[aria-current] { color: var(--foreground); } }
+/* Avisos ao vivo não bloqueiam os controles que estão por baixo. */
+.realtime-notice { pointer-events: none; }
+.realtime-notice button { pointer-events: auto; }
+body:has(.order-receipt) .realtime-notice { top: 16px; bottom: auto; }

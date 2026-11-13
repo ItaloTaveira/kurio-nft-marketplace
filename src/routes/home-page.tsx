@@ -15,7 +15,7 @@ export function HomePage() {
   const onSearch = (q: string) => { update({ q }); setSearchOpen(false) }
   return (
     <>
-      <SiteHeader
+      <SiteHeader compactMobile
         onSearch={() => setSearchOpen(true)}
         searchControl={<CatalogSearch key={search.q} initialQuery={search.q} onSearch={onSearch} />}
         filterControl={<Button size="icon" aria-label="Filtrar NFTs" onClick={() => setFiltersOpen(true)} className="size-[45px] rounded-[14px] bg-[linear-gradient(137deg,rgba(210,138,76,0.45)_25%,#d28a4c_100%)]"><img src={filterIcon} alt="" /></Button>}
