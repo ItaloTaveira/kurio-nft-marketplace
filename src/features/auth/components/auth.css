@@ -34,3 +34,26 @@
 .auth-mobile-back { position: absolute; top: max(24px, env(safe-area-inset-top)); left: 28px; display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 8px 12px; border: 1px solid var(--border); border-radius: 24px; color: var(--accent); font-size: 14px; }
 .auth-mobile-back img { transform: rotate(90deg); }
 .auth-mobile-back:hover { background: var(--card); }
+
+.auth-social { margin-top: 24px; }
+.auth-divider { display: flex; align-items: center; gap: 12px; font-size: 13px; line-height: 16px; }
+.auth-divider span { flex: 1; min-width: 0; overflow: hidden; background: var(--border); height: 1px; }
+.auth-divider img { max-width: none; }
+.auth-social-buttons { margin: 12px 80px 0; display: flex; flex-direction: column; gap: 12px; }
+.auth-social-buttons button { display: flex; align-items: center; justify-content: center; gap: 12px; height: 40px; border: 1px solid var(--border); border-radius: 5px; color: var(--muted-foreground); font-size: 13px; font-weight: 500; cursor: pointer; }
+.auth-google { position: relative; width: 20px; height: 20px; flex-shrink: 0; }
+.auth-google img { position: absolute; max-width: none; }
+.auth-google img:nth-child(1) { left: 7.11%; top: 57.68%; }
+.auth-google img:nth-child(2) { left: 50%; top: 71.33%; }
+.auth-google img:nth-child(3) { left: 0; top: 24.69%; }
+.auth-google img:nth-child(4) { left: 47.07%; top: 38.28%; }
+.auth-google img:nth-child(5) { left: 50%; top: 38.28%; }
+.auth-google img:nth-child(6) { left: 7.11%; top: 0; }
+.auth-google img:nth-child(7) { left: 50%; top: 0; }
+
+.auth-social-note { margin: 12px 48px 0; font-size: 11px; line-height: 18px; text-align: center; color: var(--muted-foreground); }
+.auth-social-buttons button:hover:not(:disabled) { border-color: var(--primary); color: var(--foreground); }
+.auth-social-buttons button:disabled { cursor: wait; opacity: .65; }
+.auth-mobile .auth-social { margin-top: 32px; }
+.auth-mobile .auth-social-buttons { margin: 12px 0 0; gap: 16px; }
+.auth-mobile .auth-social-note { margin-inline: 0; }

@@ -160,3 +160,8 @@ A exportação recebida pelo usuário permite comparar os frames sem a integraç
 No pagamento, dados de perfil e carteira são consultados em suas APIs e exibidos como somente leitura; há links para as telas de edição. Dados do colecionador e rede/provedor permanecem validados. Em mobile, os campos ficam em uma seção expansível, aberta automaticamente quando a validação falha; desktop mantém o formulário aberto. A observação opcional de até 1000 caracteres participa da revisão e é copiada ao snapshot da compra. O recibo conserva os valores e a observação após refresh. Não houve integração real com blockchain, newsletter ou autenticação social.
 
 Ao conectar ou desconectar, o checkout incorpora a resposta confirmada da API ao contexto do Query e depois revalida por REST. Essa atualização é posterior à confirmação da API, não uma conexão otimista. Avisos Socket.IO não interceptam cliques nos controles; nas telas de pedido aparecem no topo.
+
+
+## Reintrodução do login social como demonstração
+
+A pedido do usuário, Google e Facebook voltaram à interface como simulação explicitamente identificada. `POST /auth/social` é atendido pelo MSW e reutiliza a emissão de sessão e a mesclagem de carrinho do login convencional. Não há contato com provedores reais, OAuth ou solicitação de senha de terceiros. Contas são recuperadas por identidade de provedor persistida, não por e-mail, evitando tomar uma conta local com o mesmo endereço. A senha fictícia para explorar essas contas é armazenada somente como hash PBKDF2, como nas demais contas da demonstração. Ambos os botões usam a mesma mutation, bloqueio de envio e limpeza dos caches privados do login comum. A tela identifica a simulação e oculta os botões quando os mocks estão desativados.

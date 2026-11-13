@@ -1,6 +1,6 @@
 import { delay, http, HttpResponse } from 'msw'
-import { loginSchema, registerSchema } from '@/shared/contracts/auth'
-import { AuthError, authenticate, logout, resolveSession } from '@/mocks/database/auth'
+import { loginSchema, registerSchema, socialLoginSchema } from '@/shared/contracts/auth'
+import { AuthError, authenticate, authenticateSocial, logout, resolveSession } from '@/mocks/database/auth'
 import { CartError, withCartLock } from '@/mocks/database/cart'
 async function respond(work: () => unknown | Promise<unknown>) {
   const scenario = localStorage.getItem('kurio:auth-scenario')
@@ -14,6 +14,11 @@ async function respond(work: () => unknown | Promise<unknown>) {
   }
 }
 export const authHandlers = [
+  http.post('*/api/auth/social', async ({ request }) => {
+    const parsed = socialLoginSchema.safeParse(await request.json().catch(() => null))
+    if (!parsed.success) return HttpResponse.json({ code: 'VALIDATION_ERROR', message: 'Escolha Google ou Facebook para a demonstração.' }, { status: 422 })
+    return respond(() => authenticateSocial(parsed.data.provider))
+  }),
   http.get('*/api/auth/session', ({ request }) => respond(() => resolveSession(request))),
   ...(['login', 'register'] as const).map(operation => http.post(`*/api/auth/${operation}`, async ({ request }) => {
     const schema = operation === 'register' ? registerSchema : loginSchema

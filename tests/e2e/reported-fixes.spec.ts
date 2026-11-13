@@ -66,13 +66,16 @@ test('cadastrar carteira depois do carrinho reconcilia rascunho e estima taxa po
   await expect(page.getByTestId('cart-item')).toHaveCount(1)
 })
 
-test('busca mobile usa texto curto e autenticação não oferece ações indisponíveis', async ({ page }) => {
+test('busca mobile usa texto curto e autenticação identifica contas sociais simuladas', async ({ page }) => {
   await page.goto('/')
   const search = page.getByRole('searchbox', { name: 'Buscar NFTs', exact: true })
   if ((page.viewportSize()?.width ?? 1440) < 1024) await expect(search).toHaveAttribute('placeholder', 'Buscar NFTs')
   await page.goto('/entrar')
   await expect(page.getByLabel('E-mail', { exact: true })).toBeVisible()
-  await expect(page.getByRole('button', { name: /Continuar com (Google|Facebook)|Esqueceu a senha/ })).toHaveCount(0)
+  await expect(page.getByRole('button', { name: 'Continuar com Google', exact: true })).toBeVisible()
+  await expect(page.getByRole('button', { name: 'Continuar com Facebook', exact: true })).toBeVisible()
+  await expect(page.getByText('Demonstração: entra com uma conta fictícia, sem acessar seu Google ou Facebook.', { exact: true })).toBeVisible()
+  await expect(page.getByRole('button', { name: /Esqueceu a senha/ })).toHaveCount(0)
 })
 
 

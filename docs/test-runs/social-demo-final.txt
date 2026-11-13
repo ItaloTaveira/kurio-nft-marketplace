@@ -1,0 +1,80 @@
+
+> marktplace-nft@0.0.0 test:e2e
+> npm run build && playwright test tests/e2e/social-demo.spec.ts --workers=1
+
+
+> marktplace-nft@0.0.0 build
+> tsc -b && vite build
+
+vite v8.3.8 building client environment for production...
+transforming...
+✓ 2928 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                                                    1.39 kB │ gzip:   0.57 kB
+dist/assets/roboto-mono-vietnamese-wght-normal-DlC-zuDL.woff2     10.30 kB
+dist/assets/roboto-mono-greek-wght-normal-BJJTbwTT.woff2          14.04 kB
+dist/assets/roboto-mono-cyrillic-wght-normal-HUlVHixE.woff2       18.59 kB
+dist/assets/roboto-mono-latin-ext-wght-normal-QAYlOegK.woff2      22.91 kB
+dist/assets/roboto-mono-latin-wght-normal-CZtBPCCa.woff2          32.79 kB
+dist/assets/roboto-mono-cyrillic-ext-wght-normal-BUDPrIko.woff2   35.91 kB
+dist/assets/catalog-vessel-Cl42p7ht.webp                         107.45 kB
+dist/assets/hero-ape-DMrGtADu.webp                               118.65 kB
+dist/assets/catalog-nomad-Bt1D5tPz.webp                          153.18 kB
+dist/assets/catalog-golden-BWyyrY85.webp                         156.76 kB
+dist/assets/quantity-picker-DOGRITKs.css                           1.14 kB │ gzip:   0.42 kB
+dist/assets/auth-page-CReNpuX-.css                                 4.31 kB │ gzip:   1.31 kB
+dist/assets/account-m3fcNuWh.css                                   5.92 kB │ gzip:   1.50 kB
+dist/assets/cart-page-CxXAzYgG.css                                 7.30 kB │ gzip:   1.85 kB
+dist/assets/nft-page-CSJsLmS2.css                                  7.69 kB │ gzip:   1.99 kB
+dist/assets/order-summary-BksMoJk5.css                            12.24 kB │ gzip:   2.37 kB
+dist/assets/index-BqxgUYxU.css                                    41.01 kB │ gzip:   9.74 kB
+dist/assets/useNavigate-DFUPu364.js                                0.23 kB │ gzip:   0.20 kB
+dist/assets/detail-back-DJGwdN65.js                                0.57 kB │ gzip:   0.35 kB
+dist/assets/initialize-ChBL8cht.js                                 0.67 kB │ gzip:   0.40 kB
+dist/assets/rolldown-runtime-XKyaHtl9.js                           0.72 kB │ gzip:   0.42 kB
+dist/assets/favorites-page-gHV05X3r.js                             0.89 kB │ gzip:   0.52 kB
+dist/assets/checkout-D63_r-FV.js                                   1.38 kB │ gzip:   0.62 kB
+dist/assets/queries-DCScV-Ge.js                                    1.73 kB │ gzip:   0.77 kB
+dist/assets/account-jvIgLLpF.js                                    2.93 kB │ gzip:   1.23 kB
+dist/assets/quantity-picker-BE_Fendq.js                            3.21 kB │ gzip:   1.15 kB
+dist/assets/order-page-B7-pJZXR.js                                 4.02 kB │ gzip:   1.49 kB
+dist/assets/wallets-page-3WsXJkh4.js                               6.81 kB │ gzip:   2.73 kB
+dist/assets/order-summary-DD5GeFZ1.js                              7.00 kB │ gzip:   2.49 kB
+dist/assets/dist-Cu3eVLQy.js                                       9.35 kB │ gzip:   3.31 kB
+dist/assets/esm-B6DvIUmM.js                                       10.52 kB │ gzip:   3.82 kB
+dist/assets/cart-page-DT6pXo-O.js                                 11.25 kB │ gzip:   3.89 kB
+dist/assets/profile-page-BC5XWmw0.js                              12.22 kB │ gzip:   4.44 kB
+dist/assets/checkout-page-Cm_NVbTo.js                             14.61 kB │ gzip:   4.43 kB
+dist/assets/account-layout-CJ0MdexJ.js                            15.60 kB │ gzip:   5.02 kB
+dist/assets/auth-DHrRJ3ue.js                                      17.27 kB │ gzip:   6.85 kB
+dist/assets/auth-page-YcRHBKUX.js                                 21.68 kB │ gzip:   5.55 kB
+dist/assets/realtime-bridge-Blb2vY-V.js                           33.51 kB │ gzip:  10.76 kB
+dist/assets/catalog-D9w48sjX.js                                   33.74 kB │ gzip:  13.79 kB
+dist/assets/zod-CVMuIeEK.js                                       39.16 kB │ gzip:  13.72 kB
+dist/assets/dialog-BHMXgi_l.js                                    43.70 kB │ gzip:  15.15 kB
+dist/assets/nft-page-ADsnNLXk.js                                  45.08 kB │ gzip:  14.43 kB
+dist/assets/site-header-B8LK_8mf.js                               52.91 kB │ gzip:  16.58 kB
+dist/assets/auth-BWZPFzHq.js                                      93.56 kB │ gzip:  26.66 kB
+dist/assets/useLocation-Ty57nmMA.js                              154.64 kB │ gzip:  53.25 kB
+dist/assets/index-Cms3TlXz.js                                    289.38 kB │ gzip:  90.71 kB
+dist/assets/browser-BhlJeYex.js                                  461.45 kB │ gzip: 170.22 kB
+
+✓ built in 403ms
+
+Running 6 tests using 1 worker
+
+(node:60746) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 [chromium-desktop] › tests/e2e/social-demo.spec.ts:3:1 › Google simulado preserva carrinho e sessão; Facebook possui outra conta (9.1s)
+  ✓  2 [chromium-desktop] › tests/e2e/social-demo.spec.ts:28:1 › falha social permite repetir sem validar formulário de senha ou criar contas duplicadas (2.4s)
+(node:60819) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  3 [chromium-tablet] › tests/e2e/social-demo.spec.ts:3:1 › Google simulado preserva carrinho e sessão; Facebook possui outra conta (8.8s)
+  ✓  4 [chromium-tablet] › tests/e2e/social-demo.spec.ts:28:1 › falha social permite repetir sem validar formulário de senha ou criar contas duplicadas (2.3s)
+(node:60884) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  5 [chromium-mobile] › tests/e2e/social-demo.spec.ts:3:1 › Google simulado preserva carrinho e sessão; Facebook possui outra conta (8.9s)
+  ✓  6 [chromium-mobile] › tests/e2e/social-demo.spec.ts:28:1 › falha social permite repetir sem validar formulário de senha ou criar contas duplicadas (2.4s)
+
+  6 passed (35.4s)

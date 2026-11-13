@@ -135,7 +135,7 @@ for (const key of Object.keys(sessionStorage)) {
 location.assign('/')
 ```
 
-`tests/e2e/auth.spec.ts` cobre criação/refresh, hash sem senha em claro, logout, troca de conta, transferência e mesclagem de carrinho com excesso de estoque, validação/confirmação, mostrar senha, credenciais inválidas, conflito, falha transitória, expiração/retomada e rejeição de redirecionamento externo nos três perfis. Integrações sociais e recuperação de senha foram removidas da interface para não oferecer ações sem implementação.
+`tests/e2e/auth.spec.ts` cobre criação/refresh, hash sem senha em claro, logout, troca de conta, transferência e mesclagem de carrinho com excesso de estoque, validação/confirmação, mostrar senha, credenciais inválidas, conflito, falha transitória, expiração/retomada e rejeição de redirecionamento externo nos três perfis. Google e Facebook possuem simulação identificada, coberta por `tests/e2e/social-demo.spec.ts`; recuperação de senha permanece fora do escopo.
 
 ## Perfil e carteiras
 
@@ -218,3 +218,8 @@ Lighthouse usa build de produção, mocks/Socket.IO ativos, Chromium do Playwrig
 ### Regressões do retorno de uso
 
 `tests/e2e/reported-fixes.spec.ts` verifica cancelamento do login iniciado pelo pagamento, X/Escape/clique externo no desktop, altura do cabeçalho ao abrir a conta após acesso direto, cadastro de carteira após adicionar item, reconciliação do rascunho e estimativa de taxas por rede, placeholder curto e ausência de ações de autenticação indisponíveis. O carrinho de Solana também é testado com taxa simulada de 0.001 ETH equivalente. A suíte visual inclui confirmação e fechamento do recibo, com relógio controlado, máscaras de identificadores e aviso transitório oculto somente nas capturas.
+
+
+### Contas sociais de demonstração
+
+Em login ou cadastro, selecione Google ou Facebook sem preencher senha. O aviso informa que a conta é fictícia. O mesmo provedor recupera a mesma conta neste navegador; o outro possui dados separados. A suíte social verifica sessão após refresh, transferência do carrinho visitante, isolamento e retomada do carrinho ao voltar ao provedor anterior, além de falha HTTP e nova tentativa sem duplicar contas. Os cenários `kurio:auth-scenario` também se aplicam a esses botões. Não há conexão com sites ou contas reais dos provedores.

@@ -3,7 +3,7 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { isAxiosError } from 'axios'
 import { http } from '@/shared/api/http'
 import { getSessionToken, setSessionToken, useSessionToken } from '@/shared/api/session-token'
-import { authResponseSchema, sessionSchema, type LoginInput, type RegisterInput, type Session } from '@/shared/contracts/auth'
+import { authResponseSchema, sessionSchema, type SocialProvider, type LoginInput, type RegisterInput, type Session } from '@/shared/contracts/auth'
 
 export const sessionKey = (token: string) => ['session', token] as const
 export function useSession() {
@@ -40,7 +40,7 @@ export function SessionLifecycle() {
 }
 export function useAuthenticate() {
   const client = useQueryClient()
-  return useMutation({ retry: false, scope: { id: 'auth' }, mutationFn: async (input: { mode: 'login'; values: LoginInput } | { mode: 'register'; values: RegisterInput }) => authResponseSchema.parse((await http.post(`/auth/${input.mode}`, input.values)).data),
+  return useMutation({ retry: false, scope: { id: 'auth' }, mutationFn: async (input: { mode: 'login'; values: LoginInput } | { mode: 'register'; values: RegisterInput } | { mode: 'social'; values: { provider: SocialProvider } }) => authResponseSchema.parse((await http.post(`/auth/${input.mode}`, input.values)).data),
     onSuccess: async response => {
       await client.cancelQueries({ queryKey: ['cart'] })
       client.removeQueries({ queryKey: ['cart'] })

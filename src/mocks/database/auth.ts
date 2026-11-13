@@ -1,10 +1,10 @@
 import { avatarSchema, ensSchema } from '@/shared/contracts/account'
 import { z } from 'zod'
-import { userSchema, type LoginInput, type RegisterInput } from '@/shared/contracts/auth'
+import { userSchema, type LoginInput, type RegisterInput, type SocialProvider } from '@/shared/contracts/auth'
 import { mergeGuestCart } from './cart'
 
 export const authStorageKey = 'kurio:auth:v1'
-const databaseSchema = z.object({ users: z.array(userSchema.extend({ salt: z.string(), digest: z.string(), username: z.string().optional(), ens: ensSchema.default(''), walletAlias: z.string().default(''), avatar: avatarSchema.default(null), version: z.number().int().nonnegative().default(0) })), sessions: z.array(z.object({ token: z.string(), userId: z.string(), expiresAt: z.string().datetime() })) })
+const databaseSchema = z.object({ users: z.array(userSchema.extend({ salt: z.string(), digest: z.string(), socialProvider: z.enum(['google', 'facebook']).optional(), username: z.string().optional(), ens: ensSchema.default(''), walletAlias: z.string().default(''), avatar: avatarSchema.default(null), version: z.number().int().nonnegative().default(0) })), sessions: z.array(z.object({ token: z.string(), userId: z.string(), expiresAt: z.string().datetime() })) })
 type Database = z.infer<typeof databaseSchema>
 export class AuthError extends Error {
   status: number
@@ -39,6 +39,7 @@ export async function authenticate(input: LoginInput | RegisterInput, register: 
   const database = readAuthDatabase()
   let user = database.users.find(user => user.email === input.email)
   if (register) {
+    if (['google.demo@kurio.test', 'facebook.demo@kurio.test'].includes(input.email)) throw new AuthError(409, 'EMAIL_RESERVED', 'Este e-mail pertence a uma conta de demonstração. Use outro e-mail.')
     if (user) throw new AuthError(409, 'EMAIL_CONFLICT', 'Este e-mail já está cadastrado. Entre na sua conta.')
     const salt = crypto.randomUUID()
     user = { id: crypto.randomUUID(), name: (input as RegisterInput).name, email: input.email, salt, digest: await passwordDigest(input.password, salt), ens: '', walletAlias: '', avatar: null, version: 0 }
@@ -46,6 +47,9 @@ export async function authenticate(input: LoginInput | RegisterInput, register: 
   } else if (!user || await passwordDigest(input.password, user.salt) !== user.digest) {
     throw new AuthError(422, 'INVALID_CREDENTIALS', 'E-mail ou senha incorretos.')
   }
+  return issueSession(database, user!)
+}
+function issueSession(database: Database, user: Database['users'][number]) {
   const token = crypto.randomUUID()
   const expiresAt = new Date(Date.now() + 60 * 60 * 1000).toISOString()
   // Persistir a conta antes do carrinho torna falhas parciais recuperáveis por login.
@@ -66,4 +70,18 @@ export function requireSession(request: Request) {
   const session = resolveSession(request)
   if (!session) throw new AuthError(401, 'AUTH_REQUIRED', 'Entre na sua conta para continuar.')
   return session
+}
+
+
+export async function authenticateSocial(provider: SocialProvider) {
+  const database = readAuthDatabase()
+  let user = database.users.find(user => user.socialProvider === provider)
+  if (!user) {
+    const email = `${provider}.demo@kurio.test`
+    if (database.users.some(user => user.email === email)) throw new AuthError(409, 'EMAIL_CONFLICT', 'O e-mail da conta demonstrativa já está em uso. Restaure os dados da demonstração para continuar.')
+    const salt = crypto.randomUUID()
+    user = { id: crypto.randomUUID(), name: provider === 'google' ? 'Demo Google' : 'Demo Facebook', email, socialProvider: provider, salt, digest: await passwordDigest('Kurio123!', salt), ens: '', walletAlias: '', avatar: null, version: 0 }
+    database.users.push(user)
+  }
+  return issueSession(database, user)
 }

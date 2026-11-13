@@ -64,3 +64,8 @@ A rodada completa local teve 201 casos: 178 passaram de primeira, 13 passaram na
 O usuário migrou a demonstração para https://kurio-nft-marketplace-gold.vercel.app. Os registros anteriores da Netlify são históricos. O HTML da Vercel foi conferido e referencia o mesmo bundle do build local dos ajustes visuais. A primeira CI desses ajustes aprovou 180 casos funcionais e falhou em três execuções do teste de favoritos por uma alteração incorreta no próprio teste (referência ao recibo fora do seu cenário); o teste foi corrigido, preservando a verificação de isolamento entre usuários.
 
 A correção do teste de favoritos passou nos três perfis Chromium (3/3). No endereço da Vercel foram verificados catálogo com nove cards, rodapé desktop, acesso direto ao detalhe, proteção e cancelamento do pagamento, cinco links na navegação mobile e apenas uma imagem no banner mobile. Não foram capturados erros JavaScript nessa verificação resumida.
+
+
+## Login social simulado
+
+Google e Facebook foram reintroduzidos com aviso explícito de demonstração, sem OAuth ou acesso a contas reais. A validação focada aprovou seis casos sociais nos três viewports, além dos 13 casos aplicáveis das regressões existentes. A primeira rodada do novo teste de troca de provedor navegava antes da conclusão do logout; após aguardar a confirmação da saída, a repetição passou em 6/6 sem retries. A interface desktop foi inspecionada por captura; build, TypeScript e lint passaram. Evidência em `docs/test-runs/social-demo-final.txt`.

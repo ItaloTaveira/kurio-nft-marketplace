@@ -16,7 +16,7 @@ Referência recebida em 13/11/2026: `Frontend Challenge (Copy).zip`, contendo um
 
 ## Diferenças intencionais e limites
 
-- Login social, recuperação de senha e miniatura sobreposta foram removidos a pedido do usuário, mesmo aparecendo na referência.
+- Recuperação de senha e miniatura sobreposta permanecem removidas a pedido do usuário. Google e Facebook foram reintroduzidos posteriormente como simulação identificada, com os ícones originais locais e as proporções dos botões da referência.
 - A confirmação somente aparece após a API simulada retornar `confirmed`; quantidades, preços, datas e carteira vêm do snapshot real da simulação, sem copiar valores ilustrativos do frame.
 - Nome de usuário e metadados da carteira no pagamento são somente leitura e possuem links para edição nas telas correspondentes. Nome/e-mail do colecionador e seleção de rede/provedor conservam validação. Campos opcionais não são apresentados como obrigatórios.
 - Conexão da carteira, revisão explícita, erros e recuperação continuam acessíveis, ainda que acrescentem controles que o frame estático não desenha. A observação é persistida na cotação e no recibo.

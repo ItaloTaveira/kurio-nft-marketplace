@@ -27,3 +27,6 @@ export function authFormSchema(register: boolean) {
 }
 
 export const isPrivatePath = (pathname: string) => ['/perfil', '/carteiras', '/favoritos', '/pagamento'].includes(pathname) || /^\/pedidos\/[a-zA-Z0-9-]{1,80}$/.test(pathname)
+
+export const socialLoginSchema = z.object({ provider: z.enum(['google', 'facebook']) })
+export type SocialProvider = z.infer<typeof socialLoginSchema>['provider']

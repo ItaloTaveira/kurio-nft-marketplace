@@ -244,3 +244,8 @@ Somente nos mocks, `POST /api/mock/events` aceita atualização `{ type: 'nft', 
 ### Observação do colecionador
 
 A seleção de checkout aceita `notes` opcional, com até 1000 caracteres. A cotação copia esse valor para `snapshot.collector.notes`, e o pedido mantém a observação no recibo. Alterá-la após a revisão invalida a revisão da seleção. Nenhuma atualização de perfil ou carteira é feita implicitamente pelo checkout.
+
+
+### Login social demonstrativo
+
+`POST /api/auth/social` aceita `{ provider: "google" | "facebook" }` e retorna o contrato normal de autenticação (`token`, `user`, `expiresAt`). Exclusivo dos mocks; sem OAuth, popup externo ou solicitação de credenciais reais. O estado persistido identifica a conta por `socialProvider`, sem vincular contas por e-mail. E-mails reservados não podem ser registrados manualmente. O login cria ou recupera a conta fictícia, mescla o carrinho visitante uma única vez e emite sessão com a mesma validade do login comum. Falhas usam os cenários de autenticação existentes; provedor inválido retorna 422. Com mocks desativados, os botões não são exibidos.
