@@ -133,6 +133,7 @@ test('recusa de conexão, desconexão e rede incompatível impedem confirmação
   await expect(page.getByRole('alert')).toContainText('A rede escolhida precisa corresponder')
   await page.getByRole('combobox', { name: 'Rede', exact: true }).selectOption('ethereum')
   await review(page)
+  await page.getByRole('button', { name: 'Voltar e editar', exact: true }).click()
   await page.getByRole('button', { name: 'Desconectar', exact: true }).click()
   await expect(page.getByText('Carteira desconectada', { exact: true })).toBeVisible()
   await expect(page.getByRole('button', { name: 'Confirmar compra', exact: true })).toHaveCount(0)
