@@ -1,3 +1,6 @@
+import { http } from '@/shared/api/http'
+import { z } from 'zod'
+import { ethSchema, networkIds } from '@/shared/contracts/catalog'
 import { useEffect, useRef } from 'react'
 import { useIsMutating, useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { getSessionToken, useSessionToken } from '@/shared/api/session-token'
@@ -48,4 +51,11 @@ export function useOrder(id: string) {
     if (order.status !== 'pending' && session.data) { try { clearAttempt(session.data.user.id, order.quoteId) } catch { /* A referência persistida permite consultar o mesmo recibo novamente. */ } }
   }, [query.data, token, id, client, session.data])
   return query
+}
+
+export function useNetworkFee(network: typeof networkIds[number]) {
+  const token = useSessionToken()
+  return useQuery({ queryKey: ['account', token, 'network-fee', network], enabled: !!token,
+    queryFn: async ({ signal }) => z.object({ network: z.enum(networkIds), networkFeeEth: ethSchema }).parse((await http.get('/checkout/fee', { params: { network }, signal, headers: { Authorization: `Bearer ${token}` } })).data), staleTime: 0,
+  })
 }

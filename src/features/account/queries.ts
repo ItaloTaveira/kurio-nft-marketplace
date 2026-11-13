@@ -19,6 +19,7 @@ export function useAccountCommands() {
     onSuccess: (response, { token }) => {
       if (getSessionToken() !== token) return
       client.setQueryData(['account', token, response.type], response.data)
+      void client.invalidateQueries({ queryKey: ['account', token, 'checkout'] })
       if (response.type === 'profile') client.setQueryData<Session | null>(sessionKey(token), session => session ? { ...session, user: { id: response.data.id, name: response.data.name, email: response.data.email } } : session)
     },
     onError: (_error, { token, action }) => {

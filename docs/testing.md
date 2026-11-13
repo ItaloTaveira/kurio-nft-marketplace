@@ -135,7 +135,7 @@ for (const key of Object.keys(sessionStorage)) {
 location.assign('/')
 ```
 
-`tests/e2e/auth.spec.ts` cobre criação/refresh, hash sem senha em claro, logout, troca de conta, transferência e mesclagem de carrinho com excesso de estoque, validação/confirmação, mostrar senha, credenciais inválidas, conflito, falha transitória, expiração/retomada e rejeição de redirecionamento externo nos três perfis. Integrações sociais e recuperação de senha permanecem desativadas e identificadas como pendentes.
+`tests/e2e/auth.spec.ts` cobre criação/refresh, hash sem senha em claro, logout, troca de conta, transferência e mesclagem de carrinho com excesso de estoque, validação/confirmação, mostrar senha, credenciais inválidas, conflito, falha transitória, expiração/retomada e rejeição de redirecionamento externo nos três perfis. Integrações sociais e recuperação de senha foram removidas da interface para não oferecer ações sem implementação.
 
 ## Perfil e carteiras
 
@@ -213,3 +213,8 @@ O carrinho aberto deve mudar para os valores atuais e pedir revisão. `mode: 'du
 `tests/visual/pages.spec.ts` cobre início, detalhe, carrinho preenchido e pagamento revisado nos três viewports. Relógio, conta, carteira, dados e carregamento de imagens/fontes são estabilizados. Referências ficam junto ao teste em `pages.spec.ts-snapshots`; devem ser revisadas visualmente ao atualizar. Baselines macOS/Chromium podem exigir ambiente equivalente ou novas referências revisadas em Linux; a CI funcional não recria screenshots automaticamente.
 
 Lighthouse usa build de produção, mocks/Socket.IO ativos, Chromium do Playwright e três execuções por URL/perfil. `lighthouse/config/base.cjs` inclui início e detalhe; desktop herda essa lista. Execute os perfis sequencialmente para evitar disputa de CPU. `scripts/audit-summary.mjs` gera medianas de categorias e LCP/CLS/TBT. Relatórios brutos HTML/JSON acompanham a entrega local; resultados abaixo das metas devem permanecer explícitos, sem esconder funcionalidades para melhorar a medição.
+
+
+### Regressões do retorno de uso
+
+`tests/e2e/reported-fixes.spec.ts` verifica cancelamento do login iniciado pelo pagamento, X/Escape/clique externo no desktop, altura do cabeçalho ao abrir a conta após acesso direto, cadastro de carteira após adicionar item, reconciliação do rascunho e estimativa de taxas por rede, placeholder curto e ausência de ações de autenticação indisponíveis. O carrinho de Solana também é testado com taxa simulada de 0.001 ETH equivalente. A suíte visual inclui confirmação e fechamento do recibo, com relógio controlado, máscaras de identificadores e aviso transitório oculto somente nas capturas.

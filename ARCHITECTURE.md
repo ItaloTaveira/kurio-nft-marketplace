@@ -84,7 +84,7 @@ O carrinho oferece armazenamento separado por usuário e por visitante. A etapa 
 - O mobile oferece remoção explícita em todas as linhas e apresenta a edição correta.
 - O subtotal da fixture mobile do Figma é inconsistente com suas linhas. O valor exibido vem da soma decimal na API.
 - O atalho de carrinho foi acrescentado ao cabeçalho mobile enquanto a navegação inferior ainda está pendente.
-- A taxa de 0.016 ETH é demonstrativa e fixa para carrinho não vazio; não representa uma estimativa de blockchain real. Checkout revalida taxa/rede/carteira na sétima etapa abaixo.
+- A taxa demonstrativa depende da rede: Ethereum 0.016, Polygon 0.003 e Solana 0.001, todas em ETH equivalente. Carrinhos mistos usam a maior taxa como estimativa; o checkout exige uma única rede e revalida sua taxa. Não é uma estimativa de blockchain real. Checkout revalida taxa/rede/carteira na sétima etapa abaixo.
 - O resumo permite aceitar novos preços, mas não aceita automaticamente estoque insuficiente nem remove itens para corrigir conflitos.
 
 ## Quinta etapa: autenticação simulada
@@ -95,7 +95,7 @@ Login/cadastro reutilizam os tokens, Button, cabeçalho, banner e catálogo exis
 
 Há armazenamento por usuário, transferência do visitante ao autenticar e caches por token. Logout/troca/expiração cancelam consultas e removem o cache anterior. Respostas tardias de mutations não reintroduzem dados de outra sessão; cada chamada de carrinho carrega sua credencial capturada. Formulários de conta e logout aguardam mutations de carrinho em andamento. O bloqueio de persistência compartilhado serializa conta/mesclagem e carrinho entre abas compatíveis.
 
-Contas e sessões do servidor simulado usam localStorage; hashes PBKDF2 com salt evitam senha em claro. Sessão dura uma hora. Essa infraestrutura é demonstrativa para o desafio. OAuth e recuperação de senha permanecem desativados; não há confirmação visual falsa dessas ações. Perfil/carteiras foram acrescentados na sexta etapa abaixo.
+Contas e sessões do servidor simulado usam localStorage; hashes PBKDF2 com salt evitam senha em claro. Sessão dura uma hora. Essa infraestrutura é demonstrativa para o desafio. OAuth e recuperação de senha foram removidos da interface; o acesso usa e-mail e senha na API simulada. Perfil/carteiras foram acrescentados na sexta etapa abaixo.
 
 ## Sexta etapa: perfil e carteiras
 
@@ -135,8 +135,19 @@ Socket.IO é efetivamente exercitado pelo cliente. O mock faz handshake Engine.I
 
 `marketplace-events.ts` guarda overrides versionados e publica depois de persistir. Preço/estoque afetam catálogo, detalhe, carrinho e validação da cotação. Reservas/consumo de pedidos também emitem atualização de inventário. A simulação é local ao navegador/origem, com BroadcastChannel entre abas; não substitui um servidor distribuído. O MSW normaliza o path Socket.IO na comparação do handler. Testes verificam reconexão pelo cliente após indisponibilidade de handshake.
 
-A navegação inferior mobile usa componentes/ícones existentes. A barra fixa de compra no detalhe fica acima dela, com espaço de conteúdo e safe area. Atividade, ofertas, suporte e downloads permanecem fora do escopo, conforme enunciado; a indicação anterior de que seria obrigatório construir histórico/atividade foi corrigida. OAuth e recuperação de senha são auxiliares desativados.
+A navegação inferior mobile usa componentes/ícones existentes. A barra fixa de compra no detalhe fica acima dela, com espaço de conteúdo e safe area. Atividade, ofertas, suporte e downloads permanecem fora do escopo, conforme enunciado; a indicação anterior de que seria obrigatório construir histórico/atividade foi corrigida. OAuth e recuperação de senha foram removidos da interface.
 
 PNG originals são preservados e o script Sharp gera WebP qualidade 88, sem alterar dimensões. A soma dos arquivos derivados caiu de 15.684.728 para 1.045.190 bytes (aproximadamente 93%); o Vite ainda deduplica assets idênticos. Rotas de conta/detalhe/carrinho/checkout e o cliente de eventos carregam sob demanda; o build não precisa mais de um chunk principal acima de 500 kB. Inicialização de mocks e worker ocorre em paralelo antes das consultas, com prioridade para a imagem principal. Não há otimização exclusiva para a auditoria nem desativação de mocks/imagens/tempo real.
 
 Dois usuários fictícios são criados de forma repetível sem apagar contas existentes. Setup/testes, falhas, eventos, reset e publicação estão documentados. Configurações Vercel/Netlify fornecem fallback SPA e a CI prepara Chromium e testa os fluxos. Repositório e URL pública ainda dependem de destino informado pelo usuário; nenhuma publicação foi feita. A revisão completa dos frames inacessíveis continua limitada pela cota do Figma, e os resultados efetivamente medidos são registrados em `docs/validation.md`.
+
+
+## Correções após teste de uso
+
+- Cancelar autenticação com retorno privado leva ao carrinho público, evitando o ciclo de reabrir o login. X, Escape e clique externo usam o mesmo caminho.
+- O CSS do menu da conta é importado pelo próprio componente, inclusive em acesso direto/refresh de perfil. O painel é absoluto e não aumenta o cabeçalho.
+- O sufixo ENS `.eth` é texto fixo, sem seta que sugira um seletor inexistente. A busca mobile usa o placeholder curto “Buscar NFTs”.
+- Salvar perfil/carteiras invalida o contexto do checkout. Mudanças nas carteiras reconciliam rede/provedor no formulário e no rascunho, preservando itens do carrinho. Incompatibilidades reais entre rede da carteira e NFTs permanecem bloqueadas com explicação; não há bridge fictício.
+- Carrinho e checkout compartilham as taxas simuladas por rede. ETH é a moeda de cotação, inclusive para valores equivalentes das outras redes, explicitados na estimativa.
+- Recibo confirmado tem composição mais compacta, fechamento para o carrinho e borda inferior na cor principal. Preserva dados reais do snapshot e a indicação de transação simulada. A ilustração original “Thank you” não está disponível entre os assets locais; mantém-se o indicador de confirmação existente, sem afirmar fidelidade integral ao frame.
+- Google/Facebook e recuperação de senha foram removidos a pedido do usuário; não foram substituídos por autenticação social fictícia.

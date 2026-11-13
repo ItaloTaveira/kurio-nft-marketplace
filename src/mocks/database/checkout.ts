@@ -1,3 +1,4 @@
+import { networkFee } from './network-fees'
 import { publish } from '@/mocks/events/bus'
 import { changeMarketplace } from './marketplace-events'
 import Decimal from 'decimal.js'
@@ -43,10 +44,6 @@ export function disconnectWallet(request: Request, id: string) {
   database.connections = database.connections.filter(connection => connection.owner !== owner || connection.id !== id)
   saveCommerce(database)
   return { ok: true }
-}
-function networkFee(network: string) {
-  const normal = network === 'ethereum' ? '0.016' : network === 'polygon' ? '0.003' : '0.001'
-  return checkoutScenario() === 'fee-changed' ? new Decimal(normal).mul('1.5').toFixed() : normal
 }
 function currentSnapshot(request: Request, selection: CheckoutSelection, connectionId: string, database: Commerce) {
   const owner = requireSession(request).user.id

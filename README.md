@@ -37,7 +37,7 @@ As contas são inicializadas sem sobrescrever usuários existentes. Também é p
 
 Para comprar, cadastre uma carteira Ethereum fictícia como `0xaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa`, adicione Emerald Ape #042 e use **Conectar e finalizar**. Duas unidades a 1.19 ETH somam **2.396 ETH**, incluindo taxa simulada. Cada pedido exige uma única rede compatível com a carteira; não há bridge automático.
 
-Atividade, ofertas, downloads, suporte e páginas editoriais estão fora do escopo do enunciado e permanecem sem confirmação funcional. Google/Facebook e recuperação de senha são auxiliares e continuam desativados. A navegação inferior mobile está implementada.
+Atividade, ofertas, downloads, suporte e páginas editoriais estão fora do escopo do enunciado e permanecem sem confirmação funcional. Google/Facebook e recuperação de senha foram removidos da interface por estarem fora do escopo e não possuírem integração real. A navegação inferior mobile está implementada.
 
 ## Comandos
 

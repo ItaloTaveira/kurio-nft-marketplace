@@ -1,0 +1,2 @@
+/* Aviso transitório coberto pelos testes Socket.IO, fora da referência estática. */
+.realtime-notice { visibility: hidden !important; }

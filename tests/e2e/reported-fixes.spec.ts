@@ -1,0 +1,83 @@
+import { test, expect, type Page } from '@playwright/test'
+
+async function enter(page: Page) {
+  await page.goto('/entrar')
+  await page.getByLabel('E-mail', { exact: true }).fill('nova@kurio.test')
+  await page.getByLabel('Senha', { exact: true }).fill('Kurio123!')
+  await page.getByRole('button', { name: 'Entrar', exact: true }).click()
+  await expect(page).toHaveURL('/')
+}
+
+test('cancelar login de pagamento libera o carrinho sem reabrir o modal', async ({ page }) => {
+  test.skip((page.viewportSize()?.width ?? 0) < 1024, 'Diálogo é exclusivo do desktop')
+  await page.goto('/pagamento')
+  await expect(page.getByRole('dialog')).toBeVisible()
+  await page.getByRole('button', { name: 'Fechar e voltar', exact: true }).click()
+  await expect(page).toHaveURL('/carrinho')
+  await expect(page.getByRole('dialog')).toHaveCount(0)
+  await page.getByRole('link', { name: 'Explorar NFTs', exact: true }).click()
+  await expect(page.getByTestId('nft-card')).toHaveCount(9)
+  await page.goto('/entrar?returnTo=%2Fperfil')
+  await page.getByLabel('E-mail', { exact: true }).focus()
+  await page.keyboard.press('Escape')
+  await expect(page).toHaveURL('/carrinho')
+  await page.goto('/entrar?returnTo=%2Fcarteiras')
+  await expect(page.getByRole('dialog')).toBeVisible()
+  await page.mouse.click(8, 8)
+  await expect(page).toHaveURL('/carrinho')
+})
+
+test('menu da conta sobrepõe o perfil sem aumentar o cabeçalho após acesso direto', async ({ page }) => {
+  await enter(page)
+  await page.goto('/perfil')
+  await expect(page.getByRole('heading', { name: 'Perfil do colecionador', exact: true })).toBeVisible()
+  const header = page.locator('header')
+  const before = (await header.boundingBox())!.height
+  await page.getByLabel('Conta de Nova', { exact: true }).filter({ visible: true }).click()
+  await expect(page.locator('.account-menu-panel:visible')).toBeVisible()
+  expect((await header.boundingBox())!.height).toBe(before)
+  await page.locator('.account-menu-panel:visible').getByRole('link', { name: 'Minhas carteiras', exact: true }).click()
+  await expect(page).toHaveURL('/carteiras')
+})
+
+test('cadastrar carteira depois do carrinho reconcilia rascunho e estima taxa por rede', async ({ page }) => {
+  await enter(page)
+  await page.goto('/nfts/emerald-ape-042')
+  await page.getByRole('button', { name: /^(COMPRAR|Comprar NFT)$/ }).click()
+  await expect(page).toHaveURL(/\/carrinho/)
+  await page.getByRole('link', { name: 'Conectar e finalizar', exact: true }).click()
+  await page.getByLabel('Rede', { exact: true }).selectOption('solana')
+  await expect(page.getByLabel('Taxa estimada da rede', { exact: true })).toHaveText('0.001 ETH')
+  await page.getByRole('link', { name: 'Cadastrar ou editar carteiras', exact: true }).click()
+  const form = page.getByRole('form', { name: 'Dados da carteira principal' })
+  await form.getByLabel('Endereço da carteira', { exact: false }).fill(`0x${'a'.repeat(40)}`)
+  await form.getByRole('button', { name: 'Salvar carteira', exact: true }).click()
+  await expect(form.getByRole('status')).toHaveText('Carteira salva com sucesso.')
+  await page.goto('/pagamento')
+  await expect(page.getByLabel('Rede', { exact: true })).toHaveValue('ethereum')
+  await expect(page.getByLabel('Taxa estimada da rede', { exact: true })).toHaveText('0.016 ETH')
+  await page.getByRole('button', { name: 'Conectar carteira', exact: true }).click()
+  await page.getByRole('button', { name: 'Revisar pedido', exact: true }).click()
+  await expect(page.getByRole('button', { name: 'Confirmar compra', exact: true })).toBeVisible()
+  await expect(page.getByLabel('Total do pedido', { exact: true })).toHaveText('1.206 ETH')
+  await page.goto('/carrinho')
+  await expect(page.getByTestId('cart-item')).toHaveCount(1)
+})
+
+test('busca mobile usa texto curto e autenticação não oferece ações indisponíveis', async ({ page }) => {
+  await page.goto('/')
+  const search = page.getByRole('searchbox', { name: 'Buscar NFTs', exact: true })
+  if ((page.viewportSize()?.width ?? 1440) < 1024) await expect(search).toHaveAttribute('placeholder', 'Buscar NFTs')
+  await page.goto('/entrar')
+  await expect(page.getByLabel('E-mail', { exact: true })).toBeVisible()
+  await expect(page.getByRole('button', { name: /Continuar com (Google|Facebook)|Esqueceu a senha/ })).toHaveCount(0)
+})
+
+
+test('carrinho de Solana usa sua taxa simulada e conserva o preço do NFT', async ({ page }) => {
+  await page.goto('/nfts/neon-vessel-552')
+  await page.getByRole('button', { name: /^(COMPRAR|Comprar NFT)$/ }).click()
+  await expect(page).toHaveURL(/\/carrinho/)
+  await expect(page.getByTestId('cart-item')).toHaveCount(1)
+  await expect(page.getByLabel('Total do carrinho', { exact: true })).toHaveText('1.991 ETH')
+})

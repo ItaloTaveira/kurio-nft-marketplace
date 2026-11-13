@@ -1,3 +1,5 @@
+import { networkFee } from '@/mocks/database/network-fees'
+import { networkIds } from '@/shared/contracts/catalog'
 import { delay, http, HttpResponse } from 'msw'
 import { connectionInputSchema, quoteInputSchema, submitOrderSchema } from '@/shared/contracts/checkout'
 import { AuthError, requireSession } from '@/mocks/database/auth'
@@ -23,6 +25,11 @@ async function respond(request: Request, work: () => unknown, submit = false) {
 }
 const invalid = (message: string) => HttpResponse.json({ code: 'VALIDATION_ERROR', message }, { status: 422 })
 export const checkoutHandlers = [
+  http.get('*/api/checkout/fee', ({ request }) => {
+    const network = new URL(request.url).searchParams.get('network')
+    if (!networkIds.includes(network as typeof networkIds[number])) return invalid('Selecione uma rede válida.')
+    return respond(request, () => ({ network, networkFeeEth: networkFee(network as typeof networkIds[number]) }))
+  }),
   http.get('*/api/checkout', ({ request }) => respond(request, () => checkoutContext(request))),
   http.post('*/api/checkout/connections', async ({ request }) => {
     const parsed = connectionInputSchema.safeParse(await request.json().catch(() => null))

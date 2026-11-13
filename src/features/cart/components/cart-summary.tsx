@@ -31,7 +31,7 @@ export function CartSummary({ cart, pending, catalogSearch, onAction }: SummaryP
       </dl>
       {pending && <p role="status" className="text-xs text-muted-foreground">Atualizando valores…</p>}
       {pending || !quote.canCheckout ? <Button disabled aria-describedby="checkout-info" className="cart-checkout">Conectar e finalizar</Button> : <Button asChild aria-describedby="checkout-info" className="cart-checkout"><Link to="/pagamento">Conectar e finalizar</Link></Button>}
-      <p id="checkout-info" className="text-xs leading-5 text-muted-foreground">Pagamento e conexão de carteira são simulados. Entrar na conta é necessário.</p>
+      <p id="checkout-info" className="text-xs leading-5 text-muted-foreground">Pagamento e conexão de carteira são simulados. Entrar na conta é necessário. Valores em ETH equivalente; NFTs e carteira precisam usar a mesma rede.</p>
       <Link to="/" search={catalogSearch} hash="mercado" className="text-center text-sm text-accent">Continuar explorando</Link>
     </aside>
   )

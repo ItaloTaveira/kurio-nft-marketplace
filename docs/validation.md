@@ -39,3 +39,12 @@ Atividade, ofertas, suporte, downloads e conteúdo editorial estão fora do esco
 ## Verificação do deploy Netlify
 
 Em 13/11/2026, início, detalhe e pagamento responderam HTTP 200 sem bloqueio de acesso da hospedagem. No Chromium, o catálogo apresentou nove cards, o Socket.IO conectou, o detalhe abriu por URL direta e a adição ao carrinho persistiu após refresh. O pagamento sem sessão redirecionou para `/entrar?returnTo=%2Fpagamento`. Esta verificação resumida do deploy não substitui a suíte local nem representa uma nova auditoria Lighthouse em produção.
+
+
+## Correções após retorno de uso — 13/11/2026
+
+Foram corrigidos o cancelamento do login com retorno privado, os estilos do menu da conta em acesso direto, a reconciliação de carteira/rede no checkout, a taxa simulada por rede e o placeholder mobile. O sufixo ENS deixou de aparentar um seletor. Google, Facebook e recuperação de senha foram removidos por solicitação do usuário. O recibo ganhou composição compacta e fechamento para o carrinho; a ilustração original ainda não está disponível localmente.
+
+Validação focada: 72 casos de conta/autenticação/checkout, 42 de carrinho/tempo real e 13 das novas regressões foram aprovados nos três perfis (127 casos funcionais únicos). Dois casos de fechamento do diálogo são ignorados em tablet/mobile porque o modal é exclusivo do desktop. Nas duas primeiras rodadas, o novo teste de fechamento precisou corrigir o nome do link de saída e aguardar o formulário antes de enviar Escape; passou na repetição final com X, Escape e clique externo. Os logs mantêm essa sequência, sem ocultar as primeiras falhas da automação.
+
+As 15 referências visuais (agora incluindo recibo) passaram na comparação. IDs aleatórios são mascarados nas imagens do recibo e o aviso transitório de atualização é ocultado apenas na captura, por CSS de teste; a operação dos eventos continua coberta nos testes funcionais. As capturas foram revisadas em desktop e mobile. O build, a verificação de tipos e o lint passaram. Não foi refeita a auditoria Lighthouse nesta alteração; as notas anteriores são históricas.

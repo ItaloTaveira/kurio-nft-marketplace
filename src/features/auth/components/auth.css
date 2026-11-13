@@ -1,6 +1,6 @@
 .auth-overlay { position: fixed; inset: 0; z-index: 60; background: transparent; }
-.auth-panel { position: fixed; z-index: 61; left: 50%; top: min(160px, 20dvh); transform: translateX(-50%); width: 500px; min-height: 600px; max-height: calc(100dvh - min(160px, 20dvh) - 24px); overflow-y: auto; background: var(--card); padding: 48px 0 44px; border-bottom: 10px solid var(--primary); outline: none; }
-.auth-panel.auth-register { min-height: 656px; border-radius: 8px; }
+.auth-panel { position: fixed; z-index: 61; left: 50%; top: min(160px, 20dvh); transform: translateX(-50%); width: 500px; min-height: 0; max-height: calc(100dvh - min(160px, 20dvh) - 24px); overflow-y: auto; background: var(--card); padding: 48px 0 44px; border-bottom: 10px solid var(--primary); outline: none; }
+.auth-panel.auth-register { min-height: 0; border-radius: 8px; }
 .auth-close { position: absolute; top: 2px; right: 2px; display: flex; align-items: center; justify-content: center; width: 38px; height: 38px; }
 .auth-heading { text-align: center; }
 .auth-heading nav { display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 20px; line-height: 20px; font-weight: 500; }
@@ -18,24 +18,8 @@
 .auth-password input { padding-right: 44px; }
 .auth-password button { position: absolute; right: 0; top: 0; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; }
 .auth-password button[aria-pressed=true] { background: #d28a4c22; border-radius: 5px; }
-.auth-forgot { display: block; margin: 12px 0 0 auto; color: var(--accent); font-size: 14px; line-height: 16px; cursor: not-allowed; }
 .auth-submit { margin-top: 24px; width: 100%; height: 45px; border-radius: 5px; font-size: 16px; font-weight: 700; }
 .auth-feedback, .auth-field-error { margin-top: 8px; font-size: 12px; line-height: 18px; color: #f0805f; overflow-wrap: anywhere; }
-.auth-social { margin-top: 24px; }
-.auth-divider { display: flex; align-items: center; gap: 12px; font-size: 13px; line-height: 16px; }
-.auth-divider span { flex: 1; min-width: 0; overflow: hidden; background: var(--border); height: 1px; }
-.auth-divider img { max-width: none; }
-.auth-social-buttons { margin: 12px 80px 0; display: flex; flex-direction: column; gap: 12px; }
-.auth-social-buttons button { display: flex; align-items: center; justify-content: center; gap: 12px; height: 40px; border: 1px solid var(--border); border-radius: 5px; color: var(--muted-foreground); font-size: 13px; font-weight: 500; cursor: not-allowed; }
-.auth-google { position: relative; width: 20px; height: 20px; flex-shrink: 0; }
-.auth-google img { position: absolute; max-width: none; }
-.auth-google img:nth-child(1) { left: 7.11%; top: 57.68%; }
-.auth-google img:nth-child(2) { left: 50%; top: 71.33%; }
-.auth-google img:nth-child(3) { left: 0; top: 24.69%; }
-.auth-google img:nth-child(4) { left: 47.07%; top: 38.28%; }
-.auth-google img:nth-child(5) { left: 50%; top: 38.28%; }
-.auth-google img:nth-child(6) { left: 7.11%; top: 0; }
-.auth-google img:nth-child(7) { left: 50%; top: 0; }
 .auth-switch { margin-top: 40px; text-align: center; color: var(--muted-foreground); font-size: 15px; line-height: 20px; }
 .auth-panel .auth-switch { display: none; }
 .auth-mobile { max-width: 470px; margin: 0 auto; padding: 80px 28px 24px; }
@@ -46,11 +30,3 @@
 .auth-mobile input { height: 50px; border-radius: 10px; }
 .auth-mobile .auth-password button { height: 50px; }
 .auth-mobile .auth-submit { height: 60px; margin-top: 40px; border-radius: 10px; }
-.auth-mobile .auth-social { margin-top: 40px; }
-.auth-mobile .auth-social-buttons { margin: 12px 0 0; gap: 16px; }
-.account-control { height: 35px; width: 100px; padding: 0 8px; font-size: 16px; }
-.account-menu { position: relative; font-size: 14px; z-index: 30; max-width: 150px; }
-.account-menu summary { cursor: pointer; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; padding: 8px; color: var(--accent); }
-.account-menu-panel { position: absolute; right: 0; top: 100%; background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 16px; width: 260px; overflow-wrap: anywhere; }
-.account-menu-panel p { margin-bottom: 12px; font-size: 12px; }
-@media (max-width: 1023px) { .account-control { width: 38px; height: 38px; padding: 0; flex-shrink: 0; } .account-control span { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0,0,0,0); } .account-menu { max-width: 72px; } }

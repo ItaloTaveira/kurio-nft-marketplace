@@ -1,3 +1,4 @@
+import { networkFee } from './network-fees'
 import { z } from 'zod'
 import Decimal from 'decimal.js'
 import type { CartResponse, AddCartItem } from '@/shared/contracts/cart'
@@ -77,7 +78,7 @@ export function cartResponse(record: CartRecord): CartResponse {
   const expired = !!record.coupon && getCartScenario() === 'coupon-expired'
   const percent = record.coupon === 'KURIO10' ? 10 : record.coupon === 'BEMVINDO5' ? 5 : 0
   const discount = expired ? new Decimal(0) : subtotal.mul(percent).div(100)
-  const fee = items.length ? new Decimal('0.016') : new Decimal(0)
+  const fee = items.reduce((estimate, item) => Decimal.max(estimate, networkFee(item.network)), new Decimal(0))
   if (expired) issues.push({ code: 'COUPON_EXPIRED', message: 'O cupom expirou. Remova ou substitua o código para continuar.' })
   const quote = {
     id: `quote-${record.version}-${hashQuote(JSON.stringify({ items, discount: discount.toFixed(), expired }))}`,

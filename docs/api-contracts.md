@@ -111,7 +111,7 @@ A quantidade adicionada soma à já existente na mesma edição e respeita estoq
 
 ### Resumo e cupons
 
-`quote` contém `subtotalEth`, `discountEth`, `networkFeeEth`, `totalEth` e `currency: "ETH"`, todos os valores monetários como strings decimais. A taxa demonstrativa é fixa em `0.016` ETH para carrinho não vazio, e zero para vazio. O desconto é calculado sobre o subtotal; a taxa não recebe desconto.
+`quote` contém `subtotalEth`, `discountEth`, `networkFeeEth`, `totalEth` e `currency: "ETH"`, todos os valores monetários como strings decimais. A taxa demonstrativa varia por rede: Ethereum `0.016`, Polygon `0.003`, Solana `0.001`, expressas em ETH equivalente. Para carrinhos mistos, usa-se a maior taxa como estimativa; para vazio, zero. O checkout exige uma única rede. O desconto é calculado sobre o subtotal; a taxa não recebe desconto.
 
 - `KURIO10`: 10% de desconto.
 - `BEMVINDO5`: 5% de desconto.
@@ -235,3 +235,8 @@ Eventos são sinais de invalidação: valores/confirmacões finais continuam sen
 O servidor mock reconcilia pedidos inscritos a cada 400 ms e emite versões novas, além dos eventos publicados após mudança de estado. Alterações de inventário incrementam a versão do NFT. `BroadcastChannel` replica notificações entre abas da mesma origem; persistência/bloqueio compartilhados mantêm a fonte REST. Sem backend externo, estado/eventos não se propagam entre dispositivos e dependem de ao menos uma página aberta.
 
 Somente nos mocks, `POST /api/mock/events` aceita atualização `{ type: 'nft', nftId, priceEth?, remaining?, mode? }` ou interrupção `{ type: 'disconnect', durationMs }`. A alteração é persistida em `kurio:marketplace-overrides:v1` antes da emissão; `remaining` afeta a edição padrão e ainda considera estoque reservado/consumido. Modos `duplicate` e `old` emitem sem alterar os dados REST. A interrupção fecha os sockets e simula indisponibilidade temporária no handshake antes de permitir reconexão.
+
+
+### Estimativa de taxa por rede
+
+`GET /api/checkout/fee?network=ethereum|polygon|solana` exige sessão e retorna `{ network, networkFeeEth }`. Rede inválida retorna 422. O cenário `fee-changed` multiplica a taxa por 1.5. O cache inclui sessão e rede; requisições obsoletas são canceladas. A estimativa não autoriza pagamento: revisão e envio continuam revalidando rede dos NFTs, carteira e valores na API.
