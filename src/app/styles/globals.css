@@ -1,0 +1,84 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+@import "@fontsource-variable/roboto-mono";
+
+@theme inline {
+  --font-sans: "Roboto Mono Variable", monospace;
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-border: var(--border);
+  --color-ring: var(--ring);
+  --radius-lg: var(--radius);
+}
+
+:root {
+  color-scheme: dark;
+  --background: #140d0a;
+  --foreground: #f5f1eb;
+  --card: #241612;
+  --primary: #d28a4c;
+  --primary-foreground: #140d0a;
+  --secondary: #b39463;
+  --muted-foreground: #cfb28c;
+  --accent: #e89b55;
+  --border: #3f2319;
+  --ring: #e89b55;
+  --radius: 6px;
+}
+
+@layer base {
+  * { @apply border-border; }
+  body { @apply m-0 bg-background font-sans text-foreground antialiased; }
+  button, a, input { -webkit-tap-highlight-color: transparent; }
+  button:not(:disabled), a[href] { cursor: pointer; }
+  :focus-visible { outline: 2px solid var(--ring); outline-offset: 5px; }
+  ::selection { background: var(--primary); color: var(--primary-foreground); }
+}
+
+@utility page-container {
+  width: min(1200px, calc(100% - 48px));
+  margin-inline: auto;
+}
+
+@media (min-width: 1280px) {
+  .page-container { width: min(1200px, calc(100% - 120px)); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+.card-favorite { position: absolute; top: 10px; right: 8px; display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 50%; background: var(--card); border: 1px solid var(--border); }
+[aria-pressed=true].card-favorite, [aria-pressed=true].detail-favorite { border-color: var(--accent); }
+.favorite-saved { font-size: 12px; color: var(--accent); }
+.favorite-error { display: block; font-size: 12px; line-height: 20px; color: #f0805f; }
+.nft-card-artwork .favorite-error { position: absolute; bottom: 0; padding: 8px; background: var(--card); }
+.detail-favorite, .detail-round-action { align-items: center; justify-content: center; }
+.favorites-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 32px 20px; }
+@media(max-width:600px) { .favorites-grid { grid-template-columns: repeat(2,minmax(0,1fr)); } }
+
+.realtime-status, .realtime-notice { position: fixed; bottom: 84px; left: 50%; transform: translateX(-50%); z-index: 55; width: min(600px,calc(100% - 32px)); padding: 12px 16px; border: 1px solid var(--primary); background: var(--card); border-radius: 10px; font-size: 12px; line-height: 20px; }
+.realtime-notice { display: flex; align-items: center; gap: 12px; }
+.realtime-notice button { color: var(--accent); padding: 8px; }
+
+.mobile-navigation { display: none; }
+@media(max-width:1023px) {
+ body:has(.mobile-navigation) { padding-bottom: calc(76px + env(safe-area-inset-bottom)); }
+ .mobile-navigation { display: flex; position: fixed; bottom: 0; left: 0; right: 0; align-items: center; justify-content: space-around; height: calc(66px + env(safe-area-inset-bottom)); padding-bottom: env(safe-area-inset-bottom); border-top: 1px solid var(--border); background: var(--background); z-index: 45; }
+ .mobile-navigation a { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; min-width: 54px; min-height: 50px; font-size: 10px; color: var(--muted-foreground); }
+ .mobile-navigation img { max-width: 24px; max-height: 24px; object-fit: contain; }
+ .mobile-navigation [aria-current] { color: var(--accent); text-decoration: underline; text-underline-offset: 4px; }
+ .mobile-home-mark { display: block; height: 24px; font-size: 20px; font-weight: 700; }
+ body .detail-purchase { bottom: calc(66px + env(safe-area-inset-bottom)); }
+}

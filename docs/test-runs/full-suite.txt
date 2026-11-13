@@ -1,0 +1,320 @@
+
+> marktplace-nft@0.0.0 test:e2e
+> npm run build && playwright test
+
+
+> marktplace-nft@0.0.0 build
+> tsc -b && vite build
+
+vite v8.3.8 building client environment for production...
+transforming...
+✓ 2921 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                                                    1.62 kB │ gzip:   0.60 kB
+dist/assets/roboto-mono-vietnamese-wght-normal-DlC-zuDL.woff2     10.30 kB
+dist/assets/roboto-mono-greek-wght-normal-BJJTbwTT.woff2          14.04 kB
+dist/assets/roboto-mono-cyrillic-wght-normal-HUlVHixE.woff2       18.59 kB
+dist/assets/roboto-mono-latin-ext-wght-normal-QAYlOegK.woff2      22.91 kB
+dist/assets/roboto-mono-latin-wght-normal-CZtBPCCa.woff2          32.79 kB
+dist/assets/roboto-mono-cyrillic-ext-wght-normal-BUDPrIko.woff2   35.91 kB
+dist/assets/catalog-vessel-Cl42p7ht.webp                         107.45 kB
+dist/assets/hero-ape-DMrGtADu.webp                               118.65 kB
+dist/assets/mobile-nomad-Bt1D5tPz.webp                           153.18 kB
+dist/assets/catalog-golden-BWyyrY85.webp                         156.76 kB
+dist/assets/detail-back-DOGRITKs.css                               1.14 kB │ gzip:   0.42 kB
+dist/assets/catalog-hD7qbvlV.css                                   4.03 kB │ gzip:   1.29 kB
+dist/assets/auth-page-D7-YOmUc.css                                 4.47 kB │ gzip:   1.37 kB
+dist/assets/order-summary-BwZQsnPj.css                             4.57 kB │ gzip:   1.12 kB
+dist/assets/account-m3fcNuWh.css                                   5.92 kB │ gzip:   1.50 kB
+dist/assets/cart-page-COIXrMo9.css                                 7.11 kB │ gzip:   1.82 kB
+dist/assets/nft-page-yxaQf8yj.css                                  7.53 kB │ gzip:   1.98 kB
+dist/assets/index-DJ30GqSW.css                                    33.47 kB │ gzip:   8.17 kB
+dist/assets/eth-BoEQcVSX.js                                        0.10 kB │ gzip:   0.11 kB
+dist/assets/useNavigate-C1cEH25E.js                                0.23 kB │ gzip:   0.19 kB
+dist/assets/initialize-C2Ma1Zjo.js                                 0.67 kB │ gzip:   0.40 kB
+dist/assets/rolldown-runtime-XKyaHtl9.js                           0.72 kB │ gzip:   0.42 kB
+dist/assets/favorites-page-BbRAO8fk.js                             0.90 kB │ gzip:   0.52 kB
+dist/assets/checkout-i6n7tAWC.js                                   1.28 kB │ gzip:   0.60 kB
+dist/assets/account-imgArrowDown-P99BCTVS.js                       2.43 kB │ gzip:   1.16 kB
+dist/assets/account-D0qeLE7X.js                                    2.93 kB │ gzip:   1.23 kB
+dist/assets/order-page-DWv15-qk.js                                 3.51 kB │ gzip:   1.36 kB
+dist/assets/detail-back-Bb4vxJBv.js                                3.78 kB │ gzip:   1.31 kB
+dist/assets/wallets-page-ChsNnX5Z.js                               6.08 kB │ gzip:   2.33 kB
+dist/assets/order-summary-pqcAtyBZ.js                              6.10 kB │ gzip:   2.23 kB
+dist/assets/catalog-BCRTWvjS.js                                    6.39 kB │ gzip:   2.92 kB
+dist/assets/dist-Bxaqd2h4.js                                       9.35 kB │ gzip:   3.31 kB
+dist/assets/checkout-page-g81IIEQc.js                             10.39 kB │ gzip:   3.46 kB
+dist/assets/esm-B6DvIUmM.js                                       10.52 kB │ gzip:   3.82 kB
+dist/assets/cart-page-BVZRNtku.js                                 11.19 kB │ gzip:   3.85 kB
+dist/assets/profile-page-B8agETSO.js                              12.24 kB │ gzip:   4.45 kB
+dist/assets/account-layout-DjKrJCX2.js                            13.87 kB │ gzip:   4.55 kB
+dist/assets/auth-DQq7t29O.js                                      16.29 kB │ gzip:   6.52 kB
+dist/assets/auth-page-Byy0dMPN.js                                 21.13 kB │ gzip:   5.36 kB
+dist/assets/realtime-bridge-BxCZCFn8.js                           33.51 kB │ gzip:  10.75 kB
+dist/assets/catalog-BojFj8PX.js                                   33.74 kB │ gzip:  13.78 kB
+dist/assets/zod-C6UsrxXq.js                                       39.16 kB │ gzip:  13.72 kB
+dist/assets/nft-page-Ds30cqx1.js                                  42.66 kB │ gzip:  14.31 kB
+dist/assets/dialog-CkCVERaD.js                                    43.69 kB │ gzip:  15.15 kB
+dist/assets/site-header-BFLA205s.js                               52.89 kB │ gzip:  17.46 kB
+dist/assets/auth-nAqxLf-a.js                                      93.51 kB │ gzip:  26.63 kB
+dist/assets/useLocation-DTBoGlMl.js                              154.64 kB │ gzip:  53.25 kB
+dist/assets/index-Cm49BqB6.js                                    277.43 kB │ gzip:  87.01 kB
+dist/assets/browser-IkNaLfRj.js                                  461.09 kB │ gzip: 170.13 kB
+
+✓ built in 582ms
+[WebServer] (node:11891) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 183 tests using 4 workers
+
+(node:11914) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:11912) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:11913) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:11911) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓    3 [chromium-desktop] › tests/e2e/account.spec.ts:29:1 › rotas privadas redirecionam e retomam o destino após cadastro (3.7s)
+  ✓    4 [chromium-desktop] › tests/e2e/account.spec.ts:60:1 › senha incorreta não salva perfil parcialmente; nova senha substitui a anterior (7.2s)
+  ✓    1 [chromium-desktop] › tests/e2e/account.spec.ts:38:1 › perfil e avatar persistem; remoção de avatar também é confirmada pela API (8.3s)
+  ✓    5 [chromium-desktop] › tests/e2e/account.spec.ts:115:1 › falha de gravação mantém formulário; expiração exige login e preserva dados salvos (6.1s)
+  ✓    2 [chromium-desktop] › tests/e2e/account.spec.ts:84:1 › carteiras validam rede/endereço, persistem e podem compartilhar a principal (10.7s)
+  ✓    6 [chromium-desktop] › tests/e2e/account.spec.ts:134:1 › troca de usuário isola carteiras e dados do perfil (6.7s)
+  ✓   10 [chromium-desktop] › tests/e2e/auth.spec.ts:63:1 › validação, confirmação de senha e mostrar senha são acessíveis (1.7s)
+  ✓    7 [chromium-desktop] › tests/e2e/account.spec.ts:146:1 › conflito entre abas preserva rascunho e nova senha revoga outra sessão (9.4s)
+  ✓    8 [chromium-desktop] › tests/e2e/auth.spec.ts:32:1 › cadastro preserva carrinho, recupera sessão e isola troca de conta (9.5s)
+  ✓    9 [chromium-desktop] › tests/e2e/auth.spec.ts:51:1 › mescla visitante com conta sem descartar excesso de estoque ou repetir transferência (9.4s)
+  ✓   11 [chromium-desktop] › tests/e2e/auth.spec.ts:77:1 › credenciais incorretas e conflito de cadastro mantêm formulário para correção (5.1s)
+  ✓   13 [chromium-desktop] › tests/e2e/auth.spec.ts:111:1 › falha transitória permite repetir e redirecionamento externo é rejeitado (2.3s)
+  ✓   12 [chromium-desktop] › tests/e2e/auth.spec.ts:94:1 › expiração mantém conta e carrinho para retomar no mesmo destino (5.9s)
+  ✓   15 [chromium-desktop] › tests/e2e/cart.spec.ts:25:1 › vazio, adição, contador e refresh preservam a seleção e os valores (6.8s)
+  ✓   14 [chromium-desktop] › tests/e2e/auth.spec.ts:126:1 › resposta atrasada de carrinho não reaparece após encerrar a sessão (8.4s)
+  ✓   17 [chromium-desktop] › tests/e2e/cart.spec.ts:51:1 › edição respeita o limite combinado com o que já está no carrinho (5.3s)
+  ✓   16 [chromium-desktop] › tests/e2e/cart.spec.ts:40:1 › mesma edição acumula; edições diferentes permanecem separadas (7.2s)
+  ✓   18 [chromium-desktop] › tests/e2e/cart.spec.ts:61:1 › quantidades e remoção atualizam o resumo retornado pela API (4.3s)
+  ✓   20 [chromium-desktop] › tests/e2e/cart.spec.ts:88:1 › remoção otimista volta ao estado anterior se a mutation falhar (4.7s)
+  ✓   19 [chromium-desktop] › tests/e2e/cart.spec.ts:74:1 › cupom válido, inválido, expirado e remoção preservam valores corretos (5.5s)
+  ✓   21 [chromium-desktop] › tests/e2e/cart.spec.ts:103:1 › preço alterado exige revisão e é consistente entre carrinho e detalhe (5.1s)
+  ✓   22 [chromium-desktop] › tests/e2e/cart.spec.ts:116:1 › estoque reduzido mantém o item e permite corrigir a quantidade (4.5s)
+  ✓   23 [chromium-desktop] › tests/e2e/cart.spec.ts:129:1 › cupom que expira depois de aplicado pode ser removido (4.1s)
+  ✓   24 [chromium-desktop] › tests/e2e/cart.spec.ts:141:1 › falha na adição permite nova tentativa e clique repetido não duplica (4.5s)
+  ✓   25 [chromium-desktop] › tests/e2e/cart.spec.ts:154:1 › loading e erro de consulta não apagam o carrinho persistido (6.4s)
+  ✓   26 [chromium-desktop] › tests/e2e/catalog.spec.ts:19:1 › paginação, filtros combinados, ordenação, refresh e histórico refletem REST (4.1s)
+  ✓   28 [chromium-desktop] › tests/e2e/catalog.spec.ts:58:1 › preço é filtrado no servidor e ordem crescente usa valores decimais (2.8s)
+  ✓   27 [chromium-desktop] › tests/e2e/catalog.spec.ts:45:1 › busca, vazio e limpeza são operáveis pela interface (4.2s)
+  ✓   30 [chromium-desktop] › tests/e2e/catalog.spec.ts:91:1 › resposta antiga não substitui a busca mais recente (2.9s)
+  ✓   31 [chromium-desktop] › tests/e2e/catalog.spec.ts:104:1 › recortes de lançamentos e em alta mudam a API e reiniciam a página (2.3s)
+  -   33 [chromium-desktop] › tests/e2e/catalog.spec.ts:125:1 › painel mobile contém o foco e devolve ao botão ao fechar
+  ✓   32 [chromium-desktop] › tests/e2e/catalog.spec.ts:114:1 › URL preserva as 18 casas decimais do preço até a requisição REST (2.3s)
+  ✓   29 [chromium-desktop] › tests/e2e/catalog.spec.ts:77:1 › skeleton, falha HTTP e recuperação passam pelos handlers MSW (4.4s)
+  ✓   35 [chromium-desktop] › tests/e2e/checkout.spec.ts:61:1 › taxa alterada exige nova revisão e confirmação explícita (11.4s)
+  ✓   37 [chromium-desktop] › tests/e2e/checkout.spec.ts:91:1 › resposta perdida e refresh recuperam um único pedido (10.8s)
+  ✓   36 [chromium-desktop] › tests/e2e/checkout.spec.ts:76:1 › pedido recusado mantém carrinho e permite revisar uma nova tentativa (15.7s)
+  ✓   34 [chromium-desktop] › tests/e2e/checkout.spec.ts:39:1 › checkout confirma por API, conserva recibo e não remove itens adicionados depois (17.6s)
+  ✓   39 [chromium-desktop] › tests/e2e/checkout.spec.ts:120:1 › recusa de conexão, desconexão e rede incompatível impedem confirmação (9.1s)
+  ✓   38 [chromium-desktop] › tests/e2e/checkout.spec.ts:103:1 › pendente sobrevive ao refresh e subtrai apenas a quantidade comprada (13.1s)
+  ✓   40 [chromium-desktop] › tests/e2e/checkout.spec.ts:136:1 › expiração no checkout preserva preenchimento e retoma pagamento após login (9.3s)
+  ✓   41 [chromium-desktop] › tests/e2e/checkout.spec.ts:151:1 › reenvios concorrentes e outra chave da mesma revisão retornam o mesmo pedido (9.0s)
+  ✓   45 [chromium-desktop] › tests/e2e/favorites-realtime.spec.ts:47:1 › Socket.IO atualiza carrinho, ignora duplicata/antigo e reconcilia após interrupção (5.5s)
+  ✓   42 [chromium-desktop] › tests/e2e/checkout.spec.ts:172:1 › preço alterado exige corrigir carrinho; estoque perdido durante processamento recusa pedido (14.3s)
+  ✓   43 [chromium-desktop] › tests/e2e/checkout.spec.ts:193:1 › cupom expirado na confirmação não gera pedido nem desconto confirmado (11.1s)
+  ✓   44 [chromium-desktop] › tests/e2e/favorites-realtime.spec.ts:16:1 › favoritos persistem, fazem rollback e são isolados por usuário (11.3s)
+  ✓   48 [chromium-desktop] › tests/e2e/home.spec.ts:19:1 › explorar chega ao mercado e o atalho de teclado chega ao conteúdo (1.3s)
+  ✓   47 [chromium-desktop] › tests/e2e/home.spec.ts:3:1 › início carrega com imagens locais e sem overflow horizontal (1.9s)
+  ✓   49 [chromium-desktop] › tests/e2e/home.spec.ts:31:1 › rota inexistente permite voltar ao início e recarregar (1.4s)
+  ✓   50 [chromium-desktop] › tests/e2e/nft.spec.ts:6:1 › card abre o NFT e o retorno preserva a busca e a página do catálogo (2.7s)
+  ✓   52 [chromium-desktop] › tests/e2e/nft.spec.ts:40:1 › quantidade rejeita frações e excesso; edição esgotada não pode ser escolhida (1.8s)
+  ✓   51 [chromium-desktop] › tests/e2e/nft.spec.ts:22:1 › acesso direto e refresh preservam edição, quantidade e subtotal decimal (3.1s)
+  ✓   53 [chromium-desktop] › tests/e2e/nft.spec.ts:58:1 › estoque reduzido limita a seleção recuperada da URL (1.5s)
+  ✓   55 [chromium-desktop] › tests/e2e/nft.spec.ts:81:1 › galeria amplia, troca miniatura por teclado e devolve o foco (1.9s)
+  ✓   56 [chromium-desktop] › tests/e2e/nft.spec.ts:98:1 › detalhes e avaliações têm navegação por teclado e expansão de avaliações (2.6s)
+  ✓   54 [chromium-desktop] › tests/e2e/nft.spec.ts:67:1 › NFT inexistente, edição desconhecida e esgotamento têm estados próprios (4.3s)
+  ✓   46 [chromium-desktop] › tests/e2e/favorites-realtime.spec.ts:64:1 › order.updated confirma por REST e o recibo não recebe eventos de outra conta (13.6s)
+  ✓   57 [chromium-desktop] › tests/e2e/nft.spec.ts:112:1 › skeleton, falha de rede e recuperação do detalhe usam MSW (5.2s)
+  ✓   58 [chromium-desktop] › tests/visual/pages.spec.ts:7:61 › referência visual: home (6.1s)
+  ✓   59 [chromium-desktop] › tests/visual/pages.spec.ts:7:61 › referência visual: detail (6.1s)
+  ✓   60 [chromium-desktop] › tests/visual/pages.spec.ts:7:61 › referência visual: cart (5.6s)
+(node:12439) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:12441) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:12448) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   61 [chromium-desktop] › tests/visual/pages.spec.ts:7:61 › referência visual: checkout (6.3s)
+(node:12477) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   62 [chromium-tablet] › tests/e2e/account.spec.ts:29:1 › rotas privadas redirecionam e retomam o destino após cadastro (3.0s)
+  ✓   63 [chromium-tablet] › tests/e2e/account.spec.ts:38:1 › perfil e avatar persistem; remoção de avatar também é confirmada pela API (7.1s)
+  ✓   66 [chromium-tablet] › tests/e2e/account.spec.ts:115:1 › falha de gravação mantém formulário; expiração exige login e preserva dados salvos (4.9s)
+  ✓   64 [chromium-tablet] › tests/e2e/account.spec.ts:60:1 › senha incorreta não salva perfil parcialmente; nova senha substitui a anterior (7.9s)
+  ✓   65 [chromium-tablet] › tests/e2e/account.spec.ts:84:1 › carteiras validam rede/endereço, persistem e podem compartilhar a principal (8.8s)
+  ✓   67 [chromium-tablet] › tests/e2e/account.spec.ts:134:1 › troca de usuário isola carteiras e dados do perfil (6.0s)
+  ✓   71 [chromium-tablet] › tests/e2e/auth.spec.ts:63:1 › validação, confirmação de senha e mostrar senha são acessíveis (1.5s)
+  ✓   68 [chromium-tablet] › tests/e2e/account.spec.ts:146:1 › conflito entre abas preserva rascunho e nova senha revoga outra sessão (8.8s)
+  ✓   69 [chromium-tablet] › tests/e2e/auth.spec.ts:32:1 › cadastro preserva carrinho, recupera sessão e isola troca de conta (8.9s)
+  ✓   72 [chromium-tablet] › tests/e2e/auth.spec.ts:77:1 › credenciais incorretas e conflito de cadastro mantêm formulário para correção (5.7s)
+  ✓   74 [chromium-tablet] › tests/e2e/auth.spec.ts:111:1 › falha transitória permite repetir e redirecionamento externo é rejeitado (3.5s)
+  ✓   70 [chromium-tablet] › tests/e2e/auth.spec.ts:51:1 › mescla visitante com conta sem descartar excesso de estoque ou repetir transferência (10.4s)
+  ✓   73 [chromium-tablet] › tests/e2e/auth.spec.ts:94:1 › expiração mantém conta e carrinho para retomar no mesmo destino (6.8s)
+  ✓   76 [chromium-tablet] › tests/e2e/cart.spec.ts:25:1 › vazio, adição, contador e refresh preservam a seleção e os valores (7.0s)
+  ✓   78 [chromium-tablet] › tests/e2e/cart.spec.ts:51:1 › edição respeita o limite combinado com o que já está no carrinho (5.6s)
+  ✓   75 [chromium-tablet] › tests/e2e/auth.spec.ts:126:1 › resposta atrasada de carrinho não reaparece após encerrar a sessão (9.0s)
+  ✓   77 [chromium-tablet] › tests/e2e/cart.spec.ts:40:1 › mesma edição acumula; edições diferentes permanecem separadas (7.3s)
+  ✓   79 [chromium-tablet] › tests/e2e/cart.spec.ts:61:1 › quantidades e remoção atualizam o resumo retornado pela API (5.1s)
+  ✓   81 [chromium-tablet] › tests/e2e/cart.spec.ts:88:1 › remoção otimista volta ao estado anterior se a mutation falhar (4.4s)
+  ✓   80 [chromium-tablet] › tests/e2e/cart.spec.ts:74:1 › cupom válido, inválido, expirado e remoção preservam valores corretos (5.5s)
+  ✓   82 [chromium-tablet] › tests/e2e/cart.spec.ts:103:1 › preço alterado exige revisão e é consistente entre carrinho e detalhe (4.8s)
+  ✓   83 [chromium-tablet] › tests/e2e/cart.spec.ts:116:1 › estoque reduzido mantém o item e permite corrigir a quantidade (4.5s)
+  ✓   84 [chromium-tablet] › tests/e2e/cart.spec.ts:129:1 › cupom que expira depois de aplicado pode ser removido (4.4s)
+  ✓   85 [chromium-tablet] › tests/e2e/cart.spec.ts:141:1 › falha na adição permite nova tentativa e clique repetido não duplica (4.5s)
+  ✓   86 [chromium-tablet] › tests/e2e/cart.spec.ts:154:1 › loading e erro de consulta não apagam o carrinho persistido (6.1s)
+  ✓   88 [chromium-tablet] › tests/e2e/catalog.spec.ts:45:1 › busca, vazio e limpeza são operáveis pela interface (5.1s)
+  ✓   89 [chromium-tablet] › tests/e2e/catalog.spec.ts:58:1 › preço é filtrado no servidor e ordem crescente usa valores decimais (4.3s)
+  ✓   92 [chromium-tablet] › tests/e2e/catalog.spec.ts:104:1 › recortes de lançamentos e em alta mudam a API e reiniciam a página (2.2s)
+  ✓   91 [chromium-tablet] › tests/e2e/catalog.spec.ts:91:1 › resposta antiga não substitui a busca mais recente (3.0s)
+  ✓   90 [chromium-tablet] › tests/e2e/catalog.spec.ts:77:1 › skeleton, falha HTTP e recuperação passam pelos handlers MSW (6.1s)
+  ✓   87 [chromium-tablet] › tests/e2e/catalog.spec.ts:19:1 › paginação, filtros combinados, ordenação, refresh e histórico refletem REST (9.7s)
+  ✓   93 [chromium-tablet] › tests/e2e/catalog.spec.ts:114:1 › URL preserva as 18 casas decimais do preço até a requisição REST (2.2s)
+  ✓   94 [chromium-tablet] › tests/e2e/catalog.spec.ts:125:1 › painel mobile contém o foco e devolve ao botão ao fechar (1.6s)
+  ✓   96 [chromium-tablet] › tests/e2e/checkout.spec.ts:61:1 › taxa alterada exige nova revisão e confirmação explícita (11.0s)
+  ✓   98 [chromium-tablet] › tests/e2e/checkout.spec.ts:91:1 › resposta perdida e refresh recuperam um único pedido (10.9s)
+  ✓   97 [chromium-tablet] › tests/e2e/checkout.spec.ts:76:1 › pedido recusado mantém carrinho e permite revisar uma nova tentativa (15.0s)
+  ✓   95 [chromium-tablet] › tests/e2e/checkout.spec.ts:39:1 › checkout confirma por API, conserva recibo e não remove itens adicionados depois (17.5s)
+  ✓  100 [chromium-tablet] › tests/e2e/checkout.spec.ts:120:1 › recusa de conexão, desconexão e rede incompatível impedem confirmação (8.7s)
+  ✓  101 [chromium-tablet] › tests/e2e/checkout.spec.ts:136:1 › expiração no checkout preserva preenchimento e retoma pagamento após login (8.7s)
+  ✓   99 [chromium-tablet] › tests/e2e/checkout.spec.ts:103:1 › pendente sobrevive ao refresh e subtrai apenas a quantidade comprada (13.2s)
+  ✓  102 [chromium-tablet] › tests/e2e/checkout.spec.ts:151:1 › reenvios concorrentes e outra chave da mesma revisão retornam o mesmo pedido (7.7s)
+  ✓  106 [chromium-tablet] › tests/e2e/favorites-realtime.spec.ts:47:1 › Socket.IO atualiza carrinho, ignora duplicata/antigo e reconcilia após interrupção (5.5s)
+  ✓  103 [chromium-tablet] › tests/e2e/checkout.spec.ts:172:1 › preço alterado exige corrigir carrinho; estoque perdido durante processamento recusa pedido (13.0s)
+  ✓  108 [chromium-tablet] › tests/e2e/home.spec.ts:3:1 › início carrega com imagens locais e sem overflow horizontal (1.2s)
+  ✓  104 [chromium-tablet] › tests/e2e/checkout.spec.ts:193:1 › cupom expirado na confirmação não gera pedido nem desconto confirmado (10.4s)
+  ✓  109 [chromium-tablet] › tests/e2e/home.spec.ts:19:1 › explorar chega ao mercado e o atalho de teclado chega ao conteúdo (1.0s)
+  ✓  105 [chromium-tablet] › tests/e2e/favorites-realtime.spec.ts:16:1 › favoritos persistem, fazem rollback e são isolados por usuário (11.3s)
+  ✓  110 [chromium-tablet] › tests/e2e/home.spec.ts:31:1 › rota inexistente permite voltar ao início e recarregar (1.2s)
+  ✓  113 [chromium-tablet] › tests/e2e/nft.spec.ts:40:1 › quantidade rejeita frações e excesso; edição esgotada não pode ser escolhida (1.7s)
+  ✓  111 [chromium-tablet] › tests/e2e/nft.spec.ts:6:1 › card abre o NFT e o retorno preserva a busca e a página do catálogo (2.6s)
+  ✓  112 [chromium-tablet] › tests/e2e/nft.spec.ts:22:1 › acesso direto e refresh preservam edição, quantidade e subtotal decimal (2.5s)
+  ✓  114 [chromium-tablet] › tests/e2e/nft.spec.ts:58:1 › estoque reduzido limita a seleção recuperada da URL (1.3s)
+  ✓  116 [chromium-tablet] › tests/e2e/nft.spec.ts:81:1 › galeria amplia, troca miniatura por teclado e devolve o foco (1.6s)
+  ✓  117 [chromium-tablet] › tests/e2e/nft.spec.ts:98:1 › detalhes e avaliações têm navegação por teclado e expansão de avaliações (1.7s)
+  ✓  115 [chromium-tablet] › tests/e2e/nft.spec.ts:67:1 › NFT inexistente, edição desconhecida e esgotamento têm estados próprios (3.5s)
+  ✓  107 [chromium-tablet] › tests/e2e/favorites-realtime.spec.ts:64:1 › order.updated confirma por REST e o recibo não recebe eventos de outra conta (11.9s)
+  ✓  118 [chromium-tablet] › tests/e2e/nft.spec.ts:112:1 › skeleton, falha de rede e recuperação do detalhe usam MSW (5.4s)
+  ✓  119 [chromium-tablet] › tests/visual/pages.spec.ts:7:61 › referência visual: home (4.7s)
+  ✓  121 [chromium-tablet] › tests/visual/pages.spec.ts:7:61 › referência visual: cart (3.6s)
+  ✓  120 [chromium-tablet] › tests/visual/pages.spec.ts:7:61 › referência visual: detail (4.4s)
+(node:12977) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:12967) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:12978) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  124 [chromium-mobile] › tests/e2e/account.spec.ts:29:1 › rotas privadas redirecionam e retomam o destino após cadastro (2.6s)
+  ✓  122 [chromium-tablet] › tests/visual/pages.spec.ts:7:61 › referência visual: checkout (5.5s)
+(node:13010) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  123 [chromium-mobile] › tests/e2e/account.spec.ts:38:1 › perfil e avatar persistem; remoção de avatar também é confirmada pela API (6.4s)
+  ✓  125 [chromium-mobile] › tests/e2e/account.spec.ts:60:1 › senha incorreta não salva perfil parcialmente; nova senha substitui a anterior (7.3s)
+  ✓  127 [chromium-mobile] › tests/e2e/account.spec.ts:115:1 › falha de gravação mantém formulário; expiração exige login e preserva dados salvos (6.0s)
+  ✓  128 [chromium-mobile] › tests/e2e/account.spec.ts:134:1 › troca de usuário isola carteiras e dados do perfil (5.6s)
+  ✓  126 [chromium-mobile] › tests/e2e/account.spec.ts:84:1 › carteiras validam rede/endereço, persistem e podem compartilhar a principal (9.8s)
+  ✓  132 [chromium-mobile] › tests/e2e/auth.spec.ts:63:1 › validação, confirmação de senha e mostrar senha são acessíveis (1.2s)
+  ✓  129 [chromium-mobile] › tests/e2e/account.spec.ts:146:1 › conflito entre abas preserva rascunho e nova senha revoga outra sessão (9.4s)
+  ✓  133 [chromium-mobile] › tests/e2e/auth.spec.ts:77:1 › credenciais incorretas e conflito de cadastro mantêm formulário para correção (4.2s)
+  ✓  130 [chromium-mobile] › tests/e2e/auth.spec.ts:32:1 › cadastro preserva carrinho, recupera sessão e isola troca de conta (8.9s)
+  ✓  135 [chromium-mobile] › tests/e2e/auth.spec.ts:111:1 › falha transitória permite repetir e redirecionamento externo é rejeitado (2.0s)
+  ✓  131 [chromium-mobile] › tests/e2e/auth.spec.ts:51:1 › mescla visitante com conta sem descartar excesso de estoque ou repetir transferência (8.3s)
+  ✓  134 [chromium-mobile] › tests/e2e/auth.spec.ts:94:1 › expiração mantém conta e carrinho para retomar no mesmo destino (5.7s)
+  ✓  137 [chromium-mobile] › tests/e2e/cart.spec.ts:25:1 › vazio, adição, contador e refresh preservam a seleção e os valores (5.7s)
+  ✓  138 [chromium-mobile] › tests/e2e/cart.spec.ts:40:1 › mesma edição acumula; edições diferentes permanecem separadas (5.6s)
+  ✓  139 [chromium-mobile] › tests/e2e/cart.spec.ts:51:1 › edição respeita o limite combinado com o que já está no carrinho (4.4s)
+  ✓  136 [chromium-mobile] › tests/e2e/auth.spec.ts:126:1 › resposta atrasada de carrinho não reaparece após encerrar a sessão (7.8s)
+  ✓  140 [chromium-mobile] › tests/e2e/cart.spec.ts:61:1 › quantidades e remoção atualizam o resumo retornado pela API (3.7s)
+  ✓  141 [chromium-mobile] › tests/e2e/cart.spec.ts:74:1 › cupom válido, inválido, expirado e remoção preservam valores corretos (4.6s)
+  ✓  142 [chromium-mobile] › tests/e2e/cart.spec.ts:88:1 › remoção otimista volta ao estado anterior se a mutation falhar (3.6s)
+  ✓  143 [chromium-mobile] › tests/e2e/cart.spec.ts:103:1 › preço alterado exige revisão e é consistente entre carrinho e detalhe (3.8s)
+  ✓  144 [chromium-mobile] › tests/e2e/cart.spec.ts:116:1 › estoque reduzido mantém o item e permite corrigir a quantidade (3.8s)
+  ✓  145 [chromium-mobile] › tests/e2e/cart.spec.ts:129:1 › cupom que expira depois de aplicado pode ser removido (3.8s)
+  ✓  147 [chromium-mobile] › tests/e2e/cart.spec.ts:154:1 › loading e erro de consulta não apagam o carrinho persistido (5.6s)
+  ✓  149 [chromium-mobile] › tests/e2e/catalog.spec.ts:45:1 › busca, vazio e limpeza são operáveis pela interface (2.8s)
+  ✓  148 [chromium-mobile] › tests/e2e/catalog.spec.ts:19:1 › paginação, filtros combinados, ordenação, refresh e histórico refletem REST (4.3s)
+  ✘  146 [chromium-mobile] › tests/e2e/cart.spec.ts:141:1 › falha na adição permite nova tentativa e clique repetido não duplica (7.6s)
+  ✓  150 [chromium-mobile] › tests/e2e/catalog.spec.ts:58:1 › preço é filtrado no servidor e ordem crescente usa valores decimais (1.8s)
+(node:13185) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  152 [chromium-mobile] › tests/e2e/catalog.spec.ts:91:1 › resposta antiga não substitui a busca mais recente (2.5s)
+  ✓  153 [chromium-mobile] › tests/e2e/catalog.spec.ts:114:1 › URL preserva as 18 casas decimais do preço até a requisição REST (1.7s)
+  ✓  155 [chromium-mobile] › tests/e2e/catalog.spec.ts:125:1 › painel mobile contém o foco e devolve ao botão ao fechar (639ms)
+  ✓  154 [chromium-mobile] › tests/e2e/catalog.spec.ts:104:1 › recortes de lançamentos e em alta mudam a API e reiniciam a página (1.7s)
+  ✓  151 [chromium-mobile] › tests/e2e/catalog.spec.ts:77:1 › skeleton, falha HTTP e recuperação passam pelos handlers MSW (4.4s)
+  ✓  159 [chromium-mobile] › tests/e2e/checkout.spec.ts:91:1 › resposta perdida e refresh recuperam um único pedido (10.0s)
+  ✓  157 [chromium-mobile] › tests/e2e/checkout.spec.ts:61:1 › taxa alterada exige nova revisão e confirmação explícita (11.1s)
+  ✓  158 [chromium-mobile] › tests/e2e/checkout.spec.ts:76:1 › pedido recusado mantém carrinho e permite revisar uma nova tentativa (14.9s)
+  ✓  156 [chromium-mobile] › tests/e2e/checkout.spec.ts:39:1 › checkout confirma por API, conserva recibo e não remove itens adicionados depois (17.5s)
+  ✓  161 [chromium-mobile] › tests/e2e/checkout.spec.ts:120:1 › recusa de conexão, desconexão e rede incompatível impedem confirmação (8.7s)
+  ✓  162 [chromium-mobile] › tests/e2e/checkout.spec.ts:136:1 › expiração no checkout preserva preenchimento e retoma pagamento após login (8.4s)
+  ✓  160 [chromium-mobile] › tests/e2e/checkout.spec.ts:103:1 › pendente sobrevive ao refresh e subtrai apenas a quantidade comprada (13.0s)
+  ✓  163 [chromium-mobile] › tests/e2e/checkout.spec.ts:151:1 › reenvios concorrentes e outra chave da mesma revisão retornam o mesmo pedido (8.0s)
+  ✓  167 [chromium-mobile] › tests/e2e/favorites-realtime.spec.ts:47:1 › Socket.IO atualiza carrinho, ignora duplicata/antigo e reconcilia após interrupção (5.3s)
+  ✓  164 [chromium-mobile] › tests/e2e/checkout.spec.ts:172:1 › preço alterado exige corrigir carrinho; estoque perdido durante processamento recusa pedido (12.6s)
+  ✓  169 [chromium-mobile] › tests/e2e/home.spec.ts:3:1 › início carrega com imagens locais e sem overflow horizontal (907ms)
+  ✓  165 [chromium-mobile] › tests/e2e/checkout.spec.ts:193:1 › cupom expirado na confirmação não gera pedido nem desconto confirmado (10.0s)
+  ✓  171 [chromium-mobile] › tests/e2e/home.spec.ts:31:1 › rota inexistente permite voltar ao início e recarregar (953ms)
+  ✓  170 [chromium-mobile] › tests/e2e/home.spec.ts:19:1 › explorar chega ao mercado e o atalho de teclado chega ao conteúdo (1.0s)
+  ✓  166 [chromium-mobile] › tests/e2e/favorites-realtime.spec.ts:16:1 › favoritos persistem, fazem rollback e são isolados por usuário (10.9s)
+  ✓  174 [chromium-mobile] › tests/e2e/nft.spec.ts:40:1 › quantidade rejeita frações e excesso; edição esgotada não pode ser escolhida (1.3s)
+  ✓  172 [chromium-mobile] › tests/e2e/nft.spec.ts:6:1 › card abre o NFT e o retorno preserva a busca e a página do catálogo (2.3s)
+  ✓  173 [chromium-mobile] › tests/e2e/nft.spec.ts:22:1 › acesso direto e refresh preservam edição, quantidade e subtotal decimal (2.4s)
+  ✓  175 [chromium-mobile] › tests/e2e/nft.spec.ts:58:1 › estoque reduzido limita a seleção recuperada da URL (1.1s)
+  ✓  177 [chromium-mobile] › tests/e2e/nft.spec.ts:81:1 › galeria amplia, troca miniatura por teclado e devolve o foco (1.4s)
+  ✓  178 [chromium-mobile] › tests/e2e/nft.spec.ts:98:1 › detalhes e avaliações têm navegação por teclado e expansão de avaliações (1.3s)
+  ✓  176 [chromium-mobile] › tests/e2e/nft.spec.ts:67:1 › NFT inexistente, edição desconhecida e esgotamento têm estados próprios (3.3s)
+  ✓  180 [chromium-mobile] › tests/visual/pages.spec.ts:7:61 › referência visual: home (3.2s)
+  ✓  168 [chromium-mobile] › tests/e2e/favorites-realtime.spec.ts:64:1 › order.updated confirma por REST e o recibo não recebe eventos de outra conta (11.7s)
+  ✓  179 [chromium-mobile] › tests/e2e/nft.spec.ts:112:1 › skeleton, falha de rede e recuperação do detalhe usam MSW (4.6s)
+  ✓  181 [chromium-mobile] › tests/visual/pages.spec.ts:7:61 › referência visual: detail (3.7s)
+  ✓  182 [chromium-mobile] › tests/visual/pages.spec.ts:7:61 › referência visual: cart (3.1s)
+  ✓  183 [chromium-mobile] › tests/visual/pages.spec.ts:7:61 › referência visual: checkout (5.3s)
+
+
+  1) [chromium-mobile] › tests/e2e/cart.spec.ts:141:1 › falha na adição permite nova tentativa e clique repetido não duplica 
+
+    Error: expect(page).toHaveURL(expected) failed
+
+    Expected pattern: /\/carrinho/
+    Received string:  "http://127.0.0.1:4173/nfts/emerald-ape-042?returnTo=%2F%23mercado"
+    Timeout: 5000ms
+
+    Call log:
+      - Expect "toHaveURL" with timeout 5000ms
+        5 × locator resolved to <html lang="pt-BR">…</html>
+          - unexpected value "http://127.0.0.1:4173/nfts/emerald-ape-042"
+        9 × locator resolved to <html lang="pt-BR">…</html>
+          - unexpected value "http://127.0.0.1:4173/nfts/emerald-ape-042?returnTo=%2F%23mercado"
+
+
+      146 |   await page.evaluate(key => localStorage.setItem(key, 'success'), scenarioKey)
+      147 |   await page.getByRole('button', { name: /^(COMPRAR|Comprar NFT)$/ }).dblclick()
+    > 148 |   await expect(page).toHaveURL(/\/carrinho/)
+          |                      ^
+      149 |   await expect(rows(page)).toHaveCount(1)
+      150 |   await expect(firstRow(page).getByRole('spinbutton', { name: 'Quantidade', exact: true })).toHaveValue('1')
+      151 |   await expect(page.getByLabel('Total do carrinho', { exact: true })).toHaveText('1.206 ETH')
+        at /Users/italotaveira/Marktplace_NFT/tests/e2e/cart.spec.ts:148:22
+
+    Error Context: test-results/e2e-cart-falha-na-adição-p-326ad-clique-repetido-não-duplica-chromium-mobile/error-context.md
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/e2e-cart-falha-na-adição-p-326ad-clique-repetido-não-duplica-chromium-mobile/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/e2e-cart-falha-na-adição-p-326ad-clique-repetido-não-duplica-chromium-mobile/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    [chromium-mobile] › tests/e2e/cart.spec.ts:141:1 › falha na adição permite nova tentativa e clique repetido não duplica 
+  1 skipped
+  181 passed (4.7m)

@@ -1,0 +1,16 @@
+.quantity-button { display: flex; justify-content: center; align-items: center; flex-shrink: 0; width: 36px; height: 44px; }
+.quantity-button span { display: flex; justify-content: center; align-items: center; width: 20px; height: 30px; border: 1px solid var(--background); border-radius: 20px; background: var(--primary); }
+.quantity-button:disabled { cursor: not-allowed; opacity: .45; }
+.quantity-input { width: 26px; height: 44px; padding: 0; appearance: textfield; background: transparent; text-align: center; font-size: 18px; }
+.quantity-input::-webkit-inner-spin-button, .quantity-input::-webkit-outer-spin-button { appearance: none; margin: 0; }
+@media (min-width: 1024px) {
+.quantity-button { width: 40px; height: 50px; }
+.quantity-button span { width: 33px; height: 49.5px; }
+.quantity-input { font-size: 20px; }
+}
+.quantity-picker-compact .quantity-button { width: 30px; height: 40px; }
+.quantity-picker-compact .quantity-button span { width: 20px; height: 30px; }
+.quantity-picker-compact .quantity-input { width: 26px; height: 40px; font-size: 16px; }
+.quantity-picker-compact .quantity-input + .quantity-button { margin-left: 0; }
+.quantity-picker-compact .quantity-button:disabled { opacity: .45; }
+.quantity-picker-compact span.lg\:sr-only { display: none; }

@@ -1,0 +1,80 @@
+[
+  {
+    "url": "http://127.0.0.1:4173/",
+    "isRepresentativeRun": false,
+    "htmlPath": "/Users/italotaveira/Marktplace_NFT/lighthouse/reports/mobile/127_0_0_1--2026_11_13_10_24_01.report.html",
+    "jsonPath": "/Users/italotaveira/Marktplace_NFT/lighthouse/reports/mobile/127_0_0_1--2026_11_13_10_24_01.report.json",
+    "summary": {
+      "performance": 0.84,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1,
+      "agentic-browsing": 0.5
+    }
+  },
+  {
+    "url": "http://127.0.0.1:4173/",
+    "isRepresentativeRun": false,
+    "htmlPath": "/Users/italotaveira/Marktplace_NFT/lighthouse/reports/mobile/127_0_0_1--2026_11_13_10_24_15.report.html",
+    "jsonPath": "/Users/italotaveira/Marktplace_NFT/lighthouse/reports/mobile/127_0_0_1--2026_11_13_10_24_15.report.json",
+    "summary": {
+      "performance": 0.86,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1,
+      "agentic-browsing": 0.5
+    }
+  },
+  {
+    "url": "http://127.0.0.1:4173/nfts/emerald-ape-042",
+    "isRepresentativeRun": false,
+    "htmlPath": "/Users/italotaveira/Marktplace_NFT/lighthouse/reports/mobile/127_0_0_1-nfts_emerald_ape_042-2026_11_13_10_24_40.report.html",
+    "jsonPath": "/Users/italotaveira/Marktplace_NFT/lighthouse/reports/mobile/127_0_0_1-nfts_emerald_ape_042-2026_11_13_10_24_40.report.json",
+    "summary": {
+      "performance": 0.84,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1,
+      "agentic-browsing": 0.5
+    }
+  },
+  {
+    "url": "http://127.0.0.1:4173/nfts/emerald-ape-042",
+    "isRepresentativeRun": false,
+    "htmlPath": "/Users/italotaveira/Marktplace_NFT/lighthouse/reports/mobile/127_0_0_1-nfts_emerald_ape_042-2026_11_13_10_25_07.report.html",
+    "jsonPath": "/Users/italotaveira/Marktplace_NFT/lighthouse/reports/mobile/127_0_0_1-nfts_emerald_ape_042-2026_11_13_10_25_07.report.json",
+    "summary": {
+      "performance": 0.85,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1,
+      "agentic-browsing": 0.5
+    }
+  },
+  {
+    "url": "http://127.0.0.1:4173/",
+    "isRepresentativeRun": true,
+    "htmlPath": "/Users/italotaveira/Marktplace_NFT/lighthouse/reports/mobile/127_0_0_1--2026_11_13_10_24_28.report.html",
+    "jsonPath": "/Users/italotaveira/Marktplace_NFT/lighthouse/reports/mobile/127_0_0_1--2026_11_13_10_24_28.report.json",
+    "summary": {
+      "performance": 0.85,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1,
+      "agentic-browsing": 0.5
+    }
+  },
+  {
+    "url": "http://127.0.0.1:4173/nfts/emerald-ape-042",
+    "isRepresentativeRun": true,
+    "htmlPath": "/Users/italotaveira/Marktplace_NFT/lighthouse/reports/mobile/127_0_0_1-nfts_emerald_ape_042-2026_11_13_10_24_53.report.html",
+    "jsonPath": "/Users/italotaveira/Marktplace_NFT/lighthouse/reports/mobile/127_0_0_1-nfts_emerald_ape_042-2026_11_13_10_24_53.report.json",
+    "summary": {
+      "performance": 0.84,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1,
+      "agentic-browsing": 0.5
+    }
+  }
+]
