@@ -34,7 +34,7 @@ As contas são inicializadas sem sobrescrever usuários existentes. Também é p
 - `/favoritos`: lista persistida e isolada por usuário, com rollback de falha.
 - `/carrinho`: unidades, remoção, cupons `KURIO10`/`BEMVINDO5` e totais da API; itens do visitante são mesclados ao entrar.
 - `/perfil` e `/carteiras`: dados, avatar, senha e carteiras principal/secundária.
-- `/pagamento`: conexão simulada, revisão explícita e pedido idempotente.
+- `/pagamento`: conexão simulada, etapa de revisão com itens, carteira, taxas e total, retorno à edição e confirmação explícita de pedido idempotente.
 - `/pedidos/:id`: processamento, confirmação ou recusa; recibo conserva o snapshot confirmado.
 
 Para comprar, abra **Carteiras**, selecione Ethereum, clique em **Gerar endereço fictício** e depois **Salvar carteira**, adicione Emerald Ape #042 e use **Conectar e finalizar**. Duas unidades a 1.19 ETH somam **2.396 ETH**, incluindo taxa simulada. Cada pedido exige uma única rede compatível com a carteira; não há bridge automático.
