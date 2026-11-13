@@ -1,8 +1,11 @@
-import { useNavigate, useSearch } from '@tanstack/react-router'
+import { parseSearch } from '@/app/router/search-params'
+import { useNavigate, useSearch, useLocation } from '@tanstack/react-router'
 import { catalogSearchSchema, defaultCatalogSearch, type CatalogSearch } from '@/shared/contracts/catalog'
 
 export function useCatalogSearch() {
-  const search = useSearch({ from: '/' })
+  const raw = useSearch({ strict: false })
+  const location = useLocation()
+  const search = catalogSearchSchema.parse(location.pathname === '/' ? raw : parseSearch(new URL(typeof raw.returnTo === 'string' ? raw.returnTo : '/', window.location.origin).search))
   const navigate = useNavigate({ from: '/' })
   const update = (patch: Partial<CatalogSearch>) => {
     void navigate({

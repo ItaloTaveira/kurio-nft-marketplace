@@ -5,6 +5,5 @@ export const CheckoutPage = lazy(() => import('@/routes/checkout-page').then(mod
 export const OrderPage = lazy(() => import('@/routes/order-page').then(module => ({ default: module.OrderPage })))
 export const ProfilePage = lazy(() => import('@/routes/profile-page').then(module => ({ default: module.ProfilePage })))
 export const WalletsPage = lazy(() => import('@/routes/wallets-page').then(module => ({ default: module.WalletsPage })))
-export const AuthPage = lazy(() => import('@/routes/auth-page').then(module => ({ default: module.AuthPage })))
 export const NftPage = lazy(() => import('@/routes/nft-page').then(module => ({ default: module.NftPage })))
 export const CartPage = lazy(() => import('@/routes/cart-page').then(module => ({ default: module.CartPage })))

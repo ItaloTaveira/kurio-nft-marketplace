@@ -165,3 +165,8 @@ Ao conectar ou desconectar, o checkout incorpora a resposta confirmada da API ao
 ## Reintrodução do login social como demonstração
 
 A pedido do usuário, Google e Facebook voltaram à interface como simulação explicitamente identificada. `POST /auth/social` é atendido pelo MSW e reutiliza a emissão de sessão e a mesclagem de carrinho do login convencional. Não há contato com provedores reais, OAuth ou solicitação de senha de terceiros. Contas são recuperadas por identidade de provedor persistida, não por e-mail, evitando tomar uma conta local com o mesmo endereço. A senha fictícia para explorar essas contas é armazenada somente como hash PBKDF2, como nas demais contas da demonstração. Ambos os botões usam a mesma mutation, bloqueio de envio e limpeza dos caches privados do login comum. A tela identifica a simulação e oculta os botões quando os mocks estão desativados.
+
+
+## Transição para o login
+
+No desktop, início e autenticação compartilham a mesma instância da página inicial no layout raiz. Abrir o login adiciona somente o diálogo, tornando o fundo inerte sem desmontar catálogo, imagens ou rodapé. O catálogo de fundo usa os parâmetros do destino de retorno, preservando filtros e dados em cache. A entrada de autenticação é carregada no bundle inicial para evitar carregamento tardio do formulário e de seus estilos; as demais telas permanecem sob demanda. Links de entrada e fechamento preservam a rolagem no desktop, e a restauração de foco usa `preventScroll`. Mobile mantém sua tela de acesso própria e abre no topo.

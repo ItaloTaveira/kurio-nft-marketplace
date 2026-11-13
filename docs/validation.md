@@ -69,3 +69,8 @@ A correção do teste de favoritos passou nos três perfis Chromium (3/3). No en
 ## Login social simulado
 
 Google e Facebook foram reintroduzidos com aviso explícito de demonstração, sem OAuth ou acesso a contas reais. A validação focada aprovou seis casos sociais nos três viewports, além dos 13 casos aplicáveis das regressões existentes. A primeira rodada do novo teste de troca de provedor navegava antes da conclusão do logout; após aguardar a confirmação da saída, a repetição passou em 6/6 sem retries. A interface desktop foi inspecionada por captura; build, TypeScript e lint passaram. Evidência em `docs/test-runs/social-demo-final.txt`.
+
+
+## Abertura do login sem reconstruir o fundo
+
+Foram aprovados 49 testes de início, autenticação, simulação social e regressões em desktop/tablet/mobile (dois casos exclusivos do desktop ignorados nos demais perfis). O novo teste da transição verifica que o elemento original da página permanece conectado ao DOM ao abrir e fechar o modal, os filtros são mantidos e há apenas uma requisição de documento. Ele se aplica ao desktop; mobile utiliza uma tela própria. Build e lint passaram. As auditorias Lighthouse não foram refeitas nesta alteração.

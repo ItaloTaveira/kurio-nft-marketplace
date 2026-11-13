@@ -12,7 +12,7 @@ export function FavoriteButton({ id, name, icon, filledIcon, className = '', tex
   const [error, setError] = useState('')
   const saved = favorites.data?.ids.includes(id) ?? false
   const toggle = async () => {
-    if (!token) { await navigate({ to: '/entrar', search: { returnTo: `${location.pathname}${location.searchStr}` } }); return }
+    if (!token) { await navigate({ to: '/entrar', resetScroll: !window.matchMedia('(min-width: 1024px)').matches, search: { returnTo: `${location.pathname}${location.searchStr}` } }); return }
     if (favorites.isError) { void favorites.refetch(); return }
     setError('')
     try { await commands.mutateAsync(id, !saved) } catch (error) { setError(apiErrorMessage(error)) }

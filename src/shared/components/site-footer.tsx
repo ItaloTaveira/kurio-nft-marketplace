@@ -10,7 +10,7 @@ const benefits = [
 const unavailable = (label: string) => <span key={label} aria-disabled="true" title="Conteúdo fora do escopo desta demonstração">{label}</span>
 export function SiteFooter() {
   const { pathname } = useLocation()
-  if (!(pathname === '/' || pathname === '/carrinho' || pathname === '/pagamento' || pathname.startsWith('/nfts/'))) return null
+  if (!(pathname === '/' || pathname === '/entrar' || pathname === '/cadastro' || pathname === '/carrinho' || pathname === '/pagamento' || pathname.startsWith('/nfts/'))) return null
   return <footer className="site-footer page-container">
     <div className="footer-benefits">{benefits.map(([mark, title, text]) => <section key={mark}><span className="footer-benefit-mark" aria-hidden="true">{mark}</span><h2>{title}</h2><p>{text}</p></section>)}<section className="footer-newsletter"><h2>Antecipe-se ao próximo lançamento</h2><div><input aria-label="E-mail para novidades" placeholder="Digite seu e-mail…" disabled /><button type="button" disabled title="Inscrição indisponível nesta demonstração">Enviar</button></div><p>Receba lançamentos selecionados, histórias de criadores e novidades do mercado.</p></section></div>
     <div className="footer-brand"><strong>KURIO</strong><p>Feita para colecionadores,<br />criadores e cultura</p><span>contato@email.com</span><span>+55 11 4002 8922</span></div>

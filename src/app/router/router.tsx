@@ -1,13 +1,10 @@
-import { SiteFooter } from '@/shared/components/site-footer'
-import { RealtimeBridge, FavoritesPage, CheckoutPage, OrderPage, ProfilePage, WalletsPage, AuthPage, NftPage, CartPage } from './lazy-pages'
-import { Suspense } from 'react'
-import { MobileNavigation } from '@/shared/components/mobile-navigation'
+import { RootLayout } from './root-layout'
+import { AuthPage } from '@/routes/auth-page'
+import { FavoritesPage, CheckoutPage, OrderPage, ProfilePage, WalletsPage, NftPage, CartPage } from './lazy-pages'
 import { PrivateAccount } from '@/features/account/components/private-account'
 import { getSessionToken } from '@/shared/api/session-token'
-import { SessionNotice } from '@/features/auth/components/session-notice'
 import { authSearchSchema } from '@/shared/contracts/auth'
-import { createRootRoute, createRoute, createRouter, redirect, Link, Outlet, stripSearchParams } from '@tanstack/react-router'
-import { HomePage } from '@/routes/home-page'
+import { createRootRoute, createRoute, createRouter, redirect, Link, stripSearchParams } from '@tanstack/react-router'
 import { cartSearchSchema, type CartSearch } from '@/shared/contracts/cart'
 import { nftSearchSchema, defaultNftSearch, type NftSearch } from '@/shared/contracts/nft'
 import { Button } from '@/shared/ui/button'
@@ -15,7 +12,7 @@ import { catalogSearchSchema, defaultCatalogSearch, type CatalogSearch } from '@
 import { parseSearch, stringifySearch } from './search-params'
 
 const rootRoute = createRootRoute({
-  component: () => <><SessionNotice /><Suspense fallback={<main className="page-container py-12" role="status" aria-label="Carregando página"><div className="h-96 rounded-xl bg-card skeleton-shimmer" /></main>}><Outlet /></Suspense><SiteFooter /><MobileNavigation /><Suspense fallback={null}><RealtimeBridge /></Suspense></>,
+  component: RootLayout,
   notFoundComponent: () => (
     <main className="page-container flex min-h-dvh flex-col items-start justify-center gap-6">
       <p className="text-sm text-accent">404</p>
@@ -24,7 +21,7 @@ const rootRoute = createRootRoute({
     </main>
   ),
 })
-const homeRoute = createRoute({ getParentRoute: () => rootRoute, path: '/', validateSearch: (raw: Record<string, unknown>): CatalogSearch => catalogSearchSchema.parse(raw), search: { middlewares: [stripSearchParams<CatalogSearch>(defaultCatalogSearch)] }, component: HomePage })
+const homeRoute = createRoute({ getParentRoute: () => rootRoute, path: '/', validateSearch: (raw: Record<string, unknown>): CatalogSearch => catalogSearchSchema.parse(raw), search: { middlewares: [stripSearchParams<CatalogSearch>(defaultCatalogSearch)] }, component: () => null })
 const nftRoute = createRoute({
   getParentRoute: () => rootRoute, path: '/nfts/$nftId',
   validateSearch: (raw: Record<string, unknown>): NftSearch => nftSearchSchema.parse(raw),
