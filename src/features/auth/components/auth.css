@@ -22,7 +22,7 @@
 .auth-feedback, .auth-field-error { margin-top: 8px; font-size: 12px; line-height: 18px; color: #f0805f; overflow-wrap: anywhere; }
 .auth-switch { margin-top: 40px; text-align: center; color: var(--muted-foreground); font-size: 15px; line-height: 20px; }
 .auth-panel .auth-switch { display: none; }
-.auth-mobile { max-width: 470px; margin: 0 auto; padding: 80px 28px 24px; }
+.auth-mobile { position: relative; max-width: 470px; margin: 0 auto; padding: 80px 28px 24px; }
 .auth-wordmark { height: 136px; display: flex; align-items: center; justify-content: center; font-size: 32px; font-weight: 700; letter-spacing: 3.2px; }
 .auth-mobile .auth-heading { margin-top: 40px; }
 .auth-mobile .auth-heading h1 { font-size: 18px; line-height: 16px; font-weight: 700; }
@@ -30,3 +30,7 @@
 .auth-mobile input { height: 50px; border-radius: 10px; }
 .auth-mobile .auth-password button { height: 50px; }
 .auth-mobile .auth-submit { height: 60px; margin-top: 40px; border-radius: 10px; }
+
+.auth-mobile-back { position: absolute; top: max(24px, env(safe-area-inset-top)); left: 28px; display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 8px 12px; border: 1px solid var(--border); border-radius: 24px; color: var(--accent); font-size: 14px; }
+.auth-mobile-back img { transform: rotate(90deg); }
+.auth-mobile-back:hover { background: var(--card); }

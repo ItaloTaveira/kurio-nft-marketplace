@@ -15,6 +15,7 @@ import { apiErrorMessage } from '@/shared/api/errors'
 import { Button } from '@/shared/ui/button'
 import desktopHide from '@/shared/assets/figma/auth-desktop-imgHide.svg'
 import hide from '@/shared/assets/figma/auth-imgHide.svg'
+import back from '@/shared/assets/figma/detail-back.svg'
 import close from '@/shared/assets/figma/auth-imgX.svg'
 import '@/features/auth/components/auth.css'
 
@@ -37,7 +38,7 @@ export function AuthPage({ mode }: { mode: 'login' | 'register' }) {
   // O formulário não é mostrado novamente para uma sessão válida.
   useEffect(() => { if (token && session.data) void navigate({ href: returnTo, replace: true }) }, [token, session.data, returnTo, navigate])
   if (desktop) return <><div aria-hidden="true" inert><SiteHeader /><main className="page-container mt-8"><HomeHero /><Catalog search={defaultCatalogSearch} onChange={() => undefined} onReset={() => undefined} filtersOpen={false} onFiltersOpenChange={() => undefined} /></main></div><Dialog.Root open onOpenChange={open => { if (!open) leave() }}><Dialog.Portal><Dialog.Overlay className="auth-overlay" /><Dialog.Content className={`auth-panel auth-${mode}`} onCloseAutoFocus={event => { event.preventDefault(); window.setTimeout(() => document.querySelector<HTMLElement>('[id="conteudo"], main')?.focus(), 0) }}><Dialog.Title className="sr-only">{mode === 'login' ? 'Entrar' : 'Criar conta'}</Dialog.Title><Dialog.Description className="sr-only">Acesse sua conta de colecionador.</Dialog.Description><Dialog.Close className="auth-close" aria-label="Fechar e voltar"><img src={close} alt="" /></Dialog.Close><AuthForm key={mode} mode={mode} returnTo={returnTo} expired={!!search.expired} desktop /></Dialog.Content></Dialog.Portal></Dialog.Root></>
-  return <main id="conteudo" tabIndex={-1} className="auth-mobile"><Link to="/" search={defaultCatalogSearch} className="auth-wordmark" aria-label="Kurio — início">KURIO</Link><AuthForm key={mode} mode={mode} returnTo={returnTo} expired={!!search.expired} desktop={false} /></main>
+  return <main id="conteudo" tabIndex={-1} className="auth-mobile"><button type="button" className="auth-mobile-back" onClick={leave} aria-label="Voltar e cancelar acesso"><img src={back} alt="" />Voltar</button><Link to="/" search={defaultCatalogSearch} className="auth-wordmark" aria-label="Kurio — início">KURIO</Link><AuthForm key={mode} mode={mode} returnTo={returnTo} expired={!!search.expired} desktop={false} /></main>
 }
 function AuthForm({ mode, returnTo, expired, desktop }: { mode: 'login' | 'register'; returnTo: string; expired: boolean; desktop: boolean }) {
   const registerMode = mode === 'register'
