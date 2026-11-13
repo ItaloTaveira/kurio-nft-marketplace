@@ -59,3 +59,16 @@
   .profile-avatar-field .profile-avatar { margin-right: 4px; }
   .profile-passwords h2 { line-height: 16px; }
 }
+
+.wallet-collection { margin-top: 40px; padding-top: 24px; border-top: 1px solid var(--border); scroll-margin-top: 24px; }
+.wallet-collection > h2 { font-size: 20px; font-weight: 700; }
+.wallet-collection > p { margin-block: 16px; }
+.wallet-collection-group { margin-top: 24px; }
+.wallet-collection-group h3 { font-weight: 700; }
+.wallet-collection-address { overflow-wrap: anywhere; color: var(--muted-foreground); margin-block: 8px 20px; font-size: 13px; }
+.wallet-collection-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(180px,240px)); gap: 24px; }
+.wallet-collection-grid li { padding: 12px; border-radius: 16px; background: var(--card); }
+.wallet-collection-grid img { width: 100%; height: auto; aspect-ratio: 1; object-fit: cover; border-radius: 12px; }
+.wallet-collection-grid h4 { margin-top: 12px; font-weight: 700; }
+.wallet-collection-grid p { margin-top: 8px; font-size: 13px; }
+@media(max-width:480px) { .wallet-collection-grid { grid-template-columns: minmax(0,1fr); } }

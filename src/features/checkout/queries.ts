@@ -50,6 +50,7 @@ export function useOrder(id: string) {
     void client.invalidateQueries({ queryKey: ['account', token, 'checkout'] })
     void client.invalidateQueries({ queryKey: ['catalog'] })
     void client.invalidateQueries({ queryKey: ['nft'] })
+    if (order.status === 'confirmed') void client.invalidateQueries({ queryKey: ['account', token, 'collection'] })
     if (order.status !== 'pending' && session.data) { try { clearAttempt(session.data.user.id, order.quoteId) } catch { /* A referência persistida permite consultar o mesmo recibo novamente. */ } }
   }, [query.data, token, id, client, session.data])
   return query

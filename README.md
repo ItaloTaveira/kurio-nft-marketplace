@@ -33,7 +33,7 @@ As contas são inicializadas sem sobrescrever usuários existentes. Também é p
 - `/nfts/emerald-ape-042`: galeria, edição, estoque, quantidade e favoritos.
 - `/favoritos`: lista persistida e isolada por usuário, com rollback de falha.
 - `/carrinho`: unidades, remoção, cupons `KURIO10`/`BEMVINDO5` e totais da API; itens do visitante são mesclados ao entrar.
-- `/perfil` e `/carteiras`: dados, avatar, senha e carteiras principal/secundária.
+- `/perfil` e `/carteiras`: dados, avatar, senha, carteiras principal/secundária e coleção de NFTs comprados. Apenas pedidos confirmados entram na coleção, vinculados ao endereço e à rede de destino; unidades são somadas sem duplicar pedidos.
 - `/pagamento`: conexão simulada, etapa de revisão com itens, carteira, taxas e total, retorno à edição e confirmação explícita de pedido idempotente.
 - `/pedidos/:id`: processamento, confirmação ou recusa; recibo conserva o snapshot confirmado.
 

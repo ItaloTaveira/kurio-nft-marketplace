@@ -23,7 +23,7 @@ export function RealtimeBridge() {
     const socket = io(import.meta.env.VITE_SOCKET_URL || window.location.origin, { transports: ['websocket'], auth: { token }, reconnectionDelay: 300, reconnectionDelayMax: 1500, randomizationFactor: 0 })
     const valid = () => active && getSessionToken() === token
     const reconcile = () => { for (const key of [['catalog'], ['nft'], ['cart', token || 'guest'], ['account', token]]) void client.invalidateQueries({ queryKey: key }) }
-    socket.on('connect', () => { if (!valid()) return; setConnected(true); if (hadConnection) { reconcile(); setNotice('Conexão restabelecida. Dados atualizados pela API.') } hadConnection = true; if (orderId && token) socket.emit('subscribe-order', { orderId }) })
+    socket.on('connect', () => { if (!valid()) return; setConnected(true); if (hadConnection) { reconcile() } hadConnection = true; if (orderId && token) socket.emit('subscribe-order', { orderId }) })
     socket.on('disconnect', () => { if (valid()) setConnected(false) })
     socket.on('connect_error', () => { if (valid()) setConnected(false) })
     socket.on('nft.updated', (payload: unknown) => {
@@ -45,7 +45,6 @@ export function RealtimeBridge() {
       const cached = client.getQueryData<Order>(['account', token, 'order', event.orderId])
       if (event.version <= Math.max(versions.get(key) ?? -1, cached?.version ?? -1) || (cached && cached.status !== 'pending')) return
       versions.set(key, event.version)
-      setNotice('Status do pedido atualizado. Consultando confirmação na API.')
       void client.invalidateQueries({ queryKey: ['account', token, 'order', event.orderId] })
     })
     return () => { active = false; socket.removeAllListeners(); socket.disconnect() }

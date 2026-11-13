@@ -1,3 +1,4 @@
+import { WalletCollection } from '@/features/account/components/wallet-collection'
 import { Link } from '@tanstack/react-router'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { useForm, useWatch } from 'react-hook-form'
@@ -14,7 +15,7 @@ import arrow from '@/shared/assets/figma/account-imgArrowDown.svg'
 export function WalletsPage() {
   const { wallets, pending } = useAccountResource('wallets')
   const token = useSessionToken()
-  return <AccountLayout active="wallets">{wallets.isPending && <AccountLoading label="Carregando carteiras" />}{wallets.isError && <AccountFailure retry={() => void wallets.refetch()} />}{wallets.data && <><WalletsEditor key={token} wallets={wallets.data} pending={pending} />{wallets.data.primary && <Button asChild className="mt-8"><Link to="/pagamento">Continuar para pagamento</Link></Button>}</>}</AccountLayout>
+  return <AccountLayout active="wallets">{wallets.isPending && <AccountLoading label="Carregando carteiras" />}{wallets.isError && <AccountFailure retry={() => void wallets.refetch()} />}{wallets.data && <><WalletsEditor key={token} wallets={wallets.data} pending={pending} />{wallets.data.primary && <Button asChild className="mt-8"><Link to="/pagamento">Continuar para pagamento</Link></Button>}<WalletCollection /></>}</AccountLayout>
 }
 function WalletsEditor({ wallets, pending }: { wallets: Wallets; pending: boolean }) {
   const commands = useAccountCommands()

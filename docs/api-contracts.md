@@ -256,3 +256,7 @@ Selecionar um botão não envia autenticação, não cria usuário nem emite ses
 ### Geração de endereço fictício
 
 `POST /api/wallets/demo-address` exige sessão e aceita `{ network: "ethereum" | "polygon" | "solana" }`, retornando `{ network, address }`. A camada MSW gera um identificador aleatório no formato hexadecimal de 20 bytes para Ethereum/Polygon ou Base58 de 32 bytes para Solana. Não cria carteira real, chave privada, assinatura ou transação blockchain. O endpoint não salva alterações; o formulário recebe o endereço e a pessoa confirma em **Salvar carteira**, com o versionamento existente. Cenários de erro da conta também cobrem a geração. Com mocks desativados, o botão não é apresentado.
+
+## Coleção da carteira
+
+`GET /api/wallets/collection` exige sessão e retorna `{ orders: Order[] }`, contendo apenas pedidos confirmados da conta autenticada. A interface agrupa por rede, endereço, NFT e edição, somando unidades. Pedidos pendentes/recusados não entregam NFTs. A origem é o snapshot persistido de cada pedido, sem gravação duplicada de posse ao consultar ou atualizar o recibo. Alterar o cadastro da carteira não move compras antigas para outro endereço.

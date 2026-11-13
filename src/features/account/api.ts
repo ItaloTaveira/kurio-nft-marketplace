@@ -1,3 +1,4 @@
+import { walletCollectionSchema } from '@/shared/contracts/wallet-collection'
 import { http } from '@/shared/api/http'
 import { demoWalletAddressSchema, profileSchema, walletsSchema, type ProfileUpdate, type WalletFields, type WalletSlot } from '@/shared/contracts/account'
 const headers = (token: string, version?: number) => ({ Authorization: `Bearer ${token}`, ...(version === undefined ? {} : { 'If-Match': `"${version}"` }) })
@@ -15,3 +16,5 @@ export async function changeAccount(token: string, action: AccountAction) {
 }
 
 export async function generateDemoWalletAddress(token: string, network: WalletFields['network']) { return demoWalletAddressSchema.parse((await http.post('/wallets/demo-address', { network }, { headers: headers(token) })).data) }
+
+export async function getWalletCollection(token: string, signal: AbortSignal) { return walletCollectionSchema.parse((await http.get('/wallets/collection', { signal, headers: headers(token) })).data) }

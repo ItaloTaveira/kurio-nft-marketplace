@@ -1,3 +1,4 @@
+import { readWalletCollection } from '@/mocks/database/wallet-collection'
 import { demoWalletAddress } from '@/mocks/database/demo-wallet'
 import { delay, http, HttpResponse } from 'msw'
 import { demoWalletInputSchema, profileUpdateSchema, walletFieldsSchema, walletPreferencesSchema } from '@/shared/contracts/account'
@@ -23,6 +24,7 @@ async function respond(request: Request, mutation: boolean, work: () => unknown 
 }
 const invalid = (message: string) => HttpResponse.json({ code: 'VALIDATION_ERROR', message }, { status: 422 })
 export const accountHandlers = [
+  http.get('*/api/wallets/collection', ({ request }) => respond(request, false, () => readWalletCollection(request))),
   http.post('*/api/wallets/demo-address', async ({ request }) => {
     const parsed = demoWalletInputSchema.safeParse(await request.json().catch(() => null))
     if (!parsed.success) return invalid('Selecione uma rede para gerar o endereço fictício.')
