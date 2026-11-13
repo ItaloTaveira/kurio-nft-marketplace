@@ -23,7 +23,7 @@ A meta de performance mobile de 90 ainda não foi atingida. O carregamento inici
 - Oxlint: aprovado.
 - Referências visuais: 12 imagens de início, detalhe, carrinho e pagamento em desktop, tablet e mobile; geração aprovada e imagens representativas revisadas.
 - Suíte completa: 183 casos, com 181 aprovados, um ignorado (painel mobile não aplicável ao desktop) e uma falha na automação de clique duplo mobile. O teste disparava cliques por coordenadas durante a mudança de página; passou a disparar ambos no mesmo elemento antes da resposta. A repetição desse cenário nos três perfis aprovou 3/3. Os 182 casos aplicáveis foram, portanto, verificados; não foi repetida toda a suíte após a alteração exclusiva do teste.
-- As 12 comparações com as referências visuais também passaram na execução completa. Logs da execução e da repetição estão em `docs/test-runs`; o relatório HTML Playwright corresponde à última repetição.
+- As 12 comparações com as referências visuais também passaram na execução completa. Os relatórios temporários podem ser gerados novamente pelos comandos de teste do README.
 
 As referências são da implementação em Chromium/macOS. Elas detectam regressões futuras e não comprovam equivalência ao Figma. A CI executa testes funcionais em Linux; novas referências visuais nesse sistema exigem revisão própria.
 
@@ -49,14 +49,14 @@ Validação focada: 72 casos de conta/autenticação/checkout, 42 de carrinho/te
 
 As 15 referências visuais (agora incluindo recibo) passaram na comparação. IDs aleatórios são mascarados nas imagens do recibo e o aviso transitório de atualização é ocultado apenas na captura, por CSS de teste; a operação dos eventos continua coberta nos testes funcionais. As capturas foram revisadas em desktop e mobile. O build, a verificação de tipos e o lint passaram. Não foi refeita a auditoria Lighthouse nesta alteração; as notas anteriores são históricas.
 
-Após o deploy automático do commit `898d4ce`, a suíte das correções foi executada também em https://nft-marketplaceme.netlify.app: 13 casos aprovados e dois ignorados por serem exclusivos do desktop. Foram confirmados no site público o fechamento do login, o menu sobreposto, a remoção das ações indisponíveis, a reconciliação da carteira e as taxas por rede. Evidência em `docs/test-runs/fixes-production.txt`.
+Após o deploy automático do commit `898d4ce`, a suíte das correções foi executada também em https://nft-marketplaceme.netlify.app: 13 casos aprovados e dois ignorados por serem exclusivos do desktop. Foram confirmados no site público o fechamento do login, o menu sobreposto, a remoção das ações indisponíveis, a reconciliação da carteira e as taxas por rede.
 
 
 ## Ajustes visuais pela exportação local — 13/11/2026
 
 A referência e os limites da comparação estão em `docs/design-review.md`. Pagamento, recibo, rodapé e navegação mobile foram revisados; 15 capturas foram geradas e inspecionadas em desktop/mobile. Nome de usuário/metadados de carteira são somente leitura; a observação é validada e preservada no snapshot. Os fluxos de compra, troca de preço, sessão e isolamento de conta foram reexecutados.
 
-A rodada completa local teve 201 casos: 178 passaram de primeira, 13 passaram na repetição, sete falharam e três foram ignorados por não se aplicarem ao viewport. As falhas incluíram expectativas da navegação anterior e um aviso que interceptava o botão de voltar ao carrinho no tablet. Os testes foram adaptados aos controles reais da nova navegação, e o aviso foi corrigido. Também foi ajustada a incorporação da resposta da conexão ao cache para evitar estado visual antigo. As repetições focadas e seus resultados finais ficam nos logs `docs/test-runs/layout-*`; não se apresenta essa primeira rodada como uma suíte integralmente aprovada. Não foi refeita a auditoria Lighthouse.
+A rodada completa local teve 201 casos: 178 passaram de primeira, 13 passaram na repetição, sete falharam e três foram ignorados por não se aplicarem ao viewport. As falhas incluíram expectativas da navegação anterior e um aviso que interceptava o botão de voltar ao carrinho no tablet. Os testes foram adaptados aos controles reais da nova navegação, e o aviso foi corrigido. Também foi ajustada a incorporação da resposta da conexão ao cache para evitar estado visual antigo. As repetições focadas validaram os ajustes; não se apresenta essa primeira rodada como uma suíte integralmente aprovada. Não foi refeita a auditoria Lighthouse.
 
 
 ## Migração de hospedagem
@@ -68,7 +68,7 @@ A correção do teste de favoritos passou nos três perfis Chromium (3/3). No en
 
 ## Login social simulado
 
-Google e Facebook foram reintroduzidos com aviso explícito de demonstração, sem OAuth ou acesso a contas reais. A validação focada aprovou seis casos sociais nos três viewports, além dos 13 casos aplicáveis das regressões existentes. A primeira rodada do novo teste de troca de provedor navegava antes da conclusão do logout; após aguardar a confirmação da saída, a repetição passou em 6/6 sem retries. A interface desktop foi inspecionada por captura; build, TypeScript e lint passaram. Evidência em `docs/test-runs/social-demo-final.txt`.
+Google e Facebook foram reintroduzidos com aviso explícito de demonstração, sem OAuth ou acesso a contas reais. A validação focada aprovou seis casos sociais nos três viewports, além dos 13 casos aplicáveis das regressões existentes. A primeira rodada do novo teste de troca de provedor navegava antes da conclusão do logout; após aguardar a confirmação da saída, a repetição passou em 6/6 sem retries. A interface desktop foi inspecionada por captura; build, TypeScript e lint passaram.
 
 
 ## Abertura do login sem reconstruir o fundo
@@ -78,9 +78,13 @@ Foram aprovados 49 testes de início, autenticação, simulação social e regre
 
 ## Simulação social com dados informados pelo visitante
 
-A entrada automática por Google/Facebook foi substituída pela escolha da opção e preenchimento de e-mail/senha fictícios. Seis testes passaram nos três viewports, sem retries: seleção sem sessão automática, criação de conta inicial, sessão após refresh, retorno à mesma conta por outra opção, senha incorreta, preservação do carrinho, armazenamento sem senha em claro e recuperação de falha da API. Build, TypeScript e lint passaram. Log: `docs/test-runs/social-credentials-final.txt`.
+A entrada automática por Google/Facebook foi substituída pela escolha da opção e preenchimento de e-mail/senha fictícios. Seis testes passaram nos três viewports, sem retries: seleção sem sessão automática, criação de conta inicial, sessão após refresh, retorno à mesma conta por outra opção, senha incorreta, preservação do carrinho, armazenamento sem senha em claro e recuperação de falha da API. Build, TypeScript e lint passaram.
 
 
 ## Geração de carteira fictícia
 
-Adicionado o botão de geração de endereço fictício na carteira principal e secundária. Seis testes passaram sem retries nos três viewports, verificando formatos Ethereum/Polygon/Solana, salvamento e refresh, recuperação de falha e compra confirmada com endereço gerado. Build, TypeScript e lint passaram. Evidência em `docs/test-runs/demo-wallet-final.txt`. A geração não cria chave privada nem carteira em blockchain.
+Adicionado o botão de geração de endereço fictício na carteira principal e secundária. Seis testes passaram sem retries nos três viewports, verificando formatos Ethereum/Polygon/Solana, salvamento e refresh, recuperação de falha e compra confirmada com endereço gerado. Build, TypeScript e lint passaram. A geração não cria chave privada nem carteira em blockchain.
+
+## Artefatos da entrega
+
+Logs históricos e relatórios temporários foram removidos da entrega. Os testes, referências visuais e relatórios finais Lighthouse permanecem no repositório; os comandos do README regeneram build e relatórios locais.

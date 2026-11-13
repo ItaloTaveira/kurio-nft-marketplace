@@ -3,7 +3,7 @@ from zipfile import ZipFile, ZIP_DEFLATED
 root = Path(__file__).resolve().parents[1]
 target = root / 'release' / 'kurio-frontend-challenge.zip'
 target.parent.mkdir(exist_ok=True)
-excluded = {'node_modules', '.git', '.agents', '.codex', '.aws', 'dist', 'dist-ssr', 'release', 'test-results', '.lighthouseci', '.DS_Store'}
+excluded = {'node_modules', '.git', '.agents', '.codex', '.aws', 'dist', 'dist-ssr', 'release', 'test-results', 'playwright-report', '.lighthouseci', '.DS_Store'}
 with ZipFile(target, 'w', ZIP_DEFLATED) as package:
     for file in sorted(root.rglob('*')):
         relative = file.relative_to(root)
